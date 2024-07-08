@@ -2,10 +2,16 @@
 # define OGV1_H
 
 #include "./minilibx_opengl_20191021/mlx.h"
+#include "libft/libft.h"
+#include "gnl/get_next_line.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <unistd.h>
+#include <fcntl.h>
 #include <math.h>
+
+#define BUFFER_SIZE 42
 
 #define	NORTH_TEX_PATH	"img/collect.xpm"
 #define	SOUTH_TEX_PATH	"img/exit.xpm"
@@ -25,6 +31,11 @@
 #define RAY_LENGTH 1000
 
 #define FOV	60
+
+#define SYSERR	-1
+
+#define	BOUND_ADJUSTMENT	0.001
+
 
 enum	e_color
 {
@@ -50,19 +61,46 @@ enum	e_key_code
 	KEY_RIGHT	= 124
 };
 
-typedef enum e_direction
+typedef	enum e_parse_kind
 {
-	NORTH	= 0,
-	SOUTH	= 1,
-	EAST	= 2,
-	WEST	= 3,
-}	t_direct;
+	KIND_MAP,
+	WALL,
+	KIND_NORTH,
+	KIND_SOUTH,
+	KIND_WEST,
+	KIND_EAST,
+	FLOOR_CEILING,
+	KIND_FLOOR,
+	KIND_CEILING,
+	KIND_NEWLINE,
+	KIND_FALSE,
+}	t_parse_kind;
+
+// typedef enum e_direction
+// {
+// 	NORTH	= 0,
+// 	SOUTH	= 1,
+// 	EAST	= 2,
+// 	WEST	= 3,
+// }	t_direct;
 
 enum	e_axis
 {
 	VERTICAL,
 	HORIZONTAL,
 };
+
+typedef struct s_pos
+{
+	int	x;
+	int y;
+} t_pos;
+
+typedef struct s_map_node
+{
+	char *val;
+	struct s_map_node *next;
+}	t_mnode;
 
 typedef struct s_img
 {
@@ -91,21 +129,37 @@ typedef struct s_map
 	int panel_side; //パネルの一辺s
 } t_map;
 
+typedef struct s_source
+{
+	void *handle;
+	int width;
+	int height;
+	char	*buffer;
+	int		bits_per_pixel;
+	int		line_size;
+	int		endian;
+} t_src;
+
 typedef struct s_texture
 {
-	void	*handle;
-	int		width;
-	int		height;
+	t_src	north;
+	t_src	south;
+	t_src	west;
+	t_src	east;
+	int 	floor;
+	int		ceiling;
 } t_tex;
+
 
 typedef struct s_intersection
 {
+	enum e_axis	touching_axis; //接している軸 vertical or horizontal
 	int			x;
 	int			y;
 	double		distance;
 	double		wall_height;
-	enum e_axis	touching_axis; //接している軸 vertical or horizontal
 	int			origin_offset;
+	double		degree;
 } t_intersection;
 
 typedef struct s_mlx
@@ -113,7 +167,7 @@ typedef struct s_mlx
 	void		*handle;
 	void		*window;
 	t_img		img;
-	t_tex		*textures;
+	t_tex		textures;
 	t_player	player;
 	t_map		map;
 }	t_mlx;
