@@ -6,7 +6,7 @@
 #    By: toshi <toshi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/07/03 14:10:19 by toshi            ###   ########.fr        #
+#    Updated: 2024/07/09 18:52:30 by toshi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,11 @@ MLX_FLAG	:=	-L$(MLX_PATH) -l mlx -framework OpenGL -framework AppKit
 LIBFT_PATH	:=	libft/
 LIBFT_A		:=	$(LIBFT_PATH)libft.a
 
-SRCS		:=	ogv1.c
+SRCS		:=	ogv1.c \
+				calc_intersection.c \
+				draw_wall.c \
+				utils_calc.c \
+				utils_draw.c
 OBJS		:=	$(patsubst %.c, %.o, $(SRCS))
 
 

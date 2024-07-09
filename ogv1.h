@@ -109,6 +109,8 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		line_size;
 	int		endian;
+	int		width;
+	int		height;
 }	t_img;
 
 typedef struct s_player
@@ -131,9 +133,9 @@ typedef struct s_map
 
 typedef struct s_source
 {
-	void *handle;
 	int width;
 	int height;
+	void *handle;
 	char	*buffer;
 	int		bits_per_pixel;
 	int		line_size;
@@ -171,5 +173,35 @@ typedef struct s_mlx
 	t_player	player;
 	t_map		map;
 }	t_mlx;
+
+void	put_pixel(t_img *img, int x, int y, int color);
+int		pick_color(t_src *img, int x, int y);
+void	draw_line(t_img *img, int x1, int y1, int x2, int y2, int color);
+void	draw_background(t_img *img, int color);
+void	draw_rect(t_img *img, int x, int y, int width, int height, int color);
+void	draw_map(t_mlx *mlx);
+void	draw_player(t_mlx *mlx);
+
+double fix_angle(double angle);
+double convert_radian(double angle);
+double cos_wrap(double angle);
+double sin_wrap(double angle);
+double tan_wrap(double angle);
+double cot_wrap(double angle);
+bool	is_up(double degree);
+bool	is_right(double degree);
+
+
+int		get_vartical_first(t_mlx *mlx, int *pos_y, int ray_angle);
+int		get_horizontal_first(t_mlx *mlx, int *pos_y, double ray_angle);
+void	display_vartical_grid_intersection(t_mlx *mlx, t_intersection pos, int color, double ray_angle);
+void	display_horizontal_grid_intersection(t_mlx *mlx, t_intersection pos, int color, double ray_angle);
+t_intersection display_vertical_intersection(t_mlx *mlx, t_intersection pos, int color, double ray_angle);
+t_intersection display_horizontal_intersection(t_mlx *mlx, t_intersection pos, int color, double ray_angle);
+t_intersection	find_vartical_intersection(t_mlx *mlx, double ray_angle);
+t_intersection	find_horizontal_intersection(t_mlx *mlx, double ray_angle);
+t_intersection calc_intersection(t_mlx *mlx, double ray_angle);
+
+void draw_wall(t_mlx *mlx, int start);
 
 #endif
