@@ -9,6 +9,15 @@ void render(t_mlx *mlx)
 	mlx_put_image_to_window(mlx->handle, mlx->window, mlx->img.handle, 0, 0);
 }
 
+// t_pos fix_move(t_pos pos, double angle)
+// {
+// 	t_pos next;
+
+// 	pos.x += MOVE_STEP * cos_wrap(fix_angle(angle));
+// 	pos.y -= MOVE_STEP * sin_wrap(fix_angle(angle));
+// 	return (next);
+// }
+
 int	handle_keypress(int key, t_mlx *mlx)
 {
 	double next_angle;
@@ -17,23 +26,23 @@ int	handle_keypress(int key, t_mlx *mlx)
 		exit(0);
 	else if (key == KEY_A)
 	{
-		if (mlx->player.x >= MOVE_STEP)
-			mlx->player.x -= MOVE_STEP;
+		mlx->player.x += MOVE_STEP * cos_wrap(fix_angle(mlx->player.angle + 90));
+		mlx->player.y -= MOVE_STEP * sin_wrap(fix_angle(mlx->player.angle + 90));
 	}
 	else if (key == KEY_D)
 	{
-		if (mlx->player.x + MOVE_STEP <= WINDOW_WIDTH)
-			mlx->player.x += MOVE_STEP;
+		mlx->player.x += MOVE_STEP * cos_wrap(fix_angle(mlx->player.angle - 90));
+		mlx->player.y -= MOVE_STEP * sin_wrap(fix_angle(mlx->player.angle - 90));
 	}
 	else if (key == KEY_W)
 	{
-		if (mlx->player.y >= MOVE_STEP)
-			mlx->player.y -= MOVE_STEP;
+		mlx->player.x += MOVE_STEP * cos_wrap(mlx->player.angle);
+		mlx->player.y -= MOVE_STEP * sin_wrap(mlx->player.angle);
 	}
 	else if (key == KEY_S)
 	{
-		if (mlx->player.y + MOVE_STEP <= WINDOW_HEIGHT)
-			mlx->player.y += MOVE_STEP;
+		mlx->player.x += MOVE_STEP * cos_wrap(fix_angle(mlx->player.angle - 180));
+		mlx->player.y -= MOVE_STEP * sin_wrap(fix_angle(mlx->player.angle - 180));
 	}
 	else if (key == KEY_LEFT)
 		mlx->player.angle = fix_angle(mlx->player.angle + ANGLE_STEP);
