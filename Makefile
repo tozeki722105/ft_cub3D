@@ -6,17 +6,21 @@
 #    By: toshi <toshi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/07/14 17:54:46 by tyamauch         ###   ########.fr        #
+#    Updated: 2024/07/15 17:09:28 by tyamauch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			:=	cc
 # CFLAGS		=	-Wall -Wextra -Werror
-RM			:=	rm -f
+RM			:=	rm -rf
 
 NAME		:=	cub3d
 
 OS := $(shell uname -s)
+
+OBJS_DIR = objs
+
+DIR_DUP = mkdir -p $(@D)
 
 ifeq ($(OS),Linux)
 	MLX_PATH    :=  ./minilibx-linux/
@@ -34,8 +38,8 @@ SRCS		:=	ogv1.c \
 				draw_wall.c \
 				utils_calc.c \
 				utils_draw.c
-OBJS		:=	$(patsubst %.c, %.o, $(SRCS))
 
+OBJS		:=	$(patsubst %.c, ${OBJS_DIR}/%.o, $(SRCS))
 
 all: $(NAME)
 
@@ -43,11 +47,12 @@ $(NAME): $(OBJS)
 	make -C $(MLX_PATH)
 	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAG) -o $(NAME)
 
-%.o: %.c
+${OBJS_DIR}/%.o: %.c
+	$(DIR_DUP)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS_DIR)
 
 fclean: clean
 	$(RM) $(NAME)
