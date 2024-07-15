@@ -1,8 +1,11 @@
 #ifndef OGV1_H
 # define OGV1_H
 
-/* #include "./minilibx_opengl_20191021/mlx.h" */
-#include "./minilibx-linux/mlx.h"
+#if (__linux)
+	#include "./minilibx-linux/mlx.h"
+#else
+	#include "./minilibx_opengl_20191021/mlx.h" 
+#endif
 #include "libft/libft.h"
 #include "gnl/get_next_line.h"
 #include <stdio.h>
