@@ -51,19 +51,8 @@ enum	e_color
 	BROWN	=	0x764B00,
 };
 
-/* mac用 */
-/* enum	e_key_code */
-/* { */
-/* 	KEY_W		= 13, */
-/* 	KEY_S		= 1, */
-/* 	KEY_A		= 0, */
-/* 	KEY_D		= 2, */
-/* 	KEY_ESC		= 53, */
-/* 	KEY_LEFT	= 123, */
-/* 	KEY_RIGHT	= 124 */
-/* }; */
-
 /* linux用 */
+#if (__linux)
 enum	e_key_code
 {
 	KEY_W		= 119,
@@ -75,6 +64,19 @@ enum	e_key_code
 	KEY_LEFT	= 65361,
 	KEY_RIGHT	= 65363
 };
+#else
+/* mac用 */
+enum	e_key_code
+{
+	KEY_W		= 13,
+	KEY_S		= 1,
+	KEY_A		= 0,
+	KEY_D		= 2,
+	KEY_ESC		= 53,
+	KEY_LEFT	= 123,
+	KEY_RIGHT	= 124
+};
+#endif
 
 typedef	enum e_parse_kind
 {
