@@ -15,6 +15,7 @@
 
 # include <stddef.h> //size_t
 # include <unistd.h> //ssize_t
+# include <stdint.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42

@@ -1,17 +1,5 @@
-#include "ogv1.h"
-
-typedef struct 
-{
-	char	*north_path;
-	char	*south_path;
-	char	*west_path;
-	char	*east_path;
-	int		floor_color;
-	int		ceiling_color;
-	char	**map_data;
-	int		player_x;
-	int		player_y;
-}	t_reader;
+// #include "ogv1.h"
+#include "../includes/parse.h"
 
 void	my_perror_exit(char *err_s, int exit_code)
 {
