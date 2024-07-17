@@ -1,4 +1,5 @@
 #include "ogv1.h"
+#include "calc.h"
 
 void draw_wall(t_mlx *mlx, int start);
 
