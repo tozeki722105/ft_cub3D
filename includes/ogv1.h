@@ -1,19 +1,7 @@
 #ifndef OGV1_H
 # define OGV1_H
 
-#if (__linux)
-	#include "mlx.h"
-#else
-	#include "mlx.h" 
-#endif
-#include "libft.h"
-#include "get_next_line.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <math.h>
+#include "utils.h"
 
 #define BUFFER_SIZE 42
 
@@ -104,12 +92,6 @@ typedef	enum e_parse_kind
 // 	WEST	= 3,
 // }	t_direct;
 
-enum	e_axis
-{
-	VERTICAL,
-	HORIZONTAL,
-};
-
 typedef struct s_pos
 {
 	int	x;
@@ -172,18 +154,6 @@ typedef struct s_texture
 	int		ceiling;
 } t_tex;
 
-
-typedef struct s_intersection
-{
-	enum e_axis	touching_axis; //接している軸 vertical or horizontal
-	int			x;
-	int			y;
-	double		distance;
-	double		wall_height;
-	int			origin_offset;
-	double		degree;
-} t_intersection;
-
 typedef struct s_mlx
 {
 	void		*handle;
@@ -211,16 +181,6 @@ double cot_wrap(double angle);
 bool	is_up(double degree);
 bool	is_right(double degree);
 
-
-int		get_vartical_first(t_mlx *mlx, int *pos_y, int ray_angle);
-int		get_horizontal_first(t_mlx *mlx, int *pos_y, double ray_angle);
-void	display_vartical_grid_intersection(t_mlx *mlx, t_intersection pos, int color, double ray_angle);
-void	display_horizontal_grid_intersection(t_mlx *mlx, t_intersection pos, int color, double ray_angle);
-t_intersection display_vertical_intersection(t_mlx *mlx, t_intersection pos, int color, double ray_angle);
-t_intersection display_horizontal_intersection(t_mlx *mlx, t_intersection pos, int color, double ray_angle);
-t_intersection	find_vartical_intersection(t_mlx *mlx, double ray_angle);
-t_intersection	find_horizontal_intersection(t_mlx *mlx, double ray_angle);
-t_intersection calc_intersection(t_mlx *mlx, double ray_angle);
 
 void draw_wall(t_mlx *mlx, int start);
 

@@ -1,4 +1,5 @@
 #include "ogv1.h"
+#include "calc.h"
 
 double fix_angle(double angle);
 double convert_radian(double angle);
