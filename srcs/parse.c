@@ -1,5 +1,5 @@
-// #include "ogv1.h"
-#include "../includes/parse.h"
+#include "ogv1.h"
+#include "parse.h" 
 
 void	my_perror_exit(char *err_s, int exit_code)
 {
@@ -247,6 +247,7 @@ t_mnode *make_mnode_list(char *str, int fd)
 	t_mnode *head;
 	t_mnode *new;
 	char *val;
+	t_parse_kind kind;
 	
 	head = NULL;
 	while (1)
@@ -257,7 +258,13 @@ t_mnode *make_mnode_list(char *str, int fd)
 			str = get_next_line(fd);
 		if (!str)
 			break;
-		if (!is_map_str(str))
+		kind = parse_kind(str);
+		if (kind == KIND_NEWLINE)
+		{
+			free(str);
+			break ;
+		}	
+		if (kind != KIND_MAP)
 			exit(0);//不正な情報が入っている
 		val = ft_strtrim(str, "\n");
 		new = make_new_mnode(val);
@@ -439,9 +446,9 @@ int main(int argc, char **argv)
 {
 	t_reader reader;
 
-	// reader = parse(argv[1]);
-	// print_texture(reader);
-	// print_map(reader);
-	// free_reader(reader);
-	printf("%d, %d\n", make_rgb_color(220, 100, 0), 0xFF1E00);
+	reader = parse(argv[1]);
+	print_texture(reader);
+	print_map(reader);
+	free_reader(reader);
+	// printf("%d, %d\n", make_rgb_color(220, 100, 0), 0xFF1E00);
 }

@@ -1,7 +1,9 @@
 #ifndef PARSE_H
 # define PARSE_H
 
-# include "ogv1.h"
+// # include "ogv1.h"
+#include "utils.h"
+
 
 typedef	enum e_parse_kind
 {
