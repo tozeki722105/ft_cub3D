@@ -69,20 +69,7 @@ enum	e_key_code
 };
 #endif
 
-typedef	enum e_parse_kind
-{
-	KIND_MAP,
-	WALL,
-	KIND_NORTH,
-	KIND_SOUTH,
-	KIND_WEST,
-	KIND_EAST,
-	FLOOR_CEILING,
-	KIND_FLOOR,
-	KIND_CEILING,
-	KIND_NEWLINE,
-	KIND_FALSE,
-}	t_parse_kind;
+
 
 // typedef enum e_direction
 // {
@@ -97,12 +84,6 @@ typedef struct s_pos
 	int	x;
 	int y;
 } t_pos;
-
-typedef struct s_map_node
-{
-	char *val;
-	struct s_map_node *next;
-}	t_mnode;
 
 typedef struct s_img
 {

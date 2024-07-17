@@ -16,6 +16,7 @@
 # include <limits.h> //LONG_MAX & MIN
 # include <stdlib.h> //malloc
 # include <unistd.h> //write
+# include <stdint.h>
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
