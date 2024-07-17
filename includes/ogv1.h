@@ -2,12 +2,12 @@
 # define OGV1_H
 
 #if (__linux)
-	#include "./minilibx-linux/mlx.h"
+	#include "mlx.h"
 #else
-	#include "./minilibx_opengl_20191021/mlx.h" 
+	#include "mlx.h" 
 #endif
-#include "libft/libft.h"
-#include "gnl/get_next_line.h"
+#include "libft.h"
+#include "get_next_line.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
