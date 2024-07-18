@@ -1,5 +1,6 @@
 #include "ogv1.h"
 #include "calc.h"
+#include "config.h"
 
 double calc_distance(double ray_angle, t_player player, t_intersection res)
 {
