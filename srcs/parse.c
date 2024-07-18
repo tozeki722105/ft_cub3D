@@ -1,5 +1,8 @@
 #include "ogv1.h"
-#include "parse.h" 
+#include "parse.h"
+#include "calc.h"
+
+void	print_map(char **map_data);
 
 void	my_perror_exit(char *err_s, int exit_code)
 {
@@ -166,7 +169,7 @@ int convert_rgb_color(char *color_str)
 		else
 			sep_ptr = ft_strchr(color_str, ',');
 		if (!sep_ptr)
-			exit(0);//rgb値がたらない
+			my_perror_exit("Not enough RGB values", 0);
 		sub_s = ft_substr(color_str, 0, (size_t)(sep_ptr - color_str));
 		rgb[i++] = ft_atoi(sub_s);
 		free(sub_s);
@@ -202,7 +205,7 @@ void	add_color(t_reader *reader, t_parse_kind kind, char *str)
 	color = convert_rgb_color(val);
 	free(val);
 	if (color == -1)
-		exit(0);//rgb0~255ではない
+		my_perror_exit("RGB contains values ​​other than 0 to 255", 0);
 	if (kind == KIND_FLOOR)
 		reader->floor_color = color;
 	else if (kind == KIND_CEILING)
@@ -265,7 +268,7 @@ t_mnode *make_mnode_list(char *str, int fd)
 			break ;
 		}	
 		if (kind != KIND_MAP)
-			exit(0);//不正な情報が入っている
+			my_perror_exit("There is invalid information in the map data", 0);
 		val = ft_strtrim(str, "\n");
 		new = make_new_mnode(val);
 		add_last_mnode(&head, new);
@@ -337,12 +340,42 @@ void	free_mnode_list(t_mnode *ptr)
 	free_mnode(ptr);
 }
 
+size_t count_map_content_size(char *map_row)
+{
+	size_t i;
+
+	i = 0;
+	while (map_row[i])
+	{
+		if ()
+	}
+}
+
+bool validate_map_size(size_t map_y_count, t_mnode *ptr)
+{
+	size_t map_content_size;
+
+	if (map_y_count < 3)
+		return (false);
+	map_content_size = 0;
+	while (ptr)
+	{
+		if ()
+		ptr = ptr->next;
+	}
+	
+}
+
 void	add_map(t_reader *reader, char *str, int fd)
 {
 	t_mnode *head;
 	char **map;
+	// size_t	map_x_count;
+	// size_t	map_y_count;
 
 	head = make_mnode_list(str, fd);
+	// map_x_count = count_map_size(head, &map_y_count);
+	// validate_map_size(map_y_count, head);
 	map = create_map(head);
 	free_mnode_list(head);
 	reader->map_data = map;
@@ -351,7 +384,7 @@ void	add_map(t_reader *reader, char *str, int fd)
 void	add_data(char *str, t_parse_kind kind, int fd, t_reader *reader)
 {
 	if (!is_kindval_default(*reader, kind))
-		exit(0);//重複している引数
+		my_perror_exit("Duplicate elements", 0);
 	if (is_wall(kind))
 		add_wall(reader, kind, str);
 	else if (is_view_background(kind))
@@ -359,13 +392,205 @@ void	add_data(char *str, t_parse_kind kind, int fd, t_reader *reader)
 	else if (kind == KIND_MAP)
 	{
 		if (!is_textures_full(*reader))
-			exit(0); //マップの前の要素が全て揃っていない
+			my_perror_exit("Missing texture or background element", 0);
 		add_map(reader, str, fd);
 	}
 	else if (kind == KIND_NEWLINE)
 		return ;
 	else
-		exit(0);//不正な識別子が混ざっている
+		my_perror_exit("Contains invalid elements", 0);
+}
+
+size_t count_y(char **d_str)
+{
+	size_t i;
+
+	i = 0;
+	while (d_str[i])
+		i++;
+	return (i);
+}
+
+char **ft_double_str_dup(char **d_str)
+{
+	char **res;
+	size_t	i;
+	size_t	y_count;
+
+	y_count = count_y(d_str);
+	res = (char **)malloc((y_count + 1) * sizeof(char *));
+	i = 0;
+	while (i < y_count)
+	{
+		res[i] = ft_strdup(d_str[i]);
+		i++;
+	}
+	res[i] = NULL;
+	return (res);
+}
+
+bool	validate_x_first_wall(char **map_data, size_t y, int step)
+{
+	size_t i;
+	size_t end;
+	size_t x;
+
+	end = ft_strlen(map_data[y]);
+	if (end == 0)
+		return (false);
+	i = 0;
+	x = i;
+	if (step < 0)
+		x = end - 1;
+	while (i++ < end && map_data[y][x] == ' ')
+		x += step;
+	if (map_data[y][x] == '1')
+		return (true);
+	return (false);
+}
+
+bool	validate_y_first_wall(char **map_data, size_t x, int step)
+{
+	size_t i;
+	size_t end;
+	size_t y;
+
+	end = count_y(map_data);
+	if (end == 0)
+		return (false);
+	i = 0;
+	y = i;
+	if (step < 0)
+		y = end - 1;
+	while (i++ < end && map_data[y][x] == ' ')
+		y += step;
+	if (map_data[y][x] == '1')
+		return (true);
+	return (false);
+}
+
+
+bool	validate_surrounded_wall(char **map_data)
+{
+	size_t x;
+	size_t y;
+
+	y = 0;
+	while (map_data[y])
+	{
+		if (!validate_x_first_wall(map_data, y, 1)
+			|| validate_x_first_wall(map_data, y, -1))
+			return (false);
+		y++;
+	}
+	y = 0;
+	x = 0;
+	while (map_data[y][x])
+	{
+		if (!validate_y_first_wall(map_data, x, 1)
+			|| !validate_y_first_wall(map_data, x, -1))
+			return (false);
+		x++;
+	}
+	return (true);
+}
+
+void	fill_x_space_until_wall(char **map_data, size_t y, int step)
+{
+	size_t i;
+	size_t end;
+	size_t x;
+
+	end = ft_strlen(map_data[y]);
+	if (end == 0)
+		return (false);
+	i = 0;
+	x = i;
+	if (step < 0)
+		x = end - 1;
+	while (i++ < end && (map_data[y][x] == ' ' || map_data[y][x] == '!'))
+	{
+		map_data[y][x] = '!';
+		x += step;
+	}
+	if (map_data[y][x] == '1')
+		return (true);
+	return (false);
+}
+
+void	fill_y_space_until_wall(char **map_data, size_t x, int step)
+{
+	size_t i;
+	size_t end;
+	size_t y;
+
+	end = count_y(map_data);
+	if (end == 0)
+		return (false);
+	i = 0;
+	y = i;
+	if (step < 0)
+		y = end - 1;
+	while (i++ < end && (map_data[y][x] == ' ' || map_data[y][x] == '!'))
+	{
+		map_data[y][x] = '!';
+		y += step;
+	}
+	if (map_data[y][x] == '1')
+		return (true);
+	return (false);
+}
+
+
+bool	is_player(char **map_data, t_pos cur)
+{
+	return (map_data[cur.y][cur.x] == 'N' || map_data[cur.y][cur.x] == 'S' 
+		|| map_data[cur.y][cur.x] == 'E' || map_data[cur.y][cur.x] == 'W');
+}
+
+t_pos search_player(char **map_data)
+{
+	t_pos cur;
+	t_pos res;
+
+	res.x = -1;
+	res.y = -1;
+	cur.y = 0;
+	while (map_data[cur.y])
+	{
+		cur.x = 0;
+		while (map_data[cur.y][cur.x])
+		{
+			if (is_player(map_data, cur))
+			{
+				if (res.x == -1 && res.y == -1)
+					res = cur;
+				else
+					my_perror_exit("There are multiple player elements", 0);
+			}
+			cur.x++;
+		}
+		cur.y++;
+	}
+	return (res);
+}
+
+
+void	validate_map_data(char **map_data)
+{
+	char **map_cpy;
+	t_pos player;
+
+	map_cpy = ft_double_str_dup(map_data);
+	// validate_map_size(map_cpy);
+	if (!validate_surrounded_wall(map_cpy))
+		my_perror_exit("The map is not surrounded by walls", 0);;
+	player = search_player(map_cpy);
+	if (player.x == -1 || player.y == -1)
+		my_perror_exit("The player element was not found", 0);
+	map_cpy[player.y][player.x] = '0';
+	// validate_map_elements
+	//壁の中身が0/1/N/S/W/Eだけかどうか
 }
 
 t_reader	parse(char *path)
@@ -376,10 +601,10 @@ t_reader	parse(char *path)
 
 	reader = init_reader();
 	if (!validate_extention(path, ".cub"))
-		exit (0); //拡張子が違う
+		my_perror_exit("The file extension is different", 0);
 	fd = open(path, O_RDONLY);
 	if (fd == SYSERR)
-		exit (0); //openエラー
+		my_perror_exit("A system call failed", 0);
 	while (1)
 	{
 		str = get_next_line(fd);
@@ -388,6 +613,7 @@ t_reader	parse(char *path)
 		add_data(str, parse_kind(str), fd, &reader);
 		free(str);
 	}
+	validate_map_data(reader.map_data);
 	return (reader);
 }
 
@@ -400,13 +626,13 @@ void	print_texture(t_reader reader)
 	printf("floor=%d;\n", reader.floor_color);
 	printf("ceiling=%d;\n", reader.ceiling_color);
 }
-void	print_map(t_reader reader)
+void	print_map(char **map_data)
 {
 	char **map;
 	size_t x;
 	size_t y;
 
-	map = reader.map_data;
+	map = map_data;
 	y = 0;
 	while (map[y])
 	{
@@ -435,10 +661,10 @@ void	free_reader(t_reader reader)
 	free(reader.map_data);
 }
 
-__attribute__((destructor))
-static void destructor() {
-   system("leaks -q a.out");
-}
+// __attribute__((destructor))
+// static void destructor() {
+//    system("leaks -q a.out");
+// }
 
 int main(int argc, char **argv)
 {
@@ -446,7 +672,7 @@ int main(int argc, char **argv)
 
 	reader = parse(argv[1]);
 	print_texture(reader);
-	print_map(reader);
+	print_map(reader.map_data);
 	free_reader(reader);
 	// printf("%d, %d\n", make_rgb_color(220, 100, 0), 0xFF1E00);
 }

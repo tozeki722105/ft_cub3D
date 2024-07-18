@@ -5,6 +5,12 @@
 #include "utils.h"
 
 
+enum e_dir
+{
+	FRONT,
+	BACK,
+} ;
+
 typedef	enum e_parse_kind
 {
 	KIND_MAP,
