@@ -11,7 +11,7 @@
 #define MAP_Y_COUNT 10
 
 /* linux用 */
-#if (__linux)
+#if defined(__linux__)
 enum	e_key_code
 {
 	KEY_W		= 119,
