@@ -2,6 +2,10 @@
 # define PARSE_H
 
 # include "ogv1.h"
+#include "libft.h"
+#include "get_next_line.h"
+#include <fcntl.h>
+#include <unistd.h>
 
 typedef	enum e_parse_kind
 {
