@@ -2,7 +2,7 @@
 #ifndef UTILS_H
 # define UTILS_H
 
-#if (__linux)
+#if defined(__linux__)
 	#include "mlx.h"
 #else
 	#include "mlx.h" 
