@@ -3,44 +3,12 @@
 
 #include "utils.h"
 
-#define BUFFER_SIZE 42
-
 #define	NORTH_TEX_PATH	"img/collect.xpm"
 #define	SOUTH_TEX_PATH	"img/exit.xpm"
 #define	WEST_TEX_PATH	"img/tile.xpm"
 #define	EAST_TEX_PATH	"img/wall.xpm"
-
-#define WINDOW_WIDTH	1000
-#define WINDOW_HEIGHT	500
-
 #define MAP_X_COUNT 10
 #define MAP_Y_COUNT 10
-#define	MAP_PADDING	10
-
-#define ANGLE_STEP	5
-#define MOVE_STEP	5
-
-#define RAY_LENGTH 1000
-
-#define FOV	60
-
-#define SYSERR	-1
-
-#define	BOUND_ADJUSTMENT	0.001
-
-
-enum	e_color
-{
-	RED		=	0xFF0000,
-	GREEN	=	0x00FF00,
-	BLUE	=	0x0000FF,
-	WHITE	=	0xFFFFFF,
-	BLACK	=	0x000000,
-	GRAY	=	0x505050,
-	PURPLE	=	0x4F00FF,
-	SKY		=	0x00C1FF,
-	BROWN	=	0x764B00,
-};
 
 /* linux用 */
 #if (__linux)
@@ -68,22 +36,6 @@ enum	e_key_code
 	KEY_RIGHT	= 124
 };
 #endif
-
-
-
-// typedef enum e_direction
-// {
-// 	NORTH	= 0,
-// 	SOUTH	= 1,
-// 	EAST	= 2,
-// 	WEST	= 3,
-// }	t_direct;
-
-typedef struct s_pos
-{
-	int	x;
-	int y;
-} t_pos;
 
 typedef struct s_img
 {
