@@ -289,9 +289,7 @@ size_t count_map_size(t_mnode *ptr, size_t *map_y_count)
 		ptr = ptr->next;
 		(*map_y_count)++;
 	}
-	if (map_x_count < 1)
-		return (0);
-	return (map_x_count - 1);
+	return (map_x_count);
 }
 
 char **create_map(t_mnode *ptr)
@@ -304,7 +302,7 @@ char **create_map(t_mnode *ptr)
 	map_x_count = count_map_size(ptr, &map_y_count);
 	map = (char **)malloc(sizeof(char *) * (map_y_count + 1));
 	i = 0;
-	while (ptr)
+	while (i < map_y_count)
 	{
 		map[i] = (char *)malloc(sizeof(char) * (map_x_count + 1));
 		ft_memset(map[i], ' ', map_x_count);
