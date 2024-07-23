@@ -7,8 +7,8 @@ void render(t_mlx *mlx)
 	draw_background(&(mlx->img), WHITE);
 	draw_map(mlx);
 	draw_player(mlx);
-	// calc_intersection(mlx, mlx->player.angle);
-	calc_test(mlx, mlx->player.angle);
+	calc_intersection(mlx, mlx->player.angle);
+	//calc_test(mlx, mlx->player.angle);
 	// draw_wall(mlx, WINDOW_WIDTH/2);
 	mlx_put_image_to_window(mlx->handle, mlx->window, mlx->img.handle, 0, 0);
 }
@@ -80,6 +80,8 @@ int main(int argc, char* argv[])
 	mlx.map.x_count = MAP_X_COUNT;
 	mlx.map.y_count = MAP_Y_COUNT;
 	mlx.map.panel_side = WINDOW_HEIGHT / MAP_Y_COUNT;
+	mlx.map.height = mlx.map.y_count * mlx.map.panel_side;
+	mlx.map.width =  mlx.map.x_count * mlx.map.panel_side;
 	mlx.map.data = (char **)malloc(sizeof(char *) * MAP_Y_COUNT);
 	mlx.map.data[0] = strdup("1111111111");
 	mlx.map.data[1] = strdup("1010001001");

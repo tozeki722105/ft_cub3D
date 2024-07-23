@@ -64,6 +64,8 @@ typedef struct s_map
 	int	x_count; //mapX パネルのx方向の個数
 	int y_count; //mapY パネルのy方向の個数
 	int panel_side; //パネルの一辺s
+	int height;
+	int width;
 } t_map;
 
 typedef struct s_source

@@ -35,8 +35,8 @@ void	display_ver_grid_inter(t_mlx *mlx, double ray_angle, t_pos pos, int color)
 	step = map.panel_side;
 	if (!is_right(ray_angle))
 		step *= -1;
-	while (pos.x < map.x_count * map.panel_side && pos.x > 0 
-		&& pos.y > 0 && pos.y < map.y_count * map.panel_side)
+	while (pos.x < map.width && pos.x > 0 
+		&& pos.y > 0 && pos.y < map.height)
 	{
 		// printf("x=%d,y=%d  ", (int)pos.x, (int)pos.y);
 		draw_rect_safely(mlx, pos, 10, color);
@@ -57,8 +57,8 @@ t_pos	calc_ver_inter(t_mlx *mlx, double ray_angle, t_pos pos)
 	step = map.panel_side;
 	if (!is_right(ray_angle))
 		step *= -1;
-	while (pos.x < map.x_count * map.panel_side && pos.x > 0 
-		&& pos.y > 0 && pos.y < map.y_count * map.panel_side)
+	while (pos.x < map.width && pos.x > 0 
+		&& pos.y > 0 && pos.y < map.height)
 	{
 		if (map.data[pos.y / map.panel_side][pos.x / map.panel_side] == '1')
 			return (pos);
@@ -86,13 +86,14 @@ t_pos *find_calc_inter(t_mlx *mlx, double ray_angle)
 		free (pos);
 		return (NULL);
 	}
-	draw_rect_safely(mlx, *pos, 10, RED);
 	return (pos);
 }
 
 void calc_test(t_mlx *mlx, double ray_angle)
 {
 	t_pos *v_inter;
+	t_pos *h_inter;
 
 	v_inter = find_calc_inter(mlx, ray_angle);
+	h_inter = find2_calc_inter(mlx, ray_angle);
 }
