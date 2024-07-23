@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+         #
+#    By: toshi <toshi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/07/18 08:47:44 by tozeki           ###   ########.fr        #
+#    Updated: 2024/07/23 21:05:12 by toshi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,12 @@ SRCS		:=	$(SRCS_DIR)ogv1.c \
 				$(SRCS_DIR)utils_calc.c \
 				$(SRCS_DIR)utils_draw.c 
 
+PARSE_SRCS	:=	$(SRCS_DIR)parse_load.c \
+				$(SRCS_DIR)parse_new.c \
+				$(SRCS_DIR)parse_utils.c \
+				$(SRCS_DIR)parse_validate_map_data.c \
+
+
 OBJS		:=	$(patsubst %.c, ${OBJS_DIR}/%.o, $(SRCS))
 
 all: $(NAME)
@@ -60,9 +66,11 @@ ${OBJS_DIR}/%.o: %.c
 	$(DIR_DUP)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-parse: $(SRCS_DIR)/parse.c
+parse: $(PARSE_SRCS)
 	make -C $(LIBFT_PATH)
-	$(CC) $(CFLAGS) $(INCLUDES) $(SRCS_DIR)/parse.c $(LIBFT_A) $(GNL_PATH)*.c
+	$(CC) $(CFLAGS) $(INCLUDES) $(PARSE_SRCS) $(LIBFT_A) $(GNL_PATH)*.c
+
+reparse: clean parse
 
 clean:
 	$(RM) $(OBJS_DIR)
