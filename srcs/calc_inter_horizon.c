@@ -54,8 +54,8 @@ t_pos	calc_horizontal_inter(t_mlx *mlx, double ray_angle, t_pos pos)
 		pos.x = player.x + ((player.y - pos.y) * cot_wrap(ray_angle));
 	}
 	pos.x = -1;
-	return (pos);
 	pos.y = -1;
+	return (pos);
 }
 
 t_pos *find2_calc_inter(t_mlx *mlx, double ray_angle)
