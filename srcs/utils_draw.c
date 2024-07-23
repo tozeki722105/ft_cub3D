@@ -1,4 +1,5 @@
 #include "ogv1.h"
+#include "config.h"
 
 void	put_pixel(t_img *img, int x, int y, int color);
 int		pick_color(t_src *img, int x, int y);
