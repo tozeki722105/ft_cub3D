@@ -197,3 +197,18 @@ t_intersection calc_intersection(t_mlx *mlx, double ray_angle)
 	res.wall_height = (WINDOW_HEIGHT * 100) / res.distance;
 	return (res);
 }
+
+
+t_intersection move_inter(t_mlx *mlx, double ray_angle)
+{
+	t_player player;
+	t_map map;
+
+	player = mlx->player;
+	map = mlx->map;
+	t_intersection v_inter = find_vartical_intersection(mlx, ray_angle);
+	t_intersection h_inter = find_horizontal_intersection(mlx, ray_angle);
+	t_intersection res = compare_distance(v_inter, h_inter, player, ray_angle);
+	res.distance = res.distance * cos_wrap(fix_angle(ray_angle - res.degree));
+	return (res);
+}

@@ -47,4 +47,6 @@ t_intersection calc_intersection(t_mlx *mlx, double ray_angle);
 
 void calc_test(t_mlx *mlx, double ray_angle);
 
+t_intersection move_inter(t_mlx *mlx, double ray_angle);
+
 #endif

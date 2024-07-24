@@ -6,7 +6,7 @@
 #    By: toshi <toshi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/07/17 17:09:30 by tyamauch         ###   ########.fr        #
+#    Updated: 2024/07/24 23:00:27 by toshi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,8 @@ SRCS		:=	$(SRCS_DIR)ogv1.c \
 				$(SRCS_DIR)calc_intersection.c \
 				$(SRCS_DIR)draw_wall.c \
 				$(SRCS_DIR)utils_calc.c \
-				$(SRCS_DIR)utils_draw.c
+				$(SRCS_DIR)utils_draw.c \
+				$(SRCS_DIR)move.c \
 
 OBJS		:=	$(patsubst %.c, ${OBJS_DIR}/%.o, $(SRCS))
 
