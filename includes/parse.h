@@ -76,7 +76,7 @@ bool	validate_extention(char *path, char *extention);
 bool	ft_isequal(char *s1, char *s2);
 bool	is_player(char c);
 bool	is_map_element(char c);
-bool	is_map_element_strictly(char c);
+bool	is_filled_map_element(char c);
 void	free_map_node(t_map_node *map_node);
 void	free_map_node_list(t_map_node *ptr);
 void	free_reader(t_reader reader);
@@ -106,7 +106,7 @@ void	trim_map_list(t_map_node **head, char *trimed_node_val);
 bool	is_contained_newline(t_map_node *ptr);
 char	*ft_strtrim_sepasets(const char *s1, const char *front_trim_set, const char *back_trim_set);
 
-void	validate_map_data(char **map_data);
+bool	validate_map_data(char **map_data);
 
 void	load_map_list(int fd, t_loader *loader);
 void	load_textures(int fd, t_loader *loader);

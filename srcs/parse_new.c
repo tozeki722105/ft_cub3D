@@ -1,6 +1,14 @@
 #include "parse.h"
 
-
+typedef struct s_player
+{
+	double x;
+	double y;
+	double angle;
+	double pdx; //視線のX成分
+	double pdy; //視線のY成分
+	int	side;
+} t_player;
 
 size_t count_map_size(t_map_node *ptr, size_t *map_y_count)
 {
@@ -61,9 +69,10 @@ t_loader	parse(char *path)
 		my_perror_exit("Only one map_data is allowed", 0);
 	loader.map_data = convert_map_data(loader.map_head);
 	print_map(loader.map_data);
-	// validate_map_data(loader->map_data);
-	if (close(fd) == -1)
-		my_perror_exit("A system call failed", 0);
+	validate_map_data(loader.map_data);
+	// if (close(fd) == -1)
+	// 	my_perror_exit("A system call failed", 0);
+	close(fd);
 	return (loader);
 }
 

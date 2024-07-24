@@ -36,7 +36,7 @@ bool	is_map_element(char c)
 	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == ' ');
 }
 
-bool	is_map_element_strictly(char c)
+bool	is_filled_map_element(char c)
 {
 	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == '!');
 }
