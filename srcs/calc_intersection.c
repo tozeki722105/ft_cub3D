@@ -27,7 +27,7 @@ double calc_offset(double ray_angle, enum e_axis axis, t_intersection inter, t_m
 	}
 }
 
-int get_vartical_first(t_mlx *mlx, int *pos_y, int ray_angle)
+int get_vartical_first(t_mlx *mlx, int *pos_y, double ray_angle)
 {
 	t_map map = mlx->map;
 	t_player player = mlx->player;
