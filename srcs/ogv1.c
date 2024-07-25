@@ -1,11 +1,15 @@
 #include "ogv1.h"
+#include "calc.h"
+#include "config.h"
 
 void render(t_mlx *mlx)
 {   
 	draw_background(&(mlx->img), WHITE);
 	draw_map(mlx);
 	draw_player(mlx);
-	draw_wall(mlx, WINDOW_WIDTH/2);
+	calc_intersection(mlx, mlx->player.angle);
+	//calc_test(mlx, mlx->player.angle);
+	// draw_wall(mlx, WINDOW_WIDTH/2);
 	mlx_put_image_to_window(mlx->handle, mlx->window, mlx->img.handle, 0, 0);
 }
 
@@ -26,23 +30,27 @@ int	handle_keypress(int key, t_mlx *mlx)
 		exit(0);
 	else if (key == KEY_A)
 	{
-		mlx->player.x += MOVE_STEP * cos_wrap(fix_angle(mlx->player.angle + 90));
-		mlx->player.y -= MOVE_STEP * sin_wrap(fix_angle(mlx->player.angle + 90));
+		// mlx->player.x += MOVE_STEP * cos_wrap(fix_angle(mlx->player.angle + 90));
+		// mlx->player.y -= MOVE_STEP * sin_wrap(fix_angle(mlx->player.angle + 90));
+		mlx->player.x -= MOVE_STEP;
 	}
 	else if (key == KEY_D)
 	{
-		mlx->player.x += MOVE_STEP * cos_wrap(fix_angle(mlx->player.angle - 90));
-		mlx->player.y -= MOVE_STEP * sin_wrap(fix_angle(mlx->player.angle - 90));
+		// mlx->player.x += MOVE_STEP * cos_wrap(fix_angle(mlx->player.angle - 90));
+		// mlx->player.y -= MOVE_STEP * sin_wrap(fix_angle(mlx->player.angle - 90));
+		mlx->player.x += MOVE_STEP;
 	}
 	else if (key == KEY_W)
 	{
-		mlx->player.x += MOVE_STEP * cos_wrap(mlx->player.angle);
-		mlx->player.y -= MOVE_STEP * sin_wrap(mlx->player.angle);
+		// mlx->player.x += MOVE_STEP * cos_wrap(mlx->player.angle);
+		// mlx->player.y -= MOVE_STEP * sin_wrap(mlx->player.angle);
+		mlx->player.y -= MOVE_STEP;
 	}
 	else if (key == KEY_S)
 	{
-		mlx->player.x += MOVE_STEP * cos_wrap(fix_angle(mlx->player.angle - 180));
-		mlx->player.y -= MOVE_STEP * sin_wrap(fix_angle(mlx->player.angle - 180));
+		// mlx->player.x += MOVE_STEP * cos_wrap(fix_angle(mlx->player.angle - 180));
+		// mlx->player.y -= MOVE_STEP * sin_wrap(fix_angle(mlx->player.angle - 180));
+		mlx->player.y += MOVE_STEP;
 	}
 	else if (key == KEY_LEFT)
 		mlx->player.angle = fix_angle(mlx->player.angle + ANGLE_STEP);
@@ -61,9 +69,9 @@ int main(int argc, char* argv[])
 
 	mlx.handle = mlx_init();
 	mlx.window = mlx_new_window(mlx.handle, WINDOW_WIDTH, WINDOW_HEIGHT, "cuv3d");
-	mlx.player.x = 308;
-	mlx.player.y = 312;
-	mlx.player.angle = 90;//63.7
+	mlx.player.x = 250;
+	mlx.player.y = 250;
+	mlx.player.angle = 63.7;//63.7
 	mlx.player.pdx = cos_wrap(mlx.player.angle);
 	mlx.player.pdy = -sin_wrap(mlx.player.angle);
 	mlx.player.side = 10;
@@ -72,6 +80,8 @@ int main(int argc, char* argv[])
 	mlx.map.x_count = MAP_X_COUNT;
 	mlx.map.y_count = MAP_Y_COUNT;
 	mlx.map.panel_side = WINDOW_HEIGHT / MAP_Y_COUNT;
+	mlx.map.height = mlx.map.y_count * mlx.map.panel_side;
+	mlx.map.width =  mlx.map.x_count * mlx.map.panel_side;
 	mlx.map.data = (char **)malloc(sizeof(char *) * MAP_Y_COUNT);
 	mlx.map.data[0] = strdup("1111111111");
 	mlx.map.data[1] = strdup("1010001001");
