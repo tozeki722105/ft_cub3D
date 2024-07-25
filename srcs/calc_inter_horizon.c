@@ -1,7 +1,7 @@
 #include "ogv1.h"
 #include "calc.h"
 
-t_pos calc_horizontal_start(t_mlx *mlx, double ray_angle)
+static t_pos calc_horizontal_start(t_mlx *mlx, double ray_angle)
 {
 	t_player player = mlx->player;
 	t_map map = mlx->map;
@@ -18,38 +18,18 @@ t_pos calc_horizontal_start(t_mlx *mlx, double ray_angle)
 	return (pos);
 }
 
-void	display_horizontal_grid_inter(t_mlx *mlx, double ray_angle, t_pos pos, int color)
+static t_pos calc_horizontal_inter(t_mlx *mlx, double ray_angle, t_pos *f_pos)
 {
 	t_map map;
-	t_player player;
-	int step;
-
-	map = mlx->map;
-	player = mlx->player;
-	step = map.panel_side;
-	if (is_up(ray_angle))
-		step *= -1;
-	while (pos.y > 0 && pos.y < map.height && pos.x > 0 && pos.x < map.width)
-	{
-		draw_rect(&(mlx->img), pos.x-5, pos.y-5, 10, 10, color);
-		pos.y += step;
-		pos.x = player.x + ((player.y - pos.y) * cot_wrap(ray_angle));
-	}
-}
-
-t_pos	calc_horizontal_inter(t_mlx *mlx, double ray_angle, t_pos *f_pos)
-{
-	t_map map;
-	t_player player;
-	double step;
+	/* t_player player; */
+	double scalar;
 	t_pos pos;
 
 	map = mlx->map;
-	player = mlx->player;
-	/* step = abs(map.panel_side/f_pos->y) - BOUND_ADJUSTMENT; */
-	step = fabs((double)(map.panel_side)/f_pos->y) ;
-	pos.x = player.x + f_pos->x;
-	pos.y = player.y + f_pos->y;
+	/* player = mlx->player; */
+	scalar = fabs((double)(map.panel_side)/f_pos->y) ;
+	pos.x = mlx->player.x + f_pos->x;
+	pos.y = mlx->player.y + f_pos->y;
 	int diff =0;
 	if (is_up(ray_angle))
 		diff = -1;
@@ -58,8 +38,8 @@ t_pos	calc_horizontal_inter(t_mlx *mlx, double ray_angle, t_pos *f_pos)
 	{
 		if (map.data[pos.y / map.panel_side + diff ][pos.x / map.panel_side ] == '1')
 			return (pos);
-		pos.y += f_pos->y * step;
-		pos.x += f_pos->x * step;
+		pos.y += f_pos->y * scalar;
+		pos.x += f_pos->x * scalar;
 	}
 	printf("no pos\n");
 	if(pos.x < 0)
@@ -69,7 +49,8 @@ t_pos	calc_horizontal_inter(t_mlx *mlx, double ray_angle, t_pos *f_pos)
 	return (pos);
 }
 
-t_pos *find2_calc_inter(t_mlx *mlx, double ray_angle)
+/* static t_pos *find_calc_h_inter(t_mlx *mlx, double ray_angle) */
+t_pos *find_calc_h_inter(t_mlx *mlx, double ray_angle)
 {
 	t_pos *pos;
 	t_pos f_pos;
