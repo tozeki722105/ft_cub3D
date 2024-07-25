@@ -6,12 +6,14 @@
 #    By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/07/23 16:25:35 by tyamauch         ###   ########.fr        #
+#    Updated: 2024/07/25 05:48:40 by tyamauch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			:=	cc
-# CFLAGS		=	-Wall -Wextra -Werror
+
+CFLAGS		=	-g
+
 RM			:=	rm -rf
 
 NAME		:=	cub3d
@@ -55,7 +57,8 @@ OBJS		:=	$(patsubst %.c, ${OBJS_DIR}/%.o, $(SRCS))
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	make -C $(MLX_PATH)
+	$(MAKE) -C $(MLX_PATH)
+	$(MAKE) -C $(LIBFT_PATH)
 	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAG) -o $(NAME)
 
 ${OBJS_DIR}/%.o: %.c
@@ -64,6 +67,8 @@ ${OBJS_DIR}/%.o: %.c
 
 clean:
 	$(RM) $(OBJS_DIR)
+	$(MAKE) -C $(MLX_PATH) clean
+	$(MAKE) -C $(LIBFT_PATH) clean
 
 fclean: clean
 	$(RM) $(NAME)

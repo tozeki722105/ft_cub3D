@@ -7,8 +7,8 @@ void render(t_mlx *mlx)
 	draw_background(&(mlx->img), WHITE);
 	draw_map(mlx);
 	draw_player(mlx);
-	calc_intersection(mlx, mlx->player.angle);
-	//calc_test(mlx, mlx->player.angle);
+	//calc_intersection(mlx, mlx->player.angle);
+	calc_test(mlx, mlx->player.angle);
 	// draw_wall(mlx, WINDOW_WIDTH/2);
 	mlx_put_image_to_window(mlx->handle, mlx->window, mlx->img.handle, 0, 0);
 }
@@ -70,8 +70,8 @@ int main(int argc, char* argv[])
 	mlx.handle = mlx_init();
 	mlx.window = mlx_new_window(mlx.handle, WINDOW_WIDTH, WINDOW_HEIGHT, "cuv3d");
 	mlx.player.x = 250;
-	mlx.player.y = 250;
-	mlx.player.angle = 63.7;//63.7
+	mlx.player.y = 200;
+	mlx.player.angle = 63.4;//63.7
 	mlx.player.pdx = cos_wrap(mlx.player.angle);
 	mlx.player.pdy = -sin_wrap(mlx.player.angle);
 	mlx.player.side = 10;
