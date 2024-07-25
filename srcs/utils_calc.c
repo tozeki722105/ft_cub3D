@@ -12,6 +12,9 @@ bool	is_right(double degree);
 double calc_distance(double ray_angle, t_player player, t_intersection res);
 double calc_offset(double ray_angle, enum e_axis axis, t_intersection inter, t_map map, t_mlx *mlx);
 
+void	display_ver_grid_inter(t_mlx *mlx, double ray_angle, t_pos pos, int color);
+void draw_rect_safely(t_mlx *mlx, t_pos pos, size_t rect_size, int color);
+void	display_horizontal_grid_inter(t_mlx *mlx, double ray_angle, t_pos pos, int color);
 // double fix_pos(double pos_x, double pos_y, double *res_y)
 // {
 // 	int res_x;
@@ -29,6 +32,55 @@ double calc_offset(double ray_angle, enum e_axis axis, t_intersection inter, t_m
 // 		*res_y = pos_y;
 // 	return (res_x);
 // }
+//
+void	display_horizontal_grid_inter(t_mlx *mlx, double ray_angle, t_pos pos, int color)
+{
+	t_map map;
+	t_player player;
+	int step;
+
+	map = mlx->map;
+	player = mlx->player;
+	step = map.panel_side;
+	if (is_up(ray_angle))
+		step *= -1;
+	while (pos.y > 0 && pos.y < map.height && pos.x > 0 && pos.x < map.width)
+	{
+		draw_rect(&(mlx->img), pos.x-5, pos.y-5, 10, 10, color);
+		pos.y += step;
+		pos.x = player.x + ((player.y - pos.y) * cot_wrap(ray_angle));
+	}
+}
+void	display_ver_grid_inter(t_mlx *mlx, double ray_angle, t_pos pos, int color)
+{
+	t_map map;
+	t_player player;
+	int step;
+
+	map = mlx->map;
+	player = mlx->player;
+	step = map.panel_side;
+	if (!is_right(ray_angle))
+		step *= -1;
+	while (pos.x < map.width && pos.x > 0 
+		&& pos.y > 0 && pos.y < map.height)
+	{
+		// printf("x=%d,y=%d  ", (int)pos.x, (int)pos.y);
+		draw_rect_safely(mlx, pos, 10, color);
+		pos.x += step;
+		pos.y = player.y - ((pos.x - player.x) * tan_wrap(ray_angle));
+	}
+	// printf("\n");
+}
+
+void draw_rect_safely(t_mlx *mlx, t_pos pos, size_t rect_size, int color)
+{
+	if (pos.x < (mlx->map.x_count * mlx->map.panel_side) - (rect_size + (rect_size / 2) + (rect_size % 2))
+		&& pos.x > (rect_size / 2) + (rect_size % 2)
+		&& pos.y > (rect_size / 2) + (rect_size % 2)
+		&& pos.y < (mlx->map.y_count * mlx->map.panel_side) - (rect_size + (rect_size / 2) + (rect_size % 2)))
+		draw_rect(&(mlx->img), pos.x - (rect_size / 2), pos.y - (rect_size / 2), rect_size, rect_size, color);
+}
 
 double fix_angle(double angle)
 {
