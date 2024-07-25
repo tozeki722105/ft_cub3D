@@ -50,11 +50,13 @@ t_intersection	find_horizontal_intersection(t_mlx *mlx, double ray_angle);
 
 t_intersection calc_intersection(t_mlx *mlx, double ray_angle);
 
-t_pos *find2_calc_inter(t_mlx *mlx, double ray_angle);
-t_pos *find_calc_inter(t_mlx *mlx, double ray_angle);
+t_pos *find_calc_h_inter(t_mlx *mlx, double ray_angle);
+t_pos *find_calc_v_inter(t_mlx *mlx, double ray_angle);
 
 void calc_test(t_mlx *mlx, double ray_angle);
 
+void draw_rect_safely(t_mlx *mlx, t_pos pos, size_t rect_size, int color);
+void	display_ver_grid_inter(t_mlx *mlx, double ray_angle, t_pos pos, int color);
 void draw_rect_safely(t_mlx *mlx, t_pos pos, size_t rect_size, int color);
 
 #endif
