@@ -41,14 +41,15 @@ t_pos	calc_horizontal_inter(t_mlx *mlx, double ray_angle, t_pos *f_pos)
 {
 	t_map map;
 	t_player player;
-	int step;
+	double step;
 	t_pos pos;
 
 	map = mlx->map;
 	player = mlx->player;
-	step = abs(map.panel_side/f_pos->y);
-	pos.x = player.x;
-	pos.y = player.y;
+	/* step = abs(map.panel_side/f_pos->y) - BOUND_ADJUSTMENT; */
+	step = fabs((double)(map.panel_side)/f_pos->y) ;
+	pos.x = player.x + f_pos->x;
+	pos.y = player.y + f_pos->y;
 	int diff =0;
 	if (is_up(ray_angle))
 		diff = -1;
@@ -60,8 +61,11 @@ t_pos	calc_horizontal_inter(t_mlx *mlx, double ray_angle, t_pos *f_pos)
 		pos.y += f_pos->y * step;
 		pos.x += f_pos->x * step;
 	}
-	pos.x = -1;
-	pos.y = -1;
+	printf("no pos\n");
+	if(pos.x < 0)
+		pos.x = 0;
+	if(pos.y < 0)
+		pos.y = 0;
 	return (pos);
 }
 
@@ -70,10 +74,15 @@ t_pos *find2_calc_inter(t_mlx *mlx, double ray_angle)
 	t_pos *pos;
 	t_pos f_pos;
 
-	if ((int)ray_angle == 0 || (int)ray_angle == 180)
-		return (NULL);
-	pos = (t_pos *)malloc(sizeof(t_pos));
+	/* if ((int)ray_angle == 0 || (int)ray_angle == 180) */
+	/* 	return (NULL); */
 	f_pos = calc_horizontal_start(mlx, ray_angle);//pos(274,200)
+	if(f_pos.x == 0 || f_pos.y == 0)
+	{
+		printf("no pos\n");
+		return(NULL);
+	}
+	pos = (t_pos *)malloc(sizeof(t_pos));
 	// display_horizontal_grid_inter(mlx, ray_angle, *pos, GREEN);
 	*pos = calc_horizontal_inter(mlx, ray_angle, &f_pos);
 	if (pos->x == -1 || pos->y == -1)

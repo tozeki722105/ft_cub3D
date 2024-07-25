@@ -1,6 +1,7 @@
 #include "ogv1.h"
 #include "calc.h"
 #include "config.h"
+#include <math.h>
 
 double calc_distance(double ray_angle, t_player player, t_intersection res)
 {
@@ -182,6 +183,13 @@ t_intersection compare_distance(t_intersection v_inter, t_intersection h_inter, 
 		return (h_inter);
 }
 
+double easy_calc_distance(t_pos player,t_pos inter)
+{
+		double distance ;
+
+		distance = sqrt(pow(player.x - inter.x,2.0) + pow(player.y - inter.y,2.0));
+}
+
 t_intersection calc_intersection(t_mlx *mlx, double ray_angle)
 {
 	t_player player;
@@ -200,10 +208,11 @@ t_intersection calc_intersection(t_mlx *mlx, double ray_angle)
 	draw_rect_safely(mlx, *(vartical_inter_pos), 10, BLUE);
 	draw_rect_safely(mlx, *(horizontal_inter_pos), 10, RED);
 	// calc_test()
-	// t_intersection res = compare_distance(v_inter, h_inter, player, ray_angle);
-	// draw_line(&(mlx->img), player.x, player.y, res.x, res.y, WHITE);
-	// int ca = fix_angle(player.angle - res.degree);
-	// res.distance = res.distance * cos_wrap(fix_angle(player.angle - res.degree));
-	// res.wall_height = (WINDOW_HEIGHT * 100) / res.distance;
-	return (h_inter);
+	/* if(easy_calc_distance(player.,*vartical_inter_pos)) */
+	 t_intersection res = compare_distance(v_inter, h_inter, player, ray_angle);
+	 draw_line(&(mlx->img), player.x, player.y, res.x, res.y, WHITE);
+	 int ca = fix_angle(player.angle - res.degree);
+	 res.distance = res.distance * cos_wrap(fix_angle(player.angle - res.degree));
+	 res.wall_height = (WINDOW_HEIGHT * 100) / res.distance;
+	return (res);
 }

@@ -6,13 +6,14 @@
 #    By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/07/25 05:48:40 by tyamauch         ###   ########.fr        #
+#    Updated: 2024/07/25 20:39:37 by tyamauch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			:=	cc
 
 CFLAGS		=	-g
+CFLAGS		+=	-fsanitize=address
 
 RM			:=	rm -rf
 
