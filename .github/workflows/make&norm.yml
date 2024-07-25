@@ -2,7 +2,7 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "new_calc_intersection" ]
   pull_request:
     branches: [ "main" ]
 
