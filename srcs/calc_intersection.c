@@ -197,8 +197,8 @@ t_intersection calc_intersection(t_mlx *mlx, double ray_angle)
 
 	player = mlx->player;
 	map = mlx->map;
-	t_pos *vartical_inter_pos = find_calc_inter(mlx, ray_angle);
-	t_pos *horizontal_inter_pos = find2_calc_inter(mlx, ray_angle);
+	t_pos *vartical_inter_pos = find_calc_v_inter(mlx, ray_angle);
+	t_pos *horizontal_inter_pos = find_calc_h_inter(mlx, ray_angle);
 	t_intersection v_inter;
 	t_intersection h_inter;
 	v_inter.x = vartical_inter_pos->x;
