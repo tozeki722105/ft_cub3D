@@ -71,43 +71,62 @@ typedef struct
 	t_pos		player_pos;
 }	t_loader;
 
-void	my_perror_exit(char *err_s, int exit_code);
-bool	validate_extention(char *path, char *extention);
-bool	ft_isequal(char *s1, char *s2);
+// parse_utils_bool.c
 bool	is_player(char c);
 bool	is_map_element(char c);
 bool	is_filled_map_element(char c);
-void	free_map_node(t_map_node *map_node);
-void	free_map_node_list(t_map_node *ptr);
-void	free_reader(t_reader reader);
+bool	is_wall(t_parse_kind kind);
+bool	is_background(t_parse_kind kind);
+
+// parse_utils_bool2.c
+bool	is_texture(t_parse_kind kind);
+bool	is_map_str(char *str);
+bool	is_member_default(t_loader loader, t_parse_kind kind);
+bool	is_textures_full(t_loader loader);
+
+//parse_utils_map_node.c
 t_map_node *make_new_map_node(char *str);
 t_map_node *find_last_map_node(t_map_node *ptr);
 void add_last_map_node(t_map_node **head, t_map_node *new);
-t_reader init_reader();
-t_loader init_loader();
-void	print_texture(t_reader reader);
-void	print_map(char **map_data);
-size_t ft_count_rows(char **d_str);
+void	free_map_node_list(t_map_node *ptr);
 
-bool	is_map_str(char *str);
-t_parse_kind	parse_kind(char *str);
-bool	is_member_default(t_loader loader, t_parse_kind kind);
-bool	is_textures_full(t_loader loader);
-bool	is_wall(t_parse_kind kind);
-bool	is_view_background(t_parse_kind kind);
-bool	is_texture(t_parse_kind kind);
-int make_rgb_color(int r, int g, int b);
-char *extract_val(char *str, t_parse_kind kind);
-int convert_rgb_color(char *color_str);
-void	add_wall(t_loader *loader, t_parse_kind kind, char *str);
-void	add_color(t_loader *loader, t_parse_kind kind, char *str);
+//parse_utils_map_node2.c
 void	print_map_node(t_map_node *ptr);
 void	trim_map_list(t_map_node **head, char *trimed_node_val);
-bool	is_contained_newline(t_map_node *ptr);
+
+//parse_utils.c
+t_loader init_loader();
+void	free_loader(t_loader loader);
+void	print_texture(t_reader reader);
+void	print_map(char **map_data);
+
+//parse_load_utils.c
+t_parse_kind	parse_kind(char *str);
+char *extract_val(char *str, t_parse_kind kind);
+void	add_wall(t_loader *loader, t_parse_kind kind, char *str);
+
+//parse_load_utils2.c
+void	add_color(t_loader *loader, t_parse_kind kind, char *str);
+
+//parse_load_utils3.c
 char	*ft_strtrim_sepasets(const char *s1, const char *front_trim_set, const char *back_trim_set);
 
-bool	validate_map_data(char **map_data);
+//parse_utils_libft.c
+size_t ft_count_rows(char **d_str);
+char **ft_double_str_dup(char **d_str);
+void	ft_free_double_str(char **d_str);
+bool	ft_isequal(char *s1, char *s2);
+void	ft_perror_exit(char *err_s, int exit_code);
+bool	ft_perror_ret_false(char *err_s);
 
+// parse_load.c
 void	load_map_list(int fd, t_loader *loader);
 void	load_textures(int fd, t_loader *loader);
+
+//parse_validate_map_data.c
+bool	validate_map_data(char **map_data);
+
+//parse_validate_map_data_utils.c
+bool	validate_surrounded_wall_and_fill_space(char **map_data);
+
 #endif

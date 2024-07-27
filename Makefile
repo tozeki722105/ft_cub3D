@@ -6,7 +6,7 @@
 #    By: toshi <toshi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/07/23 21:05:12 by toshi            ###   ########.fr        #
+#    Updated: 2024/07/28 06:12:38 by toshi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,10 +48,7 @@ SRCS		:=	$(SRCS_DIR)ogv1.c \
 				$(SRCS_DIR)utils_calc.c \
 				$(SRCS_DIR)utils_draw.c 
 
-PARSE_SRCS	:=	$(SRCS_DIR)parse_load.c \
-				$(SRCS_DIR)parse_new.c \
-				$(SRCS_DIR)parse_utils.c \
-				$(SRCS_DIR)parse_validate_map_data.c \
+PARSE_SRCS	:=	$(SRCS_DIR)parse_*.c 
 
 
 OBJS		:=	$(patsubst %.c, ${OBJS_DIR}/%.o, $(SRCS))

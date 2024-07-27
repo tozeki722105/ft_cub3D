@@ -10,7 +10,28 @@ typedef struct s_player
 	int	side;
 } t_player;
 
-size_t count_map_size(t_map_node *ptr, size_t *map_y_count)
+/// @param path not NULL
+/// @param extention not NULL (.)start
+bool	validate_extention(char *path, char *extention)
+{
+	char *ptr;
+
+	ptr = ft_strrchr(path, *extention);
+	if (!ptr || ptr == path)
+		return (false);
+	return (ft_isequal(ptr, extention));
+}
+
+static bool	is_contained_newline(t_map_node *ptr)
+{
+	while (ptr && !ft_isequal(ptr->val, ""))
+		ptr = ptr->next;
+	if (ptr)
+		return (true);
+	return (false);
+}
+
+static size_t count_map_size(t_map_node *ptr, size_t *map_y_count)
 {
 	size_t map_x_count;
 	size_t ptr_len;
@@ -28,7 +49,7 @@ size_t count_map_size(t_map_node *ptr, size_t *map_y_count)
 	return (map_x_count);
 }
 
-char **convert_map_data(t_map_node *ptr)
+static char **convert_map_data(t_map_node *ptr)
 {
 	size_t	map_x_count;
 	size_t	map_y_count;
@@ -57,21 +78,19 @@ t_loader	parse(char *path)
 	int				fd;
 
 	if (!validate_extention(path, ".cub"))
-		my_perror_exit("The file extension is different", 0);
+		ft_perror_exit("The file extension is different", 0);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		my_perror_exit("A system call failed", 0);
+		ft_perror_exit("A system call failed", 0);
 	loader = init_loader();
 	load_textures(fd, &loader);
 	load_map_list(fd, &loader);
 	trim_map_list(&(loader.map_head), "");
 	if (is_contained_newline(loader.map_head))
-		my_perror_exit("Only one map_data is allowed", 0);
+		ft_perror_exit("Only one map_data is allowed", 0);
 	loader.map_data = convert_map_data(loader.map_head);
-	print_map(loader.map_data);
-	validate_map_data(loader.map_data);
-	// if (close(fd) == -1)
-	// 	my_perror_exit("A system call failed", 0);
+	if (!validate_map_data(loader.map_data))
+		exit(0);
 	close(fd);
 	return (loader);
 }
