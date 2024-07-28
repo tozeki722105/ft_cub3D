@@ -54,8 +54,8 @@ void	add_wall(t_loader *loader, t_parse_kind kind, char *str)
 	char *val;
 
 	val = extract_val(str, kind);
-	if (!ft_is_access(val, O_RDONLY))
-		ft_perror_exit("The texture path is incorrect", 0);
+	// if (!ft_is_access(val, O_RDONLY))
+	// 	ft_perror_exit("The texture path is incorrect", 0);
 	if (kind == KIND_NORTH)
 		loader->north_path = val;
 	else if (kind == KIND_SOUTH)

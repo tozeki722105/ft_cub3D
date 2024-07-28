@@ -4,6 +4,17 @@
 // # include "ogv1.h"
 #include "utils.h"
 
+
+typedef struct s_player
+{
+	double x;
+	double y;
+	double angle;
+	double pdx; //視線のX成分
+	double pdy; //視線のY成分
+	int	side;
+} t_player;
+
 typedef struct s_pos
 {
 	int	x;
@@ -57,9 +68,7 @@ typedef struct
 
 typedef struct 
 {
-	t_parse_kind	kind;
-	t_parse_kind	prev_kind;
-	t_load_mode		mode;
+	t_parse_kind kind;
 	char	*north_path;
 	char	*south_path;
 	char	*west_path;
@@ -69,6 +78,7 @@ typedef struct
 	t_map_node	*map_head;
 	char		**map_data;
 	t_pos		player_pos;
+	double		player_angle;
 }	t_loader;
 
 // parse_utils_bool.c
@@ -97,7 +107,7 @@ void	trim_map_list(t_map_node **head, char *trimed_node_val);
 //parse_utils.c
 t_loader init_loader();
 void	free_loader(t_loader loader);
-void	print_texture(t_reader reader);
+void	print_texture(t_loader loader);
 void	print_map(char **map_data);
 
 //parse_load_utils.c

@@ -5,7 +5,6 @@ t_loader init_loader()
 	t_loader	loader;
 
 	loader.kind = KIND_DEFAULT;
-	loader.prev_kind = KIND_DEFAULT;
 	loader.north_path = NULL;
 	loader.south_path = NULL;
 	loader.west_path = NULL;
@@ -28,14 +27,14 @@ void	free_loader(t_loader loader)
 	ft_free_double_str(loader.map_data);
 }
 
-void	print_texture(t_reader reader)
+void	print_texture(t_loader loader)
 {
-	printf("north=%s;\n", reader.north_path);
-	printf("south=%s;\n", reader.south_path);
-	printf("west=%s;\n", reader.west_path);
-	printf("east=%s;\n", reader.east_path);
-	printf("floor=%d;\n", reader.floor_color);
-	printf("ceiling=%d;\n", reader.ceiling_color);
+	printf("north=%s;\n", loader.north_path);
+	printf("south=%s;\n", loader.south_path);
+	printf("west=%s;\n", loader.west_path);
+	printf("east=%s;\n", loader.east_path);
+	printf("floor=%d;\n", loader.floor_color);
+	printf("ceiling=%d;\n", loader.ceiling_color);
 }
 
 void	print_map(char **map_data)

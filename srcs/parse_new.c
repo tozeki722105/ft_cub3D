@@ -1,15 +1,5 @@
 #include "parse.h"
 
-typedef struct s_player
-{
-	double x;
-	double y;
-	double angle;
-	double pdx; //視線のX成分
-	double pdy; //視線のY成分
-	int	side;
-} t_player;
-
 /// @param path not NULL
 /// @param extention not NULL (.)start
 bool	validate_extention(char *path, char *extention)
@@ -76,6 +66,7 @@ t_loader	parse(char *path)
 {
 	t_loader		loader;
 	int				fd;
+	t_pos			player_pos;
 
 	if (!validate_extention(path, ".cub"))
 		ft_perror_exit("The file extension is different", 0);
@@ -85,29 +76,29 @@ t_loader	parse(char *path)
 	loader = init_loader();
 	load_textures(fd, &loader);
 	load_map_list(fd, &loader);
+	close(fd);
 	trim_map_list(&(loader.map_head), "");
 	if (is_contained_newline(loader.map_head))
 		ft_perror_exit("Only one map_data is allowed", 0);
 	loader.map_data = convert_map_data(loader.map_head);
-	if (!validate_map_data(loader.map_data))
+	// loader.player_pos = get_player_angle_and_fix_pos(loader.map_data, )
+	if (!validate_map_data(loader.map_data))//, &player_pos
 		exit(0);
-	close(fd);
 	return (loader);
 }
 
-// __attribute__((destructor))
-// static void destructor() {
-//    system("leaks -q a.out");
-// }
+__attribute__((destructor))
+static void destructor() {
+   system("leaks -q a.out");
+}
+
 
 int main(int argc, char **argv)
 {
-	// t_reader reader;
+	t_loader loader;
 
-	parse(argv[1]);
-	// reader = parse(argv[1]);
-	// print_texture(reader);
-	// print_map(reader.map_data);
-	// free_reader(reader);
-	// printf("%d, %d\n", make_rgb_color(220, 100, 0), 0xFF1E00);
+	loader = parse(argv[1]);
+	print_texture(loader);
+	print_map(loader.map_data);
+	free_loader(loader);
 }

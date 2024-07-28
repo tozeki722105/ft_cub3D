@@ -1,15 +1,5 @@
 #include "parse.h"
 
-typedef struct s_player
-{
-	double x;
-	double y;
-	double angle;
-	double pdx; //視線のX成分
-	double pdy; //視線のY成分
-	int	side;
-} t_player;
-
 static bool	validate_player(char **map_data, t_player *player)
 {
 	t_pos cur;
