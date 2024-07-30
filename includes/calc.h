@@ -3,6 +3,7 @@
 
 #include "utils.h"
 #include <math.h>
+#include "ogv1.h"
 
 #define	BOUND_ADJUSTMENT	0.001
 
@@ -33,28 +34,20 @@ typedef struct s_inter
 	double		wall_height;
 } t_inter;
 
-//utiles 行き
-double calc_distance(double ray_angle, t_player player, t_intersection res);
-double calc_offset(double ray_angle, enum e_axis axis, t_intersection inter, t_map map, t_mlx *mlx);
-int get_vartical_first(t_mlx *mlx, int *pos_y, double ray_angle);
-int		get_horizontal_first(t_mlx *mlx, int *pos_y, double ray_angle);
-void	display_vartical_grid_intersection(t_mlx *mlx, t_intersection pos, int color, double ray_angle);
-t_intersection display_vertical_intersection(t_mlx *mlx, t_intersection pos, int color, double ray_angle);
-t_intersection	find_vartical_intersection(t_mlx *mlx, double ray_angle);
+// calc_inter.c
+t_inter new_calc_inter(t_mlx *mlx, double ray_angle);
 
-//horizontal
-int		get_horizontal_first(t_mlx *mlx, int *pos_y, double ray_angle);
-void	display_horizontal_grid_intersection(t_mlx *mlx, t_intersection pos, int color, double ray_angle);
-t_intersection display_horizontal_intersection(t_mlx *mlx, t_intersection pos, int color, double ray_angle);
-t_intersection	find_horizontal_intersection(t_mlx *mlx, double ray_angle);
-
-t_intersection calc_intersection(t_mlx *mlx, double ray_angle);
-
-t_pos *find2_calc_inter(t_mlx *mlx, double ray_angle);
-t_pos *find_calc_inter(t_mlx *mlx, double ray_angle);
-
-void calc_test(t_mlx *mlx, double ray_angle);
-
+// calc_inter_utils.c
 void draw_rect_safely(t_mlx *mlx, t_pos pos, size_t rect_size, int color);
+double calc_wall_height(t_inter inter, t_player player);
+
+// calc_compare_make_inter.c
+t_inter	compare_make_inter(t_mlx *mlx, t_pos *v_inter_pos, t_pos *h_inter_pos, double ray_angle);
+
+// calc_search_horizontal_inter.c
+t_pos *search_horizontal_inter(t_mlx *mlx, double ray_angle);
+
+// calc_search_vertical_inter.c
+t_pos *search_vertical_inter(t_mlx *mlx, double ray_angle);
 
 #endif

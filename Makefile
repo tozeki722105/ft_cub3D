@@ -6,7 +6,7 @@
 #    By: toshi <toshi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/07/31 02:35:02 by toshi            ###   ########.fr        #
+#    Updated: 2024/07/31 02:58:00 by toshi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,12 +43,15 @@ INCLUDES_DIR = includes
 INCLUDES = -I$(INCLUDES_DIR) -I$(MLX_PATH) -I$(LIBFT_PATH) -I$(GNL_PATH)
 
 SRCS		:=	$(SRCS_DIR)ogv1.c \
-				$(SRCS_DIR)calc_intersection.c \
-				$(SRCS_DIR)draw_wall.c \
-				$(SRCS_DIR)utils_calc.c \
-				$(SRCS_DIR)utils_draw.c \
+				$(SRCS_DIR)calc_compare_make_inter.c \
+				$(SRCS_DIR)calc_inter_utils.c \
 				$(SRCS_DIR)calc_inter.c \
-				$(SRCS_DIR)calc_inter_horizon.c \
+				$(SRCS_DIR)calc_search_horizontal_inter.c \
+				$(SRCS_DIR)calc_search_vertical_inter.c \
+				$(SRCS_DIR)draw_wall.c \
+				$(SRCS_DIR)move.c \
+				$(SRCS_DIR)utils_calc.c \
+				$(SRCS_DIR)utils_draw.c 
 
 OBJS		:=	$(patsubst %.c, ${OBJS_DIR}/%.o, $(SRCS))
 

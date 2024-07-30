@@ -2,37 +2,37 @@
 #include "calc.h"
 #include "config.h"
 
-int calc_img_x(t_intersection inter, t_src img, int map_panel_side)
-{
-	int img_offset;
+// int calc_img_x(t_intersection inter, t_src img, int map_panel_side)
+// {
+// 	int img_offset;
 	
-	if (inter.touching_axis == HORIZONTAL)
-		img_offset = (int)fabs((double)(inter.origin_offset - inter.x));
-	else
-		img_offset = (int)fabs((double)(inter.origin_offset - inter.y));
-	return ((img.width * img_offset) / map_panel_side);
-}
+// 	if (inter.touching_axis == HORIZONTAL)
+// 		img_offset = (int)fabs((double)(inter.origin_offset - inter.x));
+// 	else
+// 		img_offset = (int)fabs((double)(inter.origin_offset - inter.y));
+// 	return ((img.width * img_offset) / map_panel_side);
+// }
 
 
-t_src get_img(t_mlx *mlx, t_intersection inter)
+t_src get_img(t_mlx *mlx, t_inter inter)
 {
-	if (inter.touching_axis == HORIZONTAL)
+	if (inter.axis == HORIZONTAL)
 	{
-		if (is_up(inter.degree))
+		if (is_up(inter.angle))
 			return (mlx->textures.north);
 		else
 			return (mlx->textures.south);
 	}
 	else
 	{
-		if (is_right(inter.degree))
+		if (is_right(inter.angle))
 			return (mlx->textures.east);
 		else
 			return (mlx->textures.west);
 	}
 }
 
-void draw_vertical_line_of_wall(t_mlx *mlx, t_intersection inter, size_t put_x)
+void draw_vertical_line_of_wall(t_mlx *mlx, t_inter inter, size_t put_x)
 {
 	int put_y;
 	size_t wall_i;
@@ -41,7 +41,7 @@ void draw_vertical_line_of_wall(t_mlx *mlx, t_intersection inter, size_t put_x)
 	t_src img;
 
 	img = get_img(mlx, inter);
-	img_x = calc_img_x(inter, img, mlx->map.panel_side);
+	img_x = (img.width * inter.origin_offset) / mlx->map.panel_side;
 	put_y = (WINDOW_HEIGHT / 2) - ((int)inter.wall_height / 2);
 	wall_i = 0;
 	while (wall_i < (int)inter.wall_height)
@@ -62,14 +62,14 @@ void draw_wall(t_mlx *mlx, int start)
 	double draw_angle;
 	double step;
 	size_t x;
-	t_intersection inter;
+	t_inter inter;
 
 	draw_angle = fix_angle(mlx->player.angle + (FOV / 2));
 	step = (double)FOV / ((double)WINDOW_WIDTH);
 	x = 0;
 	while (x < WINDOW_WIDTH)
 	{
-		inter = calc_intersection(mlx, draw_angle);
+		inter = new_calc_inter(mlx, draw_angle);
 		draw_vertical_line_of_wall(mlx, inter, x);
 		draw_angle = fix_angle(draw_angle - step);
 		x++;
