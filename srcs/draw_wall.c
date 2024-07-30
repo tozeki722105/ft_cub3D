@@ -2,16 +2,17 @@
 #include "calc.h"
 #include "config.h"
 
-// int calc_img_x(t_intersection inter, t_src img, int map_panel_side)
-// {
-// 	int img_offset;
+/// @brief use calc_origin
+int calc_img_x(t_inter inter, t_src img, int map_panel_side)
+{
+	int img_offset;
 	
-// 	if (inter.touching_axis == HORIZONTAL)
-// 		img_offset = (int)fabs((double)(inter.origin_offset - inter.x));
-// 	else
-// 		img_offset = (int)fabs((double)(inter.origin_offset - inter.y));
-// 	return ((img.width * img_offset) / map_panel_side);
-// }
+	if (inter.axis == HORIZONTAL)
+		img_offset = (int)fabs((double)(inter.origin_offset - inter.pos.x));
+	else
+		img_offset = (int)fabs((double)(inter.origin_offset - inter.pos.y));
+	return ((img.width * img_offset) / map_panel_side);
+}
 
 
 t_src get_img(t_mlx *mlx, t_inter inter)
@@ -41,7 +42,8 @@ void draw_vertical_line_of_wall(t_mlx *mlx, t_inter inter, size_t put_x)
 	t_src img;
 
 	img = get_img(mlx, inter);
-	img_x = (img.width * inter.origin_offset) / mlx->map.panel_side;
+	// img_x = (img.width * inter.origin_offset) / mlx->map.panel_side;
+	img_x = calc_img_x(inter, img, mlx->map.panel_side);
 	put_y = (WINDOW_HEIGHT / 2) - ((int)inter.wall_height / 2);
 	wall_i = 0;
 	while (wall_i < (int)inter.wall_height)

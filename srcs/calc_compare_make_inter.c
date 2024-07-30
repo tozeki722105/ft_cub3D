@@ -27,6 +27,25 @@ static int	calc_origin_offset(t_inter inter, int map_panel_side)
 	}
 }
 
+/// @brief use calc_img_x 
+static int	calc_origin(t_inter inter, int map_panel_side)
+{
+	if (inter.axis == HORIZONTAL)
+	{
+		if (is_up(inter.angle))
+			return (((int)inter.pos.x / map_panel_side) * map_panel_side);
+		else
+			return (((int)inter.pos.x / map_panel_side) * map_panel_side) + map_panel_side;
+	}
+	else
+	{
+		if (is_right(inter.angle))
+			return (((int)inter.pos.y / map_panel_side) * map_panel_side);
+		else
+			return (((int)inter.pos.y / map_panel_side) * map_panel_side) + map_panel_side;
+	}
+}
+
 t_inter	compare_make_inter(t_mlx *mlx, t_pos *v_inter_pos, t_pos *h_inter_pos, double ray_angle)
 {
 	t_inter inter;
@@ -49,7 +68,7 @@ t_inter	compare_make_inter(t_mlx *mlx, t_pos *v_inter_pos, t_pos *h_inter_pos, d
 		inter.distance = h_distance;
 	}
 	inter.angle = ray_angle;
-	inter.origin_offset = calc_origin_offset(inter, mlx->map.panel_side);
+	inter.origin_offset = calc_origin(inter, mlx->map.panel_side);
 	inter.wall_height = calc_wall_height(inter, mlx->player);
 	return (inter);
 }
