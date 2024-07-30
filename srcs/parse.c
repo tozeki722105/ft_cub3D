@@ -1,37 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_new.c                                        :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:36:49 by toshi             #+#    #+#             */
-/*   Updated: 2024/07/30 21:20:07 by toshi            ###   ########.fr       */
+/*   Updated: 2024/07/30 22:03:33 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
-
-/// @param path not NULL
-/// @param extention not NULL (.)start
-bool	validate_extention(char *path, char *extention)
-{
-	char *ptr;
-
-	ptr = ft_strrchr(path, *extention);
-	if (!ptr || ptr == path)
-		return (false);
-	return (ft_isequal(ptr, extention));
-}
-
-static bool	is_contained_newline(t_map_node *ptr)
-{
-	while (ptr && !ft_isequal(ptr->val, ""))
-		ptr = ptr->next;
-	if (ptr)
-		return (true);
-	return (false);
-}
 
 static size_t count_map_size(t_map_node *ptr, size_t *map_y_count)
 {
@@ -118,7 +97,7 @@ t_loader	parse(char *path)
 	t_loader	loader;
 	int			fd;
 
-	if (!validate_extention(path, ".cub"))
+	if (!ft_validate_extention(path, ".cub"))
 		ft_perror_exit("The file extension is different", 0);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
@@ -148,6 +127,8 @@ int main(int argc, char **argv)
 {
 	t_loader loader;
 
+	if (argc != 2)
+		return (1);
 	loader = parse(argv[1]);
 	print_texture(loader);
 	print_player(loader);

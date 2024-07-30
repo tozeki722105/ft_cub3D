@@ -1,6 +1,6 @@
 #include "parse.h"
 
-t_parse_kind	parse_kind(char *str)
+t_line_kind	get_line_kind(char *str)
 {
 	if (*str == '\n')
 		return (KIND_NEWLINE);
@@ -22,7 +22,7 @@ t_parse_kind	parse_kind(char *str)
 		return (KIND_FALSE);
 }
 
-char *extract_val(char *str, t_parse_kind kind)
+char *extract_val(char *str, t_line_kind kind)
 {
 	size_t	identifer_len;
 	char	*val_include_space;
@@ -38,23 +38,12 @@ char *extract_val(char *str, t_parse_kind kind)
 	return (val);
 }
 
-bool	ft_is_access(char *path, int open_mode)
-{
-	int fd;
-
-	fd = open(path, open_mode);
-	if (fd == -1)
-		return(false);
-	close(fd);
-	return (true);
-}
-
-void	add_wall(t_loader *loader, t_parse_kind kind, char *str)
+void	add_wall(t_loader *loader, t_line_kind kind, char *str)
 {
 	char *val;
 
 	val = extract_val(str, kind);
-	// if (!ft_is_access(val, O_RDONLY))
+	// if (!ft_can_open(val, O_RDONLY))
 	// 	ft_perror_exit("The texture path is incorrect", 0);
 	if (kind == KIND_NORTH)
 		loader->north_path = val;

@@ -20,7 +20,7 @@ void	load_textures(int fd, t_loader *loader)
 		str = get_next_line(fd);
 		if (!str)
 			ft_perror_exit("There is missing information before map_data", 0);
-		loader->kind = parse_kind(str);
+		loader->kind = get_line_kind(str);
 		if (loader->kind == KIND_MAP)
 			ft_perror_exit("There is missing information before map_data", 0);
 		else if (loader->kind == KIND_FALSE)
@@ -33,7 +33,7 @@ void	load_textures(int fd, t_loader *loader)
 static void	add_map_head(t_loader *loader, char *str)
 {
 	t_map_node	*new;
-	char *val;
+	char		*val;
 
 	val = ft_strtrim_sepasets(str, "\n", " \n");
 	new = make_new_map_node(val);
@@ -43,14 +43,13 @@ static void	add_map_head(t_loader *loader, char *str)
 void	load_map_list(int fd, t_loader *loader)
 {
 	char		*str;
-	t_map_node	*new;
 
 	while (1)
 	{
 		str = get_next_line(fd);
 		if (!str)
 			break ;
-		loader->kind = parse_kind(str);
+		loader->kind = get_line_kind(str);
 		if (loader->kind == KIND_FALSE)
 			ft_perror_exit("Contains invalid elements", 0);
 		if (is_texture(loader->kind))

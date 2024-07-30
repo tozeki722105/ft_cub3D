@@ -12,7 +12,6 @@ void	print_map_node(t_map_node *ptr)
 static t_map_node *find_prev_of_first(t_map_node *ptr, char *trimed_node_val)
 {
 	t_map_node *prev;
-	t_map_node *head = ptr;
 
 	prev = NULL;
 	while (ptr && ft_isequal(ptr->val, trimed_node_val))
@@ -27,6 +26,7 @@ static t_map_node *find_last(t_map_node *ptr, char *trimed_node_val)
 {
 	t_map_node *next_ptr;
 
+	next_ptr = ptr->next;
 	while (next_ptr)
 	{
 		if (!ft_isequal(ptr->val, trimed_node_val)

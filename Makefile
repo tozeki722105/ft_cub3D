@@ -6,12 +6,12 @@
 #    By: toshi <toshi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/07/28 06:55:49 by toshi            ###   ########.fr        #
+#    Updated: 2024/07/30 22:02:45 by toshi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			:=	cc
-# CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror
 RM			:=	rm -rf
 
 NAME		:=	cub3d
@@ -48,7 +48,19 @@ SRCS		:=	$(SRCS_DIR)ogv1.c \
 				$(SRCS_DIR)utils_calc.c \
 				$(SRCS_DIR)utils_draw.c 
 
-PARSE_SRCS	:=	$(SRCS_DIR)parse_*.c 
+PARSE_SRCS	:=	$(SRCS_DIR)parse_load_utils.c \
+				$(SRCS_DIR)parse_load_utils2.c \
+				$(SRCS_DIR)parse_load.c \
+				$(SRCS_DIR)parse_utils_bool.c \
+				$(SRCS_DIR)parse_utils_bool2.c \
+				$(SRCS_DIR)parse_utils_libft.c \
+				$(SRCS_DIR)parse_utils_libft2.c \
+				$(SRCS_DIR)parse_utils_map_node.c \
+				$(SRCS_DIR)parse_utils_map_node2.c \
+				$(SRCS_DIR)parse_utils.c \
+				$(SRCS_DIR)parse_validate_map_data_utils.c \
+				$(SRCS_DIR)parse_validate_map_data.c \
+				$(SRCS_DIR)parse.c 
 
 
 OBJS		:=	$(patsubst %.c, ${OBJS_DIR}/%.o, $(SRCS))

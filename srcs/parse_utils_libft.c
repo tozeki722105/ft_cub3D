@@ -59,3 +59,26 @@ bool	ft_perror_ret_false(char *err_s)
 	ft_putendl_fd(err_s, STDERR_FILENO);
 	return (false);
 }
+
+/// @param path not NULL
+/// @param extention not NULL (.)start
+bool	ft_validate_extention(char *path, char *extention)
+{
+	char *ptr;
+
+	ptr = ft_strrchr(path, *extention);
+	if (!ptr || ptr == path)
+		return (false);
+	return (ft_isequal(ptr, extention));
+}
+
+bool	ft_can_open(char *path, int open_mode)
+{
+	int fd;
+
+	fd = open(path, open_mode);
+	if (fd == -1)
+		return(false);
+	close(fd);
+	return (true);
+}

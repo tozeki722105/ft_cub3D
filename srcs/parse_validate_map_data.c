@@ -1,5 +1,10 @@
 #include "parse.h"
 
+static bool	is_filled_map_element(char c)
+{
+	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == '!');
+}
+
 static bool	validate_map_elements(char **map_data)
 {
 	size_t y;

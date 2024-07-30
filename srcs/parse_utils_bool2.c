@@ -1,10 +1,5 @@
 #include "parse.h"
 
-bool	is_texture(t_parse_kind kind)
-{
-	return (is_wall(kind) || is_background(kind));
-}
-
 /// @brief sapace_only_str is true 
 bool	is_map_str(char *str)
 {
@@ -19,7 +14,7 @@ bool	is_map_str(char *str)
 	return (true);
 }
 
-bool	is_member_default(t_loader loader, t_parse_kind kind)
+bool	is_member_default(t_loader loader, t_line_kind kind)
 {
 	if (kind == KIND_NORTH)
 		return (loader.north_path == NULL);
@@ -44,4 +39,13 @@ bool	is_textures_full(t_loader loader)
 	return (loader.north_path && loader.south_path
 		&& loader.west_path && loader.east_path
 		&& loader.floor_color > -1 && loader.ceiling_color > -1);
+}
+
+bool	is_contained_newline(t_map_node *ptr)
+{
+	while (ptr && !ft_isequal(ptr->val, ""))
+		ptr = ptr->next;
+	if (ptr)
+		return (true);
+	return (false);
 }

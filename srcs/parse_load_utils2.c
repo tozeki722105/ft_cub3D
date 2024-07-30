@@ -59,7 +59,7 @@ static int convert_rgb_color(int r, int g, int b)
 	return (res);
 }
 
-void	add_color(t_loader *loader, t_parse_kind kind, char *str)
+void	add_color(t_loader *loader, t_line_kind kind, char *str)
 {
 	char *val;
 	int color;
