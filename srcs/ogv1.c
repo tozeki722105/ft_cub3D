@@ -11,15 +11,6 @@ void render(t_mlx *mlx)
 	mlx_put_image_to_window(mlx->handle, mlx->window, mlx->img.handle, 0, 0);
 }
 
-// t_pos fix_move(t_pos pos, double angle)
-// {
-// 	t_pos next;
-
-// 	pos.x += MOVE_STEP * cos_wrap(fix_angle(angle));
-// 	pos.y -= MOVE_STEP * sin_wrap(fix_angle(angle));
-// 	return (next);
-// }
-
 int	handle_keypress(int key, t_mlx *mlx)
 {
 	double next_angle;
