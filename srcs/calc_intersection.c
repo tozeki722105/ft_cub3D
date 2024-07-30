@@ -189,21 +189,27 @@ t_intersection calc_intersection(t_mlx *mlx, double ray_angle)
 
 	player = mlx->player;
 	map = mlx->map;
-	t_pos *vartical_inter_pos = find_calc_inter(mlx, ray_angle);
-	t_pos *horizontal_inter_pos = find2_calc_inter(mlx, ray_angle);
-	t_intersection v_inter;
-	t_intersection h_inter;
-	v_inter.x = vartical_inter_pos->x;
-	v_inter.y = vartical_inter_pos->y;
-	h_inter.x = horizontal_inter_pos->x;
-	h_inter.y = horizontal_inter_pos->y;
-	draw_rect_safely(mlx, *(vartical_inter_pos), 10, BLUE);
-	draw_rect_safely(mlx, *(horizontal_inter_pos), 10, RED);
-	// calc_test()
-	// t_intersection res = compare_distance(v_inter, h_inter, player, ray_angle);
-	// draw_line(&(mlx->img), player.x, player.y, res.x, res.y, WHITE);
-	// int ca = fix_angle(player.angle - res.degree);
-	// res.distance = res.distance * cos_wrap(fix_angle(player.angle - res.degree));
-	// res.wall_height = (WINDOW_HEIGHT * 100) / res.distance;
-	return (h_inter);
+	t_intersection v_inter = find_vartical_intersection(mlx, ray_angle);
+	t_intersection h_inter = find_horizontal_intersection(mlx, ray_angle);
+	t_intersection res = compare_distance(v_inter, h_inter, player, ray_angle);
+	draw_line(&(mlx->img), player.x, player.y, res.x, res.y, WHITE);
+	int ca = fix_angle(player.angle - res.degree);
+	res.distance = res.distance * cos_wrap(fix_angle(player.angle - res.degree));
+	res.wall_height = (WINDOW_HEIGHT * 100) / res.distance;
+	return (res);
+}
+
+
+t_intersection move_inter(t_mlx *mlx, double ray_angle)
+{
+	t_player player;
+	t_map map;
+
+	player = mlx->player;
+	map = mlx->map;
+	t_intersection v_inter = find_vartical_intersection(mlx, ray_angle);
+	t_intersection h_inter = find_horizontal_intersection(mlx, ray_angle);
+	t_intersection res = compare_distance(v_inter, h_inter, player, ray_angle);
+	res.distance = res.distance * cos_wrap(fix_angle(ray_angle - res.degree));
+	return (res);
 }

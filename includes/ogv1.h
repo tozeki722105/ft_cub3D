@@ -2,6 +2,7 @@
 # define OGV1_H
 
 #include "utils.h"
+#include "config.h"
 
 #define	NORTH_TEX_PATH	"img/collect.xpm"
 #define	SOUTH_TEX_PATH	"img/exit.xpm"
@@ -118,5 +119,7 @@ bool	is_right(double degree);
 
 
 void draw_wall(t_mlx *mlx, int start);
+
+t_pos	fix_move(t_mlx *mlx, t_pos pos, double move_angle, int step);
 
 #endif
