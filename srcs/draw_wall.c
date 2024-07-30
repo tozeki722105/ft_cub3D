@@ -1,7 +1,6 @@
 #include "ogv1.h"
 #include "calc.h"
 
-
 int calc_img_x(t_intersection inter, t_src img, int map_panel_side)
 {
 	int img_offset;
@@ -57,9 +56,6 @@ void draw_vertical_line_of_wall(t_mlx *mlx, t_intersection inter, size_t put_x)
 	}
 }
 
-
-# define TEST_LOG "log.txt"
-#include <fcntl.h>
 void draw_wall(t_mlx *mlx, int start)
 {
 	double draw_angle;
@@ -78,33 +74,3 @@ void draw_wall(t_mlx *mlx, int start)
 		x++;
 	}
 }
-
-	// int fd = open(TEST_LOG, O_RDWR | O_CREAT | O_TRUNC);
-	// 	prev = inter;
-	// dprintf(fd, "\n");
-	// size_t c = 0;
-	// t_intersection prev;
-		// if (x > 0 && abs(prev.x - inter.x) < 0.001 && abs(prev.y - inter.y) < 0.001)
-		// 	c++;
-	// if (700 < c)
-	// 	printf("bad=%lf\n", );
-
-	
-// double	deg_to_rad(double deg)
-// {
-// 	return (M_PI * deg / 180);
-// }
-
-// double	rad_to_deg(double rad)
-// {
-// 	return (rad * 180 / M_PI);
-// }
-
-// double calc_angle(t_mlx *mlx, double draw_angle, int x)
-// {
-// 	double win_half = WINDOW_WIDTH / 2;
-// 	double rad_of_half_fov = deg_to_rad(FOV / 2);
-// 	return (draw_angle - rad_to_deg(atan(tan_wrap(rad_of_half_fov) * x / win_half)));
-// }
-
-// draw_angle = fix_angle(calc_angle(mlx, draw_angle, x));
