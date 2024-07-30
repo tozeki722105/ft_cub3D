@@ -4,22 +4,18 @@
 // # include "ogv1.h"
 #include "utils.h"
 
+typedef struct s_pos
+{
+	double	x;
+	double y;
+} t_pos;
 
 typedef struct s_player
 {
-	double x;
-	double y;
-	double angle;
-	double pdx; //視線のX成分
-	double pdy; //視線のY成分
-	int	side;
+	t_pos	pos;
+	double	angle;
 } t_player;
 
-typedef struct s_pos
-{
-	int	x;
-	int y;
-} t_pos;
 
 enum e_dir
 {
@@ -109,6 +105,7 @@ t_loader init_loader();
 void	free_loader(t_loader loader);
 void	print_texture(t_loader loader);
 void	print_map(char **map_data);
+void	print_player(t_loader loader);
 
 //parse_load_utils.c
 t_parse_kind	parse_kind(char *str);

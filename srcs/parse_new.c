@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_new.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/30 20:36:49 by toshi             #+#    #+#             */
+/*   Updated: 2024/07/30 21:20:07 by toshi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parse.h"
 
 /// @param path not NULL
@@ -62,11 +74,49 @@ static char **convert_map_data(t_map_node *ptr)
 	return (map);
 }
 
+
+static bool	validate_player_pos(char **map_data, t_pos *player_pos)
+{
+	t_pos cur;
+
+	cur.y = 0;
+	while (map_data[(int)cur.y])
+	{
+		cur.x = 0;
+		while (map_data[(int)cur.y][(int)cur.x])
+		{
+			if (is_player(map_data[(int)cur.y][(int)cur.x]))
+			{
+				if (player_pos->x == -1 && player_pos->y == -1)
+					*player_pos = cur;
+				else
+					return (false);
+			}
+			cur.x++;
+		}
+		cur.y++;
+	}
+	if (player_pos->x == -1 || player_pos->y == -1)
+		return (false);
+	return (true);
+}
+
+static double get_player_angle(char **map_data, t_pos pos)
+{
+	if (map_data[(int)pos.y][(int)pos.x] == 'N')
+		return (90);
+	else if (map_data[(int)pos.y][(int)pos.x] == 'S')
+		return (270);
+	else if (map_data[(int)pos.y][(int)pos.x] == 'W')
+		return (180);
+	else
+		return (0);
+}
+
 t_loader	parse(char *path)
 {
-	t_loader		loader;
-	int				fd;
-	t_pos			player_pos;
+	t_loader	loader;
+	int			fd;
 
 	if (!validate_extention(path, ".cub"))
 		ft_perror_exit("The file extension is different", 0);
@@ -81,9 +131,11 @@ t_loader	parse(char *path)
 	if (is_contained_newline(loader.map_head))
 		ft_perror_exit("Only one map_data is allowed", 0);
 	loader.map_data = convert_map_data(loader.map_head);
-	// loader.player_pos = get_player_angle_and_fix_pos(loader.map_data, )
-	if (!validate_map_data(loader.map_data))//, &player_pos
+	if (!validate_map_data(loader.map_data))
 		exit(0);
+	if (!validate_player_pos(loader.map_data, &(loader.player_pos)))
+		ft_perror_exit("Put only one player element in the map", 0);
+	loader.player_angle = get_player_angle(loader.map_data, loader.player_pos);
 	return (loader);
 }
 
@@ -92,13 +144,39 @@ static void destructor() {
    system("leaks -q a.out");
 }
 
-
 int main(int argc, char **argv)
 {
 	t_loader loader;
 
 	loader = parse(argv[1]);
 	print_texture(loader);
+	print_player(loader);
 	print_map(loader.map_data);
 	free_loader(loader);
 }
+
+
+// bool is_valid_data(char *str, char **dest)
+// {
+// 	char *cpy = (char *)malloc(sizeof(char) * strlen(str));
+// 	size_t i = 0;
+// 	while (str)
+// 	{
+// 		if (!isdigit(*str))
+// 			return (false);
+// 		else
+// 			cpy[i++] = *str;
+// 		str++;
+// 	}
+// 	*dest = cpy;
+// 	return (true);
+// }
+
+// int main(int argc, char **argv)
+// {
+// 	char *dest;
+
+// 	if (!is_valid_data(argv[1], &dest))
+// 		exit (1);
+// 	printf("%s\n", dest);
+// }

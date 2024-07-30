@@ -1,50 +1,5 @@
 #include "parse.h"
 
-static bool	validate_player(char **map_data, t_player *player)
-{
-	t_pos cur;
-	// t_pos res;
-
-	// res = (t_pos){-1, -1};
-	player->y = -1;
-	player->x = -1;
-	cur.y = 0;
-	while (map_data[cur.y])
-	{
-		cur.x = 0;
-		while (map_data[cur.y][cur.x])
-		{
-			if (is_player(map_data[cur.y][cur.x]))
-			{
-				if (player->x == -1 && player->y == -1)
-				{
-					player->x = cur.x;
-					player->y = cur.y;
-				}
-				else
-					return (false);
-			}
-			cur.x++;
-		}
-		cur.y++;
-	}
-	if (player->x == -1 || player->y == -1)
-		return (false);
-	return (true);
-}
-
-static double find_player_angle(char player_char)
-{
-	if (player_char == 'N')
-		return (90);
-	else if (player_char == 'S')
-		return (270);
-	else if (player_char == 'W')
-		return (180);
-	else
-		return (0);
-}
-
 static bool	validate_map_elements(char **map_data)
 {
 	size_t y;
@@ -87,18 +42,20 @@ static bool	validate_map_size(char **map_data)
 bool	validate_map_data(char **map_data)
 {
 	char **map_cpy;
-	t_player player;
 
-	map_cpy = ft_double_str_dup(map_data);
-	if (!validate_map_size(map_cpy))
+	if (!validate_map_size(map_data))
 		return (ft_perror_ret_false("The map size is too small"));
+	map_cpy = ft_double_str_dup(map_data);
 	if (!validate_surrounded_wall_and_fill_space(map_cpy))
+	{
+		ft_free_double_str(map_cpy);
 		return (ft_perror_ret_false("The map is not surrounded by walls"));
-	if (!validate_player(map_cpy, &player))
-		return (ft_perror_ret_false("Please put only one player element in the map"));
-	player.angle = find_player_angle(map_cpy[(int)player.y][(int)player.x]);
+	}
 	if (!validate_map_elements(map_cpy))
+	{
+		ft_free_double_str(map_cpy);
 		return (ft_perror_ret_false("There is space in the map area"));
+	}
 	ft_free_double_str(map_cpy);
 	return (true);
 }
@@ -294,6 +251,42 @@ bool	validate_map_data(char **map_data)
 // }
 
 
+// static bool	validate_player_pos(char **map_data, t_pos *player)
+// {
+// 	t_pos cur;
 
+// 	cur.y = 0;
+// 	while (map_data[(int)cur.y])
+// 	{
+// 		cur.x = 0;
+// 		while (map_data[(int)cur.y][(int)cur.x])
+// 		{
+// 			if (is_player(map_data[(int)cur.y][(int)cur.x]))
+// 			{
+// 				if (player->x == -1 && player->y == -1)
+// 					*player = cur;
+// 				else
+// 					return (false);
+// 			}
+// 			cur.x++;
+// 		}
+// 		cur.y++;
+// 	}
+// 	if (player->x == -1 || player->y == -1)
+// 		return (false);
+// 	return (true);
+// }
+
+// static double find_player_angle(char **map_data, t_pos pos)
+// {
+// 	if (map_data[(int)pos.y][(int)pos.x] == 'N')
+// 		return (90);
+// 	else if (map_data[(int)pos.y][(int)pos.x] == 'S')
+// 		return (270);
+// 	else if (map_data[(int)pos.y][(int)pos.x] == 'W')
+// 		return (180);
+// 	else
+// 		return (0);
+// }
 
 
