@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 10:55:13 by toshi             #+#    #+#             */
-/*   Updated: 2023/04/07 21:18:42 by toshi            ###   ########.fr       */
+/*   Updated: 2024/07/18 08:36:32 by tozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,30 +42,30 @@ char	*free_str_set_null(char *str)
 	return (NULL);
 }
 
-char	*ft_strchr(const char *s, int c)
-{
-	char	cc;
-	size_t	i;
+// char	*ft_strchr(const char *s, int c)
+// {
+// 	char	cc;
+// 	size_t	i;
 
-	cc = (char)c;
-	i = 0;
-	while (s[i] != '\0' && s[i] != cc)
-		i++;
-	if (s[i] != cc)
-		return (NULL);
-	else
-		return ((char *)&s[i]);
-}
+// 	cc = (char)c;
+// 	i = 0;
+// 	while (s[i] != '\0' && s[i] != cc)
+// 		i++;
+// 	if (s[i] != cc)
+// 		return (NULL);
+// 	else
+// 		return ((char *)&s[i]);
+// }
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
+// size_t	ft_strlen(const char *s)
+// {
+// 	size_t	i;
 
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
+// 	i = 0;
+// 	while (s[i] != '\0')
+// 		i++;
+// 	return (i);
+// }
 
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {

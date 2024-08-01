@@ -6,7 +6,7 @@
 #    By: toshi <toshi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/07/31 02:58:00 by toshi            ###   ########.fr        #
+#    Updated: 2024/08/02 03:33:02 by toshi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,12 +46,31 @@ SRCS		:=	$(SRCS_DIR)ogv1.c \
 				$(SRCS_DIR)calc_compare_make_inter.c \
 				$(SRCS_DIR)calc_inter_utils.c \
 				$(SRCS_DIR)calc_inter.c \
+<<<<<<< HEAD
 				$(SRCS_DIR)calc_search_horizontal_inter.c \
 				$(SRCS_DIR)calc_search_vertical_inter.c \
 				$(SRCS_DIR)draw_wall.c \
 				$(SRCS_DIR)move.c \
 				$(SRCS_DIR)utils_calc.c \
 				$(SRCS_DIR)utils_draw.c 
+=======
+				$(SRCS_DIR)calc_inter_horizon.c 
+
+PARSE_SRCS	:=	$(SRCS_DIR)parse_load_utils.c \
+				$(SRCS_DIR)parse_load_utils2.c \
+				$(SRCS_DIR)parse_load.c \
+				$(SRCS_DIR)parse_utils_bool.c \
+				$(SRCS_DIR)parse_utils_bool2.c \
+				$(SRCS_DIR)parse_utils_libft.c \
+				$(SRCS_DIR)parse_utils_libft2.c \
+				$(SRCS_DIR)parse_utils_map_node.c \
+				$(SRCS_DIR)parse_utils_map_node2.c \
+				$(SRCS_DIR)parse_utils.c \
+				$(SRCS_DIR)parse_validate_map_data_utils.c \
+				$(SRCS_DIR)parse_validate_map_data.c \
+				$(SRCS_DIR)parse.c 
+
+>>>>>>> main
 
 OBJS		:=	$(patsubst %.c, ${OBJS_DIR}/%.o, $(SRCS))
 
@@ -64,6 +83,12 @@ $(NAME): $(OBJS)
 ${OBJS_DIR}/%.o: %.c
 	$(DIR_DUP)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+parse: $(PARSE_SRCS)
+	make -C $(LIBFT_PATH)
+	$(CC) $(CFLAGS) $(INCLUDES) $(PARSE_SRCS) $(LIBFT_A) $(GNL_PATH)*.c
+
+reparse: clean parse
 
 clean:
 	$(RM) $(OBJS_DIR)
