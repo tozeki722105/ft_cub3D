@@ -3,19 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+         #
+#    By: toshi <toshi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2024/07/30 22:02:45 by toshi            ###   ########.fr        #
-=======
-#    Updated: 2024/07/23 16:25:35 by tyamauch         ###   ########.fr        #
->>>>>>> main
+#    Updated: 2024/08/01 18:48:50 by toshi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			:=	cc
-CFLAGS		=	-Wall -Wextra -Werror
+# CFLAGS		=	-Wall -Wextra -Werror
 RM			:=	rm -rf
 
 NAME		:=	cub3d

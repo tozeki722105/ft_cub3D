@@ -1,16 +1,8 @@
 #ifndef PARSE_H
 # define PARSE_H
 
-<<<<<<< HEAD
 // # include "ogv1.h"
 #include "utils.h"
-=======
-# include "ogv1.h"
-#include "libft.h"
-#include "get_next_line.h"
-#include <fcntl.h>
-#include <unistd.h>
->>>>>>> main
 
 typedef struct s_pos
 {
