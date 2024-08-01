@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+         #
+#    By: toshi <toshi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/07/23 16:25:35 by tyamauch         ###   ########.fr        #
+#    Updated: 2024/08/01 18:53:24 by toshi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,22 @@ SRCS		:=	$(SRCS_DIR)ogv1.c \
 				$(SRCS_DIR)utils_calc.c \
 				$(SRCS_DIR)utils_draw.c \
 				$(SRCS_DIR)calc_inter.c \
-				$(SRCS_DIR)calc_inter_horizon.c \
+				$(SRCS_DIR)calc_inter_horizon.c 
+
+PARSE_SRCS	:=	$(SRCS_DIR)parse_load_utils.c \
+				$(SRCS_DIR)parse_load_utils2.c \
+				$(SRCS_DIR)parse_load.c \
+				$(SRCS_DIR)parse_utils_bool.c \
+				$(SRCS_DIR)parse_utils_bool2.c \
+				$(SRCS_DIR)parse_utils_libft.c \
+				$(SRCS_DIR)parse_utils_libft2.c \
+				$(SRCS_DIR)parse_utils_map_node.c \
+				$(SRCS_DIR)parse_utils_map_node2.c \
+				$(SRCS_DIR)parse_utils.c \
+				$(SRCS_DIR)parse_validate_map_data_utils.c \
+				$(SRCS_DIR)parse_validate_map_data.c \
+				$(SRCS_DIR)parse.c 
+
 
 OBJS		:=	$(patsubst %.c, ${OBJS_DIR}/%.o, $(SRCS))
 
@@ -61,6 +76,12 @@ $(NAME): $(OBJS)
 ${OBJS_DIR}/%.o: %.c
 	$(DIR_DUP)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+parse: $(PARSE_SRCS)
+	make -C $(LIBFT_PATH)
+	$(CC) $(CFLAGS) $(INCLUDES) $(PARSE_SRCS) $(LIBFT_A) $(GNL_PATH)*.c
+
+reparse: clean parse
 
 clean:
 	$(RM) $(OBJS_DIR)
