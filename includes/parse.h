@@ -3,6 +3,10 @@
 
 // # include "ogv1.h"
 #include "utils.h"
+#include "unistd.h"
+#include "fcntl.h"
+#include "../library/libft/libft.h"
+#include "../library/gnl/get_next_line.h"
 
 typedef struct s_pos
 {

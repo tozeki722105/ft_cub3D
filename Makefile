@@ -6,7 +6,7 @@
 #    By: toshi <toshi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/08/01 18:48:50 by toshi            ###   ########.fr        #
+#    Updated: 2024/08/01 18:53:24 by toshi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,8 +46,9 @@ SRCS		:=	$(SRCS_DIR)ogv1.c \
 				$(SRCS_DIR)calc_intersection.c \
 				$(SRCS_DIR)draw_wall.c \
 				$(SRCS_DIR)utils_calc.c \
-<<<<<<< HEAD
-				$(SRCS_DIR)utils_draw.c 
+				$(SRCS_DIR)utils_draw.c \
+				$(SRCS_DIR)calc_inter.c \
+				$(SRCS_DIR)calc_inter_horizon.c 
 
 PARSE_SRCS	:=	$(SRCS_DIR)parse_load_utils.c \
 				$(SRCS_DIR)parse_load_utils2.c \
@@ -63,11 +64,6 @@ PARSE_SRCS	:=	$(SRCS_DIR)parse_load_utils.c \
 				$(SRCS_DIR)parse_validate_map_data.c \
 				$(SRCS_DIR)parse.c 
 
-=======
-				$(SRCS_DIR)utils_draw.c \
-				$(SRCS_DIR)calc_inter.c \
-				$(SRCS_DIR)calc_inter_horizon.c \
->>>>>>> main
 
 OBJS		:=	$(patsubst %.c, ${OBJS_DIR}/%.o, $(SRCS))
 
