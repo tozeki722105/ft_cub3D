@@ -80,8 +80,8 @@ int main(int argc, char* argv[])
 
 	mlx.handle = mlx_init();
 	mlx.window = mlx_new_window(mlx.handle, WINDOW_WIDTH, WINDOW_HEIGHT, "cuv3d");
-	mlx.player.x = 250;
-	mlx.player.y = 250;
+	mlx.player.x = 251;
+	mlx.player.y = 251;
 	mlx.player.angle = 63.7;//63.7
 	mlx.player.pdx = cos_wrap(mlx.player.angle);
 	mlx.player.pdy = -sin_wrap(mlx.player.angle);

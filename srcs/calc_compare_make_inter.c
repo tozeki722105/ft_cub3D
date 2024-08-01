@@ -27,7 +27,7 @@ static int	calc_origin_offset(t_inter inter, int map_panel_side)
 	}
 }
 
-/// @brief use calc_img_x 
+/// @brief use width calc_img_x 
 static int	calc_origin(t_inter inter, int map_panel_side)
 {
 	if (inter.axis == HORIZONTAL)
@@ -46,6 +46,16 @@ static int	calc_origin(t_inter inter, int map_panel_side)
 	}
 }
 
+/// @brief fix distance from fisheye. and, calc wall_height.
+double calc_wall_height(t_inter inter, t_player player)
+{
+	double fixed_distance;
+
+	fixed_distance = inter.distance
+		* cos_wrap(fix_angle(player.angle - inter.angle));
+	return ((WINDOW_HEIGHT * 100) / fixed_distance); //map_panel_side??
+}
+
 t_inter	compare_make_inter(t_mlx *mlx, t_pos *v_inter_pos, t_pos *h_inter_pos, double ray_angle)
 {
 	t_inter inter;
@@ -54,7 +64,7 @@ t_inter	compare_make_inter(t_mlx *mlx, t_pos *v_inter_pos, t_pos *h_inter_pos, d
 
 	v_distance = calc_distance(v_inter_pos, mlx->player, ray_angle);
 	h_distance = calc_distance(h_inter_pos, mlx->player, ray_angle);
-	if (h_distance == -1
+	if (!h_inter_pos
 		|| (v_inter_pos && h_inter_pos && v_distance < h_distance))
 	{
 		inter.axis = VERTICAL;
@@ -68,7 +78,7 @@ t_inter	compare_make_inter(t_mlx *mlx, t_pos *v_inter_pos, t_pos *h_inter_pos, d
 		inter.distance = h_distance;
 	}
 	inter.angle = ray_angle;
-	inter.origin_offset = calc_origin_offset(inter, mlx->map.panel_side);
+	inter.origin_offset = calc_origin(inter, mlx->map.panel_side);
 	inter.wall_height = calc_wall_height(inter, mlx->player);
 	return (inter);
 }
