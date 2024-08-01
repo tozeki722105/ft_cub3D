@@ -6,11 +6,13 @@ t_pos calc_hori_start(t_mlx *mlx, double ray_angle)
 	t_player player = mlx->player;
 	t_map map = mlx->map;
 	t_pos pos;
+	int panel_origin_y;
 
-	if (is_up(ray_angle))
-		pos.y = (((int)player.y / map.panel_side) * map.panel_side) - BOUND_ADJUSTMENT;
+	panel_origin_y = ((int)player.y / map.panel_side) * map.panel_side;
+	if (player.y == panel_origin_y || is_up(ray_angle))
+		pos.y = (panel_origin_y) ;//- BOUND_ADJUSTMENT
 	else
-		pos.y = (((int)player.y / map.panel_side) * map.panel_side) + map.panel_side;
+		pos.y = (panel_origin_y) + map.panel_side;
 	pos.x = player.x + ((player.y - pos.y) * cot_wrap(ray_angle));
 	return (pos);
 }
@@ -42,16 +44,21 @@ t_pos	calc_hori_inter(t_mlx *mlx, double ray_angle, t_pos pos)
 	t_map map;
 	t_player player;
 	int step;
+	int flag;
 
 	map = mlx->map;
 	player = mlx->player;
 	step = map.panel_side;
+	flag = 0;
 	if (is_up(ray_angle))
+	{
+		flag = 1;
 		step *= -1;
+	}
 	while (pos.x < map.width && pos.x > 0 
 		&& pos.y > 0 && pos.y < map.height)
 	{
-		if (map.data[pos.y / map.panel_side][pos.x / map.panel_side] == '1')
+		if (map.data[(pos.y / map.panel_side)-flag][pos.x / map.panel_side] == '1')
 			return (pos);
 		pos.y += step;
 		pos.x = player.x + ((player.y - pos.y) * cot_wrap(ray_angle));

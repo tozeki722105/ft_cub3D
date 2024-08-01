@@ -39,7 +39,7 @@ t_inter new_calc_inter(t_mlx *mlx, double ray_angle);
 
 // calc_inter_utils.c
 void draw_rect_safely(t_mlx *mlx, t_pos pos, size_t rect_size, int color);
-double calc_wall_height(t_inter inter, t_player player);
+// double calc_wall_height(t_inter inter, t_player player);
 
 // calc_compare_make_inter.c
 t_inter	compare_make_inter(t_mlx *mlx, t_pos *v_inter_pos, t_pos *h_inter_pos, double ray_angle);

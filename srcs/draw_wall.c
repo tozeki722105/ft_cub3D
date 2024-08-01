@@ -42,8 +42,8 @@ void draw_vertical_line_of_wall(t_mlx *mlx, t_inter inter, size_t put_x)
 	t_src img;
 
 	img = get_img(mlx, inter);
-	// img_x = (img.width * inter.origin_offset) / mlx->map.panel_side;
-	img_x = calc_img_x(inter, img, mlx->map.panel_side);
+	img_x = (img.width * inter.origin_offset) / mlx->map.panel_side;
+	// img_x = calc_img_x(inter, img, mlx->map.panel_side);
 	put_y = (WINDOW_HEIGHT / 2) - ((int)inter.wall_height / 2);
 	wall_i = 0;
 	while (wall_i < (int)inter.wall_height)
@@ -61,7 +61,7 @@ void draw_vertical_line_of_wall(t_mlx *mlx, t_inter inter, size_t put_x)
 
 /// @brief If you call this function from the coordinates of a wall corner, 
 ///	the process never finishes. The angle is also related.
-void draw_wall(t_mlx *mlx, int start)
+void  draw_wall(t_mlx *mlx, int start)
 {
 	double draw_angle;
 	double step;
@@ -74,10 +74,10 @@ void draw_wall(t_mlx *mlx, int start)
 	while (x < WINDOW_WIDTH)
 	{
 		inter = new_calc_inter(mlx, draw_angle);
-		// if (inter.axis == HORIZONTAL)
-		// 	draw_line(&(mlx->img), mlx->player.x, mlx->player.y, inter.pos.x, inter.pos.y, RED);
-		// else
-		// 	draw_line(&(mlx->img), mlx->player.x, mlx->player.y, inter.pos.x, inter.pos.y, BLUE);
+		if (inter.axis == HORIZONTAL)
+			draw_line(&(mlx->img), mlx->player.x, mlx->player.y, inter.pos.x, inter.pos.y, RED);
+		else
+			draw_line(&(mlx->img), mlx->player.x, mlx->player.y, inter.pos.x, inter.pos.y, BLUE);
 		draw_vertical_line_of_wall(mlx, inter, x);
 		draw_angle = fix_angle(draw_angle - step);
 		x++;
