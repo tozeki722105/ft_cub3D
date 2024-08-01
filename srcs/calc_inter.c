@@ -1,5 +1,6 @@
 #include "ogv1.h"
 #include "calc.h"
+#include "config.h"
 
 static t_pos calc_v_start(t_mlx *mlx, double ray_angle)
 {
@@ -76,8 +77,36 @@ t_pos *find_calc_v_inter(t_mlx *mlx, double ray_angle)
 	return (pos);
 }
 
-void calc_test(t_mlx *mlx, double ray_angle)
+double distance(t_player player,t_pos inter)
 {
+		double distance ;
+
+		distance = sqrt(pow(player.x - inter.x,2.0) + pow(player.y - inter.y,2.0));
+}
+
+double calc_offset(double ray_angle, enum e_axis axis, t_pos inter, t_map map, t_mlx *mlx)
+{
+	double res;
+	if (axis == HORIZONTAL)
+	{
+		if (is_up(ray_angle))
+			return (((int)inter.x / map.panel_side) * map.panel_side);
+		else
+			return (((int)inter.x / map.panel_side) * map.panel_side) + map.panel_side;
+	}
+	else
+	{
+		if (is_right(ray_angle))
+			return (((int)inter.y / map.panel_side) * map.panel_side);
+		else
+			return (((int)inter.y / map.panel_side) * map.panel_side) + map.panel_side;
+	}
+}
+
+// void calc_test(t_mlx *mlx, double ray_angle)
+t_inter calc_test(t_mlx *mlx, double ray_angle)
+{
+	t_inter res;
 	t_pos *v_inter;
 	t_pos *h_inter;
 
@@ -87,4 +116,26 @@ void calc_test(t_mlx *mlx, double ray_angle)
 		draw_rect_safely(mlx, *v_inter, 10, BLUE);
 	if(!h_inter)
 		draw_rect_safely(mlx, *h_inter, 10, RED);
+	if(distance(mlx->player,*v_inter) > distance(mlx->player,*h_inter))
+	{
+		res.pos = *h_inter;
+		res.axis = HORIZONTAL;
+		res.angle = ray_angle;
+		res.distance = distance(mlx->player,*h_inter);
+		res.origin_offset = calc_offset(ray_angle, res.axis, res.pos, mlx->map, mlx);
+	}
+	else
+	{
+		res.pos = *v_inter;
+		res.axis = VERTICAL;
+		res.angle = ray_angle;
+		res.distance = distance(mlx->player,*v_inter);
+		res.origin_offset = calc_offset(ray_angle, res.axis, res.pos, mlx->map, mlx);
+	}
+	//t_inter res = compare_distance(v_inter, h_inter, mlx->player, ray_angle);
+	draw_line(&(mlx->img), mlx->player.x, mlx->player.y, res.pos.x, res.pos.y, WHITE);
+	int ca = fix_angle(mlx->player.angle - res.angle);
+	res.distance = res.distance * cos_wrap(fix_angle(mlx->player.angle - res.angle));
+	res.wall_height = (WINDOW_HEIGHT * 100) / res.distance;
+	return (res);
 }

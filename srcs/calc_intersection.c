@@ -8,24 +8,24 @@ double calc_distance(double ray_angle, t_player player, t_intersection res)
 	return (cos_wrap(ray_angle) * (res.x - player.x) - sin_wrap(ray_angle) * (res.y - player.y));
 }
 
-double calc_offset(double ray_angle, enum e_axis axis, t_intersection inter, t_map map, t_mlx *mlx)
-{
-	double res;
-	if (axis == HORIZONTAL)
-	{
-		if (is_up(ray_angle))
-			return (((int)inter.x / map.panel_side) * map.panel_side);
-		else
-			return (((int)inter.x / map.panel_side) * map.panel_side) + map.panel_side;
-	}
-	else
-	{
-		if (is_right(ray_angle))
-			return (((int)inter.y / map.panel_side) * map.panel_side);
-		else
-			return (((int)inter.y / map.panel_side) * map.panel_side) + map.panel_side;
-	}
-}
+// double calc_offset(double ray_angle, enum e_axis axis, t_intersection inter, t_map map, t_mlx *mlx)
+// {
+// 	double res;
+// 	if (axis == HORIZONTAL)
+// 	{
+// 		if (is_up(ray_angle))
+// 			return (((int)inter.x / map.panel_side) * map.panel_side);
+// 		else
+// 			return (((int)inter.x / map.panel_side) * map.panel_side) + map.panel_side;
+// 	}
+// 	else
+// 	{
+// 		if (is_right(ray_angle))
+// 			return (((int)inter.y / map.panel_side) * map.panel_side);
+// 		else
+// 			return (((int)inter.y / map.panel_side) * map.panel_side) + map.panel_side;
+// 	}
+// }
 
 int get_vartical_first(t_mlx *mlx, int *pos_y, double ray_angle)
 {
@@ -108,7 +108,7 @@ t_intersection display_vertical_intersection(t_mlx *mlx, t_intersection pos, int
 			res.y = pos.y;
 			res.degree = ray_angle;
 			res.distance = calc_distance(ray_angle, player, res);
-			res.origin_offset = calc_offset(ray_angle, res.touching_axis, pos, map, mlx);
+			//res.origin_offset = calc_offset(ray_angle, res.touching_axis, pos, map, mlx);
 			return (res);
 		}
 		pos.x += add;
@@ -136,7 +136,7 @@ t_intersection display_horizontal_intersection(t_mlx *mlx, t_intersection pos, i
 			res.y = pos.y;
 			res.degree = ray_angle;
 			res.distance = calc_distance(ray_angle, player, res);
-			res.origin_offset = calc_offset(ray_angle, res.touching_axis, pos, map, mlx);
+			//res.origin_offset = calc_offset(ray_angle, res.touching_axis, pos, map, mlx);
 			return (res);
 		}
 		pos.y += add;

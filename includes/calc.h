@@ -35,7 +35,8 @@ typedef struct s_inter
 
 //utiles 行き
 double calc_distance(double ray_angle, t_player player, t_intersection res);
-double calc_offset(double ray_angle, enum e_axis axis, t_intersection inter, t_map map, t_mlx *mlx);
+//double calc_offset(double ray_angle, enum e_axis axis, t_intersection inter, t_map map, t_mlx *mlx);
+double calc_offset(double ray_angle, enum e_axis axis, t_pos inter, t_map map, t_mlx *mlx);
 int get_vartical_first(t_mlx *mlx, int *pos_y, double ray_angle);
 int		get_horizontal_first(t_mlx *mlx, int *pos_y, double ray_angle);
 void	display_vartical_grid_intersection(t_mlx *mlx, t_intersection pos, int color, double ray_angle);
@@ -53,7 +54,9 @@ t_intersection calc_intersection(t_mlx *mlx, double ray_angle);
 t_pos *find_calc_h_inter(t_mlx *mlx, double ray_angle);
 t_pos *find_calc_v_inter(t_mlx *mlx, double ray_angle);
 
-void calc_test(t_mlx *mlx, double ray_angle);
+//void calc_test(t_mlx *mlx, double ray_angle);
+t_inter calc_test(t_mlx *mlx, double ray_angle);
+
 
 void draw_rect_safely(t_mlx *mlx, t_pos pos, size_t rect_size, int color);
 void	display_ver_grid_inter(t_mlx *mlx, double ray_angle, t_pos pos, int color);

@@ -4,50 +4,54 @@
 
 void draw_wall(t_mlx *mlx, int start);
 
-int	pick_src(int src_x, t_src src, t_intersection inter, int y)
+// int	pick_src(int src_x, t_src src, t_intersection inter, int y)
+int	pick_src(int src_x, t_src src, t_inter inter, int y)
 {
 	int len = (src.height * y) / inter.wall_height;
 	// return (src.buffer[len][src_x]);
 	return (pick_color(&src, src_x, len));
 }
 
-t_src get_img(t_mlx *mlx, t_intersection intersection)
+// t_src get_img(t_mlx *mlx, t_intersection intersection)
+t_src get_img(t_mlx *mlx, t_inter intersection)
 {
-	if (intersection.touching_axis == HORIZONTAL)
+	if (intersection.axis == HORIZONTAL)
 	{
-		if (is_up(intersection.degree))
+		if (is_up(intersection.angle))
 			return (mlx->textures.north);
 		else
 			return (mlx->textures.south);
 	}
 	else
 	{
-		if (is_right(intersection.degree))
+		if (is_right(intersection.angle))
 			return (mlx->textures.east);
 		else
 			return (mlx->textures.west);
 	}
 }
 
-int calc_src_x(t_intersection inter, int x, t_mlx *mlx, t_src src)
+// int calc_src_x(t_intersection inter, int x, t_mlx *mlx, t_src src)
+int calc_src_x(t_inter inter, int x, t_mlx *mlx, t_src src)
 {
-	if (inter.touching_axis == HORIZONTAL)
+	if (inter.axis == HORIZONTAL)
 	{
-		if (is_up(inter.degree))
-			return (src.width * (int)abs(inter.origin_offset - inter.x) / mlx->map.panel_side);
+		if (is_up(inter.angle))
+			return (src.width * (int)abs(inter.origin_offset - inter.pos.x) / mlx->map.panel_side);
 		else
-			return (src.width * (int)abs(inter.origin_offset - inter.x) / mlx->map.panel_side);
+			return (src.width * (int)abs(inter.origin_offset - inter.pos.x) / mlx->map.panel_side);
 	}
 	else
 	{
-		if (is_right(inter.degree))
-			return (src.height * (int)abs(inter.origin_offset - inter.y) / mlx->map.panel_side);
+		if (is_right(inter.angle))
+			return (src.height * (int)abs(inter.origin_offset - inter.pos.y) / mlx->map.panel_side);
 		else
-			return (src.height * (int)abs(inter.origin_offset - inter.y) / mlx->map.panel_side);
+			return (src.height * (int)abs(inter.origin_offset - inter.pos.y) / mlx->map.panel_side);
 	}
 }
 
-void draw_vertical_line_of_object(t_intersection intersection, int x, t_mlx *mlx)
+// void draw_vertical_line_of_object(t_intersection intersection, int x, t_mlx *mlx)
+void draw_vertical_line_of_object(t_inter intersection, int x, t_mlx *mlx)
 {
 	int y;
 	int i;
@@ -78,7 +82,8 @@ void draw_wall(t_mlx *mlx, int start)
 	i = start;
 	while (i < WINDOW_WIDTH)
 	{
-		t_intersection res = calc_intersection(mlx, draw_start_angle);
+		// t_intersection res = calc_intersection(mlx, draw_start_angle);
+		t_inter res = calc_test(mlx, draw_start_angle);
 		draw_vertical_line_of_object(res, i, mlx);
 		draw_start_angle = fix_angle(draw_start_angle - draw_angle_step);
 		i++;

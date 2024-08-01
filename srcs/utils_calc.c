@@ -10,7 +10,7 @@ double cot_wrap(double angle);
 bool	is_up(double degree);
 bool	is_right(double degree);
 double calc_distance(double ray_angle, t_player player, t_intersection res);
-double calc_offset(double ray_angle, enum e_axis axis, t_intersection inter, t_map map, t_mlx *mlx);
+//double calc_offset(double ray_angle, enum e_axis axis, t_intersection inter, t_map map, t_mlx *mlx);
 
 void	display_ver_grid_inter(t_mlx *mlx, double ray_angle, t_pos pos, int color);
 void draw_rect_safely(t_mlx *mlx, t_pos pos, size_t rect_size, int color);
@@ -33,6 +33,11 @@ void	display_horizontal_grid_inter(t_mlx *mlx, double ray_angle, t_pos pos, int 
 // 	return (res_x);
 // }
 //
+double calc_distance(double ray_angle, t_player player, t_intersection res)
+{
+	return (cos_wrap(ray_angle) * (res.x - player.x) - sin_wrap(ray_angle) * (res.y - player.y));
+}
+
 void	display_horizontal_grid_inter(t_mlx *mlx, double ray_angle, t_pos pos, int color)
 {
 	t_map map;
