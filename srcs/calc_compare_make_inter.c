@@ -68,7 +68,7 @@ t_inter	compare_make_inter(t_mlx *mlx, t_pos *v_inter_pos, t_pos *h_inter_pos, d
 		inter.distance = h_distance;
 	}
 	inter.angle = ray_angle;
-	inter.origin_offset = calc_origin(inter, mlx->map.panel_side);
+	inter.origin_offset = calc_origin_offset(inter, mlx->map.panel_side);
 	inter.wall_height = calc_wall_height(inter, mlx->player);
 	return (inter);
 }
