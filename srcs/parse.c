@@ -6,7 +6,7 @@
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:36:49 by toshi             #+#    #+#             */
-/*   Updated: 2024/08/02 05:02:04 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/02 13:49:39 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static size_t count_map_size(t_map_node *ptr, size_t *map_y_count)
 	return (map_x_count);
 }
 
-static char **convert_map_data(t_map_node *ptr)
+static char **convert_map_data(t_map_node *ptr, t_loader *loader)
 {
 	size_t	map_x_count;
 	size_t	map_y_count;
@@ -50,6 +50,8 @@ static char **convert_map_data(t_map_node *ptr)
 		ptr = ptr->next;
 	}
 	map[i] = NULL;
+	loader->map_y_count = map_y_count;
+	loader->map_x_count = map_x_count;
 	return (map);
 }
 
@@ -109,7 +111,7 @@ t_loader	parse(char *path)
 	trim_map_list(&(loader.map_head), "");
 	if (is_contained_newline(loader.map_head))
 		ft_perror_exit("Only one map_data is allowed", 0);
-	loader.map_data = convert_map_data(loader.map_head);
+	loader.map_data = convert_map_data(loader.map_head, &loader);
 	if (!validate_map_data(loader.map_data))
 		exit(0);
 	if (!validate_player_pos(loader.map_data, &(loader.player_pos)))
@@ -118,23 +120,23 @@ t_loader	parse(char *path)
 	return (loader);
 }
 
-// __attribute__((destructor))
-// static void destructor() {
-//    system("leaks -q a.out");
-// }
+__attribute__((destructor))
+static void destructor() {
+   system("leaks -q cub3d");
+}
 
-// int main(int argc, char **argv)
-// {
-// 	t_loader loader;
+int main(int argc, char **argv)
+{
+	t_loader loader;
 
-// 	if (argc != 2)
-// 		return (1);
-// 	loader = parse(argv[1]);
-// 	print_texture(loader);
-// 	print_player(loader);
-// 	print_map(loader.map_data);
-// 	free_loader(loader);
-// }
+	if (argc != 2)
+		return (1);
+	loader = parse(argv[1]);
+	print_texture(loader);
+	print_player(loader);
+	print_map(loader);
+	free_loader(loader);
+}
 
 
 // bool is_valid_data(char *str, char **dest)

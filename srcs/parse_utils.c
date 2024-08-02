@@ -37,13 +37,14 @@ void	print_texture(t_loader loader)
 	printf("ceiling=%d;\n", loader.ceiling_color);
 }
 
-void	print_map(char **map_data)
+void	print_map(t_loader loader)
 {
 	char **map;
 	size_t x;
 	size_t y;
 
-	map = map_data;
+	printf("x_count=%d, y_count=%d\n", loader.map_y_count, loader.map_x_count);
+	map = loader.map_data;
 	y = 0;
 	while (map[y])
 	{

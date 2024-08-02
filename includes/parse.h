@@ -79,13 +79,15 @@ typedef struct
 	char		**map_data;
 	t_pos		player_pos;
 	double		player_angle;
+	int 		map_y_count;
+	int 		map_x_count;
 }	t_loader;
 
 //parse_utils.c
 t_loader	init_loader();
 void		free_loader(t_loader loader);
 void		print_texture(t_loader loader);
-void		print_map(char **map_data);
+void	print_map(t_loader loader);
 void		print_player(t_loader loader);
 
 // parse_utils_bool.c

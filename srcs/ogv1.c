@@ -73,50 +73,50 @@ int	handle_keypress(int key, t_mlx *mlx)
 	return (0);
 }
 
-#include "string.h"
-int main(int argc, char* argv[])
-{
-	t_mlx mlx;
+// #include "string.h"
+// int main(int argc, char* argv[])
+// {
+// 	t_mlx mlx;
 
-	mlx.handle = mlx_init();
-	mlx.window = mlx_new_window(mlx.handle, WINDOW_WIDTH, WINDOW_HEIGHT, "cuv3d");
-	mlx.player.pos.x = 251;
-	mlx.player.pos.y = 251;
-	mlx.player.angle = 63.7;//63.7
-	mlx.player.pdx = cos_wrap(mlx.player.angle);
-	mlx.player.pdy = -sin_wrap(mlx.player.angle);
-	mlx.player.side = 10;
-	mlx.img.handle = mlx_new_image(mlx.handle, WINDOW_WIDTH, WINDOW_HEIGHT);
-	mlx.img.buffer = mlx_get_data_addr(mlx.img.handle, &mlx.img.bits_per_pixel, &mlx.img.line_size, &mlx.img.endian);
-	mlx.map.x_count = MAP_X_COUNT;
-	mlx.map.y_count = MAP_Y_COUNT;
-	mlx.map.panel_side = WINDOW_HEIGHT / MAP_Y_COUNT;
-	mlx.map.height = mlx.map.y_count * mlx.map.panel_side;
-	mlx.map.width =  mlx.map.x_count * mlx.map.panel_side;
-	mlx.map.data = (char **)malloc(sizeof(char *) * MAP_Y_COUNT);
-	mlx.map.data[0] = strdup("1111111111");
-	mlx.map.data[1] = strdup("1010001001");
-	mlx.map.data[2] = strdup("1010001001");
-	mlx.map.data[3] = strdup("1010000001");
-	mlx.map.data[4] = strdup("1000000001");
-	mlx.map.data[5] = strdup("1000100001");
-	mlx.map.data[6] = strdup("1000100001");
-	mlx.map.data[7] = strdup("1000000001");
-	mlx.map.data[8] = strdup("1000000101");
-	mlx.map.data[9] = strdup("1111111111");
-	mlx.textures.north.handle = mlx_xpm_file_to_image(mlx.handle, NORTH_TEX_PATH, &(mlx.textures.north.width), &(mlx.textures.north.height));
-	mlx.textures.north.buffer = mlx_get_data_addr(mlx.textures.north.handle, &(mlx.textures.north.bits_per_pixel), &(mlx.textures.north.line_size), &(mlx.textures.north.endian));
-	mlx.textures.south.handle = mlx_xpm_file_to_image(mlx.handle, SOUTH_TEX_PATH, &(mlx.textures.south.width), &(mlx.textures.south.height));
-	mlx.textures.south.buffer = mlx_get_data_addr(mlx.textures.south.handle, &(mlx.textures.south.bits_per_pixel), &(mlx.textures.south.line_size), &(mlx.textures.south.endian));
-	mlx.textures.west.handle = mlx_xpm_file_to_image(mlx.handle, WEST_TEX_PATH, &(mlx.textures.west.width), &(mlx.textures.west.height));
-	mlx.textures.west.buffer = mlx_get_data_addr(mlx.textures.west.handle, &(mlx.textures.west.bits_per_pixel), &(mlx.textures.west.line_size), &(mlx.textures.west.endian));
-	mlx.textures.east.handle = mlx_xpm_file_to_image(mlx.handle, EAST_TEX_PATH, &(mlx.textures.east.width), &(mlx.textures.east.height));
-	mlx.textures.east.buffer = mlx_get_data_addr(mlx.textures.east.handle, &(mlx.textures.east.bits_per_pixel), &(mlx.textures.east.line_size), &(mlx.textures.east.endian));
+// 	mlx.handle = mlx_init(); //定数
+// 	mlx.window = mlx_new_window(mlx.handle, WINDOW_WIDTH, WINDOW_HEIGHT, "cuv3d"); 
+// 	mlx.player.pos.x = 251; //convert
+// 	mlx.player.pos.y = 251;
+// 	mlx.player.angle = 63.7;//63.7
+// 	mlx.player.pdx = cos_wrap(mlx.player.angle); //削除
+// 	mlx.player.pdy = -sin_wrap(mlx.player.angle); 
+// 	mlx.player.side = 10; //定数
+// 	mlx.img.handle = mlx_new_image(mlx.handle, WINDOW_WIDTH, WINDOW_HEIGHT); //定数
+// 	mlx.img.buffer = mlx_get_data_addr(mlx.img.handle, &mlx.img.bits_per_pixel, &mlx.img.line_size, &mlx.img.endian);
+// 	mlx.map.x_count = MAP_X_COUNT;//loader.map.count <- まだ受け取ってない
+// 	mlx.map.y_count = MAP_Y_COUNT; 
+// 	mlx.map.panel_side = WINDOW_HEIGHT / MAP_Y_COUNT; //定数
+// 	mlx.map.height = mlx.map.y_count * mlx.map.panel_side; //loader.map.count * 定数
+// 	mlx.map.width =  mlx.map.x_count * mlx.map.panel_side; 
+// 	mlx.map.data = (char **)malloc(sizeof(char *) * MAP_Y_COUNT); //loaderから直接
+// 	mlx.map.data[0] = strdup("1111111111");
+// 	mlx.map.data[1] = strdup("1010001001");
+// 	mlx.map.data[2] = strdup("1010001001");
+// 	mlx.map.data[3] = strdup("1010000001");
+// 	mlx.map.data[4] = strdup("1000000001");
+// 	mlx.map.data[5] = strdup("1000100001");
+// 	mlx.map.data[6] = strdup("1000100001");
+// 	mlx.map.data[7] = strdup("1000000001");
+// 	mlx.map.data[8] = strdup("1000000101");
+// 	mlx.map.data[9] = strdup("1111111111");
+// 	mlx.textures.north.handle = mlx_xpm_file_to_image(mlx.handle, NORTH_TEX_PATH, &(mlx.textures.north.width), &(mlx.textures.north.height));
+// 	mlx.textures.north.buffer = mlx_get_data_addr(mlx.textures.north.handle, &(mlx.textures.north.bits_per_pixel), &(mlx.textures.north.line_size), &(mlx.textures.north.endian));
+// 	mlx.textures.south.handle = mlx_xpm_file_to_image(mlx.handle, SOUTH_TEX_PATH, &(mlx.textures.south.width), &(mlx.textures.south.height));
+// 	mlx.textures.south.buffer = mlx_get_data_addr(mlx.textures.south.handle, &(mlx.textures.south.bits_per_pixel), &(mlx.textures.south.line_size), &(mlx.textures.south.endian));
+// 	mlx.textures.west.handle = mlx_xpm_file_to_image(mlx.handle, WEST_TEX_PATH, &(mlx.textures.west.width), &(mlx.textures.west.height));
+// 	mlx.textures.west.buffer = mlx_get_data_addr(mlx.textures.west.handle, &(mlx.textures.west.bits_per_pixel), &(mlx.textures.west.line_size), &(mlx.textures.west.endian));
+// 	mlx.textures.east.handle = mlx_xpm_file_to_image(mlx.handle, EAST_TEX_PATH, &(mlx.textures.east.width), &(mlx.textures.east.height));
+// 	mlx.textures.east.buffer = mlx_get_data_addr(mlx.textures.east.handle, &(mlx.textures.east.bits_per_pixel), &(mlx.textures.east.line_size), &(mlx.textures.east.endian));
 
-	//render
-	render(&mlx);
-	//loop
-	mlx_hook(mlx.window, 02, 1L << 0, &handle_keypress, &mlx);
-	mlx_loop(mlx.handle);
-}
+// 	//render
+// 	render(&mlx);
+// 	//loop
+// 	mlx_hook(mlx.window, 02, 1L << 0, &handle_keypress, &mlx);
+// 	mlx_loop(mlx.handle);
+// }
 
