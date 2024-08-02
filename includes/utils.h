@@ -26,11 +26,11 @@ enum	e_color
 	BROWN	=	0x764B00,
 };
 
-typedef struct s_pos
+typedef struct s_point
 {
 	int	x;
 	int y;
-} t_pos;
+} t_point;
 
 
 #endif
