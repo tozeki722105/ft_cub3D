@@ -8,8 +8,8 @@ t_pos	fix_move(t_mlx *mlx, t_pos pos, double move_angle, int step)
 	t_pos cur;
 	t_pos res;
 
-	cur.x = mlx->player.x;
-	cur.y = mlx->player.y;
+	cur.x = mlx->player.pos.x;
+	cur.y = mlx->player.pos.y;
 	inter = new_calc_inter(mlx, move_angle);
 	// printf("angle=%lf, distanec=%lf\n", move_angle, inter.distance);
 	// if (inter.distance < step + 20)

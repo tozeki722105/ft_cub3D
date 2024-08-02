@@ -28,8 +28,10 @@ enum	e_color
 
 typedef struct s_pos
 {
-	int	x;
-	int y;
+	// int	x;
+	// int y;
+	double	x;
+	double	y;
 } t_pos;
 
 

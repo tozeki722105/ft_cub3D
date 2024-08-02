@@ -6,7 +6,7 @@
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:36:49 by toshi             #+#    #+#             */
-/*   Updated: 2024/07/30 22:03:33 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/02 05:02:04 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,23 +118,23 @@ t_loader	parse(char *path)
 	return (loader);
 }
 
-__attribute__((destructor))
-static void destructor() {
-   system("leaks -q a.out");
-}
+// __attribute__((destructor))
+// static void destructor() {
+//    system("leaks -q a.out");
+// }
 
-int main(int argc, char **argv)
-{
-	t_loader loader;
+// int main(int argc, char **argv)
+// {
+// 	t_loader loader;
 
-	if (argc != 2)
-		return (1);
-	loader = parse(argv[1]);
-	print_texture(loader);
-	print_player(loader);
-	print_map(loader.map_data);
-	free_loader(loader);
-}
+// 	if (argc != 2)
+// 		return (1);
+// 	loader = parse(argv[1]);
+// 	print_texture(loader);
+// 	print_player(loader);
+// 	print_map(loader.map_data);
+// 	free_loader(loader);
+// }
 
 
 // bool is_valid_data(char *str, char **dest)

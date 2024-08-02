@@ -8,11 +8,11 @@
 #include "../library/libft/libft.h"
 #include "../library/gnl/get_next_line.h"
 
-typedef struct s_pos
-{
-	double	x;
-	double y;
-} t_pos;
+// typedef struct s_pos
+// {
+// 	double	x;
+// 	double y;
+// } t_pos;
 
 typedef struct s_player
 {

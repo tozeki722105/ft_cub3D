@@ -75,9 +75,9 @@ void  draw_wall(t_mlx *mlx, int start)
 	{
 		inter = new_calc_inter(mlx, draw_angle);
 		if (inter.axis == HORIZONTAL)
-			draw_line(&(mlx->img), mlx->player.x, mlx->player.y, inter.pos.x, inter.pos.y, RED);
+			draw_line(&(mlx->img), mlx->player.pos.x, mlx->player.pos.y, inter.pos.x, inter.pos.y, RED);
 		else
-			draw_line(&(mlx->img), mlx->player.x, mlx->player.y, inter.pos.x, inter.pos.y, BLUE);
+			draw_line(&(mlx->img), mlx->player.pos.x, mlx->player.pos.y, inter.pos.x, inter.pos.y, BLUE);
 		draw_vertical_line_of_wall(mlx, inter, x);
 		draw_angle = fix_angle(draw_angle - step);
 		x++;

@@ -8,12 +8,12 @@ t_pos calc_hori_start(t_mlx *mlx, double ray_angle)
 	t_pos pos;
 	int panel_origin_y;
 
-	panel_origin_y = ((int)player.y / map.panel_side) * map.panel_side;
-	if (player.y == panel_origin_y || is_up(ray_angle))
+	panel_origin_y = ((int)player.pos.y / map.panel_side) * map.panel_side;
+	if (player.pos.y == panel_origin_y || is_up(ray_angle))
 		pos.y = (panel_origin_y) ;//- BOUND_ADJUSTMENT
 	else
 		pos.y = (panel_origin_y) + map.panel_side;
-	pos.x = player.x + ((player.y - pos.y) * cot_wrap(ray_angle));
+	pos.x = player.pos.x + ((player.pos.y - pos.y) * cot_wrap(ray_angle));
 	return (pos);
 }
 
@@ -34,7 +34,7 @@ void	display_hori_grid_inter(t_mlx *mlx, double ray_angle, t_pos pos, int color)
 		// printf("x=%d,y=%d  ", (int)pos.x, (int)pos.y);
 		draw_rect_safely(mlx, pos, 10, color);
 		pos.y += step;
-		pos.x = player.x + ((player.y - pos.y) * cot_wrap(ray_angle));
+		pos.x = player.pos.x + ((player.pos.y - pos.y) * cot_wrap(ray_angle));
 	}
 	// printf("\n");
 }
@@ -58,10 +58,10 @@ t_pos	calc_hori_inter(t_mlx *mlx, double ray_angle, t_pos pos)
 	while (pos.x < map.width && pos.x > 0 
 		&& pos.y > 0 && pos.y < map.height)
 	{
-		if (map.data[(pos.y / map.panel_side)-flag][pos.x / map.panel_side] == '1')
+		if (map.data[((int)pos.y / map.panel_side)-flag][(int)pos.x / map.panel_side] == '1')
 			return (pos);
 		pos.y += step;
-		pos.x = player.x + ((player.y - pos.y) * cot_wrap(ray_angle));
+		pos.x = player.pos.x + ((player.pos.y - pos.y) * cot_wrap(ray_angle));
 	}
 	pos.x = -1;
 	pos.y = -1;

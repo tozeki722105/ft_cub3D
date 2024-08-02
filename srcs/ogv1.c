@@ -21,47 +21,47 @@ int	handle_keypress(int key, t_mlx *mlx)
 		exit(0);
 	else if (key == KEY_A)
 	{
-		mlx->player.x -= MOVE_STEP;
-		// mlx->player.x += MOVE_STEP * cos_wrap(fix_angle(mlx->player.angle + 90));
-		// mlx->player.y -= MOVE_STEP * sin_wrap(fix_angle(mlx->player.angle + 90));
-		// res.x = mlx->player.x;
-		// res.y = mlx->player.y;
+		mlx->player.pos.x -= MOVE_STEP;
+		// mlx->player.pos.x += MOVE_STEP * cos_wrap(fix_angle(mlx->player.angle + 90));
+		// mlx->player.pos.y -= MOVE_STEP * sin_wrap(fix_angle(mlx->player.angle + 90));
+		// res.x = mlx->player.pos.x;
+		// res.y = mlx->player.pos.y;
 		// res = fix_move(mlx, res, fix_angle(mlx->player.angle + 90), MOVE_STEP);
-		// mlx->player.x = res.x;
-		// mlx->player.y = res.y;
+		// mlx->player.pos.x = res.x;
+		// mlx->player.pos.y = res.y;
 	}
 	else if (key == KEY_D)
 	{
-		mlx->player.x += MOVE_STEP;
-		// mlx->player.x += MOVE_STEP * cos_wrap(fix_angle(mlx->player.angle - 90));
-		// mlx->player.y -= MOVE_STEP * sin_wrap(fix_angle(mlx->player.angle - 90));
-		// res.x = mlx->player.x;
-		// res.y = mlx->player.y;
+		mlx->player.pos.x += MOVE_STEP;
+		// mlx->player.pos.x += MOVE_STEP * cos_wrap(fix_angle(mlx->player.angle - 90));
+		// mlx->player.pos.y -= MOVE_STEP * sin_wrap(fix_angle(mlx->player.angle - 90));
+		// res.x = mlx->player.pos.x;
+		// res.y = mlx->player.pos.y;
 		// res = fix_move(mlx, res, fix_angle(mlx->player.angle - 90), MOVE_STEP);
-		// mlx->player.x = res.x;
-		// mlx->player.y = res.y;
+		// mlx->player.pos.x = res.x;
+		// mlx->player.pos.y = res.y;
 	}
 	else if (key == KEY_W)
 	{
-		mlx->player.y -= MOVE_STEP;
-		// mlx->player.x += MOVE_STEP * cos_wrap(fix_angle(mlx->player.angle));
-		// mlx->player.y -= MOVE_STEP * sin_wrap(fix_angle(mlx->player.angle));
-		// res.x = mlx->player.x;
-		// res.y = mlx->player.y;
+		mlx->player.pos.y -= MOVE_STEP;
+		// mlx->player.pos.x += MOVE_STEP * cos_wrap(fix_angle(mlx->player.angle));
+		// mlx->player.pos.y -= MOVE_STEP * sin_wrap(fix_angle(mlx->player.angle));
+		// res.x = mlx->player.pos.x;
+		// res.y = mlx->player.pos.y;
 		// res = fix_move(mlx, res, fix_angle(mlx->player.angle), MOVE_STEP);
-		// mlx->player.x = res.x;
-		// mlx->player.y = res.y;
+		// mlx->player.pos.x = res.x;
+		// mlx->player.pos.y = res.y;
 	}
 	else if (key == KEY_S)
 	{
-		mlx->player.y += MOVE_STEP;
-		// mlx->player.x += MOVE_STEP * cos_wrap(fix_angle(mlx->player.angle - 180));
-		// mlx->player.y -= MOVE_STEP * sin_wrap(fix_angle(mlx->player.angle - 180));
-		// res.x = mlx->player.x;
-		// res.y = mlx->player.y;
+		mlx->player.pos.y += MOVE_STEP;
+		// mlx->player.pos.x += MOVE_STEP * cos_wrap(fix_angle(mlx->player.angle - 180));
+		// mlx->player.pos.y -= MOVE_STEP * sin_wrap(fix_angle(mlx->player.angle - 180));
+		// res.x = mlx->player.pos.x;
+		// res.y = mlx->player.pos.y;
 		// res = fix_move(mlx, res, fix_angle(mlx->player.angle - 180), MOVE_STEP);
-		// mlx->player.x = res.x;
-		// mlx->player.y = res.y;
+		// mlx->player.pos.x = res.x;
+		// mlx->player.pos.y = res.y;
 	}
 	else if (key == KEY_LEFT)
 		mlx->player.angle = fix_angle(mlx->player.angle + ANGLE_STEP);
@@ -80,8 +80,8 @@ int main(int argc, char* argv[])
 
 	mlx.handle = mlx_init();
 	mlx.window = mlx_new_window(mlx.handle, WINDOW_WIDTH, WINDOW_HEIGHT, "cuv3d");
-	mlx.player.x = 251;
-	mlx.player.y = 251;
+	mlx.player.pos.x = 251;
+	mlx.player.pos.y = 251;
 	mlx.player.angle = 63.7;//63.7
 	mlx.player.pdx = cos_wrap(mlx.player.angle);
 	mlx.player.pdy = -sin_wrap(mlx.player.angle);

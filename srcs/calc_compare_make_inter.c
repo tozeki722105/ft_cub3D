@@ -5,8 +5,8 @@ static double	calc_distance(t_pos *pos, t_player player, double ray_angle)
 {
 	if (!pos)
 		return (-1);
-	return (cos_wrap(ray_angle) * (pos->x - player.x)
-		- sin_wrap(ray_angle) * (pos->y - player.y));
+	return (cos_wrap(ray_angle) * (pos->x - player.pos.x)
+		- sin_wrap(ray_angle) * (pos->y - player.pos.y));
 }
 
 static int	calc_origin_offset(t_inter inter, int map_panel_side)
@@ -14,16 +14,16 @@ static int	calc_origin_offset(t_inter inter, int map_panel_side)
 	if (inter.axis == HORIZONTAL)
 	{
 		if (is_up(inter.angle))
-			return (inter.pos.x - ((inter.pos.x / map_panel_side) * map_panel_side));
+			return ((int)inter.pos.x - (((int)inter.pos.x / map_panel_side) * map_panel_side));
 		else
-			return ((((inter.pos.x / map_panel_side) * map_panel_side) + map_panel_side) - inter.pos.x);
+			return (((((int)inter.pos.x / map_panel_side) * map_panel_side) + map_panel_side) - (int)inter.pos.x);
 	}
 	else
 	{
 		if (is_right(inter.angle))
-			return (inter.pos.y - ((inter.pos.y / map_panel_side) * map_panel_side));
+			return ((int)inter.pos.y - (((int)inter.pos.y / map_panel_side) * map_panel_side));
 		else
-			return ((((inter.pos.y / map_panel_side) * map_panel_side) + map_panel_side) - inter.pos.y);
+			return (((((int)inter.pos.y / map_panel_side) * map_panel_side) + map_panel_side) - (int)inter.pos.y);
 	}
 }
 

@@ -62,7 +62,7 @@ void	print_map(char **map_data)
 
 void	print_player(t_loader loader)
 {
-	printf("player.x=%lf, player.y=%lf, player.angle=%lf\n", 
+	printf("player.pos.x=%lf, player.pos.y=%lf, player.angle=%lf\n", 
 		loader.player_pos.x, loader.player_pos.y, loader.player_angle);
 }
 

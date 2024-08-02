@@ -6,8 +6,8 @@ int get_vartical_first_1(t_mlx *mlx, int *pos_y, int ray_angle)
 	t_map map = mlx->map;
 	t_player player = mlx->player;
 	size_t i =0;
-	int pos_x = (((int)player.x / map.panel_side) * map.panel_side) + map.panel_side;
-	*pos_y = player.y - ((pos_x - player.x) * tan_wrap(ray_angle));
+	int pos_x = (((int)player.pos.x / map.panel_side) * map.panel_side) + map.panel_side;
+	*pos_y = player.pos.y - ((pos_x - player.pos.x) * tan_wrap(ray_angle));
 	return (pos_x);
 }
 
@@ -17,8 +17,8 @@ int get_vartical_first_2(t_mlx *mlx, int *pos_y, int ray_angle)
 	t_map map = mlx->map;
 	t_player player = mlx->player;
 	size_t i =0;
-	int pos_x = (((int)player.x / map.panel_side) * map.panel_side) - BOUND_ADJUSTMENT;
-	*pos_y = player.y - ((player.x - pos_x) * -tan_wrap(ray_angle));
+	int pos_x = (((int)player.pos.x / map.panel_side) * map.panel_side) - BOUND_ADJUSTMENT;
+	*pos_y = player.pos.y - ((player.pos.x - pos_x) * -tan_wrap(ray_angle));
 	return (pos_x);
 }
 
@@ -28,8 +28,8 @@ int get_vartical_first_3(t_mlx *mlx, int *pos_y, int ray_angle)
 	t_map map = mlx->map;
 	t_player player = mlx->player;
 	size_t i =0;
-	int pos_x = (((int)player.x / map.panel_side) * map.panel_side) - BOUND_ADJUSTMENT;
-	*pos_y = player.y + ((player.x - pos_x) * tan_wrap(ray_angle));
+	int pos_x = (((int)player.pos.x / map.panel_side) * map.panel_side) - BOUND_ADJUSTMENT;
+	*pos_y = player.pos.y + ((player.pos.x - pos_x) * tan_wrap(ray_angle));
 	return (pos_x);
 }
 
@@ -39,8 +39,8 @@ int get_vartical_first_4(t_mlx *mlx, int *pos_y, int ray_angle)
 	t_map map = mlx->map;
 	t_player player = mlx->player;
 	size_t i =0;
-	int pos_x = (((int)player.x / map.panel_side) * map.panel_side) + map.panel_side;
-	*pos_y = player.y + ((pos_x - player.x) * -tan_wrap(ray_angle));
+	int pos_x = (((int)player.pos.x / map.panel_side) * map.panel_side) + map.panel_side;
+	*pos_y = player.pos.y + ((pos_x - player.pos.x) * -tan_wrap(ray_angle));
 	return (pos_x);
 }
 
@@ -56,7 +56,7 @@ void	display_vartical_grid_intersection(t_mlx *mlx, t_intersection pos, int colo
 			draw_rect(&(mlx->img), pos.x - 5, pos.y - 5, 10, 10, color);
 			printf("[%d][%d] ", pos.y / map.panel_side, pos.x / map.panel_side);
 			pos.x += map.panel_side;
-			pos.y = player.y - ((pos.x - player.x) * tan_wrap(player.angle));
+			pos.y = player.pos.y - ((pos.x - player.pos.x) * tan_wrap(player.angle));
 		}
 		printf("\n");
 	}
@@ -67,7 +67,7 @@ void	display_vartical_grid_intersection(t_mlx *mlx, t_intersection pos, int colo
 			draw_rect(&(mlx->img), pos.x - 5, pos.y - 5, 10, 10, color);
 			printf("[%d][%d] ", pos.y / map.panel_side, pos.x / map.panel_side);
 			pos.x -= map.panel_side;
-			pos.y = player.y - ((pos.x - player.x) * tan_wrap(player.angle));
+			pos.y = player.pos.y - ((pos.x - player.pos.x) * tan_wrap(player.angle));
 		}
 		printf("\n");
 	}
@@ -89,7 +89,7 @@ void display_vertical_intersection(t_mlx *mlx, t_intersection pos, int color)
 				return ;
 			}
 			pos.x += map.panel_side;
-			pos.y = player.y - ((pos.x - player.x) * tan_wrap(player.angle));
+			pos.y = player.pos.y - ((pos.x - player.pos.x) * tan_wrap(player.angle));
 		}
 	}
 	else
@@ -102,7 +102,7 @@ void display_vertical_intersection(t_mlx *mlx, t_intersection pos, int color)
 				return ;
 			}
 			pos.x -= map.panel_side;
-			pos.y = player.y + ((pos.x - player.x) * -tan_wrap(player.angle));
+			pos.y = player.pos.y + ((pos.x - player.pos.x) * -tan_wrap(player.angle));
 		}
 	}
 }
@@ -128,7 +128,7 @@ t_pos display_horizontal_intersection(t_mlx *mlx, t_intersection pos, int color)
 				return (ret);
 			}
 			pos.y -= map.panel_side;
-			pos.x = player.x + ((player.y - pos.y) * cot_wrap(player.angle));
+			pos.x = player.pos.x + ((player.pos.y - pos.y) * cot_wrap(player.angle));
 		}
 	}
 	else
@@ -143,7 +143,7 @@ t_pos display_horizontal_intersection(t_mlx *mlx, t_intersection pos, int color)
 				return (ret);
 			}
 			pos.y += map.panel_side;
-			pos.x = player.x + ((player.y - pos.y) * cot_wrap(player.angle));
+			pos.x = player.pos.x + ((player.pos.y - pos.y) * cot_wrap(player.angle));
 		}
 	}
 	ret.x = -1;
@@ -162,7 +162,7 @@ void display_horizontal_grid_intersection(t_mlx *mlx, t_intersection pos, int co
 		{
 			draw_rect(&(mlx->img), pos.x-5, pos.y-5, 10, 10, color);
 			pos.y -= map.panel_side;
-			pos.x = player.x + ((player.y - pos.y) * cot_wrap(player.angle));
+			pos.x = player.pos.x + ((player.pos.y - pos.y) * cot_wrap(player.angle));
 		}
 	}
 	else
@@ -171,7 +171,7 @@ void display_horizontal_grid_intersection(t_mlx *mlx, t_intersection pos, int co
 		{
 			draw_rect(&(mlx->img), pos.x-5, pos.y-5, 10, 10, color);
 			pos.y += map.panel_side;
-			pos.x = player.x + ((player.y - pos.y) * cot_wrap(player.angle));
+			pos.x = player.pos.x + ((player.pos.y - pos.y) * cot_wrap(player.angle));
 		}
 	}
 }
@@ -183,23 +183,23 @@ int		get_horizontal_first(t_mlx *mlx, int *pos_y, int ray_angle)
 	int pos_x = 0;
 	if (ray_angle > 0 && ray_angle <= 90)
 	{
-		*pos_y = (((int)player.y / map.panel_side) * map.panel_side) - BOUND_ADJUSTMENT;
-		pos_x = player.x + ((player.y - *pos_y) * cot_wrap(ray_angle));
+		*pos_y = (((int)player.pos.y / map.panel_side) * map.panel_side) - BOUND_ADJUSTMENT;
+		pos_x = player.pos.x + ((player.pos.y - *pos_y) * cot_wrap(ray_angle));
 	}
 	else if (ray_angle > 90 && ray_angle < 180)
 	{
-		*pos_y = (((int)player.y / map.panel_side) * map.panel_side) - BOUND_ADJUSTMENT;
-		pos_x = player.x - ((player.y - *pos_y) * -cot_wrap(ray_angle));
+		*pos_y = (((int)player.pos.y / map.panel_side) * map.panel_side) - BOUND_ADJUSTMENT;
+		pos_x = player.pos.x - ((player.pos.y - *pos_y) * -cot_wrap(ray_angle));
 	}
 	else if (ray_angle > 180 && ray_angle <= 270)
 	{
-		*pos_y = (((int)player.y / map.panel_side) * map.panel_side) + map.panel_side;
-		pos_x = player.x - ((*pos_y - player.y) * cot_wrap(ray_angle));
+		*pos_y = (((int)player.pos.y / map.panel_side) * map.panel_side) + map.panel_side;
+		pos_x = player.pos.x - ((*pos_y - player.pos.y) * cot_wrap(ray_angle));
 	}
 	else if (ray_angle > 270 && ray_angle <= 359)
 	{
-		*pos_y = (((int)player.y / map.panel_side) * map.panel_side) + map.panel_side;
-		pos_x = player.x + ((*pos_y - player.y) * -cot_wrap(ray_angle));
+		*pos_y = (((int)player.pos.y / map.panel_side) * map.panel_side) + map.panel_side;
+		pos_x = player.pos.x + ((*pos_y - player.pos.y) * -cot_wrap(ray_angle));
 	}
 	// draw_rect(&(mlx->img), pos_x-5, *pos_y-5, 10, 10, SKY);
 	return (pos_x);

@@ -4,7 +4,7 @@
 
 double calc_distance(double ray_angle, t_player player, t_intersection res)
 {
-	return (cos_wrap(ray_angle) * (res.x - player.x) - sin_wrap(ray_angle) * (res.y - player.y));
+	return (cos_wrap(ray_angle) * (res.x - player.pos.x) - sin_wrap(ray_angle) * (res.y - player.pos.y));
 }
 
 double calc_offset(double ray_angle, enum e_axis axis, t_intersection inter, t_map map, t_mlx *mlx)
@@ -33,10 +33,10 @@ int get_vartical_first(t_mlx *mlx, int *pos_y, double ray_angle)
 	size_t i =0;
 	int pos_x;
 	if (is_right(ray_angle))
-		pos_x = (((int)player.x / map.panel_side) * map.panel_side) + map.panel_side;
+		pos_x = (((int)player.pos.x / map.panel_side) * map.panel_side) + map.panel_side;
 	else
-		pos_x = (((int)player.x / map.panel_side) * map.panel_side) - BOUND_ADJUSTMENT;
-	*pos_y = player.y - ((pos_x - player.x) * tan_wrap(ray_angle));
+		pos_x = (((int)player.pos.x / map.panel_side) * map.panel_side) - BOUND_ADJUSTMENT;
+	*pos_y = player.pos.y - ((pos_x - player.pos.x) * tan_wrap(ray_angle));
 	// draw_rect(&(mlx->img), pos_x-5, *pos_y-5, 10, 10, SKY);
 	return (pos_x);
 }
@@ -47,10 +47,10 @@ int		get_horizontal_first(t_mlx *mlx, int *pos_y, double ray_angle)
 	t_player player = mlx->player;
 	int pos_x = 0;
 	if (is_up(ray_angle))
-		*pos_y = (((int)player.y / map.panel_side) * map.panel_side) - BOUND_ADJUSTMENT;
+		*pos_y = (((int)player.pos.y / map.panel_side) * map.panel_side) - BOUND_ADJUSTMENT;
 	else
-		*pos_y = (((int)player.y / map.panel_side) * map.panel_side) + map.panel_side;
-	pos_x = player.x + ((player.y - *pos_y) * cot_wrap(ray_angle));
+		*pos_y = (((int)player.pos.y / map.panel_side) * map.panel_side) + map.panel_side;
+	pos_x = player.pos.x + ((player.pos.y - *pos_y) * cot_wrap(ray_angle));
 	return (pos_x);
 }
 
@@ -67,7 +67,7 @@ void	display_vartical_grid_intersection(t_mlx *mlx, t_intersection pos, int colo
 		draw_rect(&(mlx->img), pos.x - 5, pos.y - 5, 10, 10, color);
 		// printf("[%d][%d] ", pos.y / map.panel_side, pos.x / map.panel_side);
 		pos.x += add;
-		pos.y = player.y - ((pos.x - player.x) * tan_wrap(ray_angle));
+		pos.y = player.pos.y - ((pos.x - player.pos.x) * tan_wrap(ray_angle));
 	}
 	// printf("\n");
 }
@@ -84,7 +84,7 @@ void display_horizontal_grid_intersection(t_mlx *mlx, t_intersection pos, int co
 	{
 		draw_rect(&(mlx->img), pos.x-5, pos.y-5, 10, 10, color);
 		pos.y += add;
-		pos.x = player.x + ((player.y - pos.y) * cot_wrap(ray_angle));
+		pos.x = player.pos.x + ((player.pos.y - pos.y) * cot_wrap(ray_angle));
 	}
 }
 
@@ -111,7 +111,7 @@ t_intersection display_vertical_intersection(t_mlx *mlx, t_intersection pos, int
 			return (res);
 		}
 		pos.x += add;
-		pos.y = player.y + ((player.x - pos.x) * tan_wrap(ray_angle));
+		pos.y = player.pos.y + ((player.pos.x - pos.x) * tan_wrap(ray_angle));
 	}
 	return ((t_intersection){0, 50000, 50000, 50000, 5000, 5000});
 }
@@ -139,7 +139,7 @@ t_intersection display_horizontal_intersection(t_mlx *mlx, t_intersection pos, i
 			return (res);
 		}
 		pos.y += add;
-		pos.x = player.x + ((player.y - pos.y) * cot_wrap(ray_angle));
+		pos.x = player.pos.x + ((player.pos.y - pos.y) * cot_wrap(ray_angle));
 	}
 	return ((t_intersection){0, 50000, 50000, 50000, 5000, 5000});
 }
@@ -201,7 +201,7 @@ t_intersection calc_intersection(t_mlx *mlx, double ray_angle)
 	draw_rect_safely(mlx, *(horizontal_inter_pos), 10, RED);
 	// new_calc_inter()
 	// t_intersection res = compare_distance(v_inter, h_inter, player, ray_angle);
-	// draw_line(&(mlx->img), player.x, player.y, res.x, res.y, WHITE);
+	// draw_line(&(mlx->img), player.pos.x, player.pos.y, res.x, res.y, WHITE);
 	// int ca = fix_angle(player.angle - res.degree);
 	// res.distance = res.distance * cos_wrap(fix_angle(player.angle - res.degree));
 	// res.wall_height = (WINDOW_HEIGHT * 100) / res.distance;

@@ -51,8 +51,9 @@ typedef struct s_img
 
 typedef struct s_player
 {
-	double x;
-	double y;
+	// double x;
+	// double y;
+	t_pos	pos;
 	double angle;
 	double pdx; //視線のX成分
 	double pdy; //視線のY成分
