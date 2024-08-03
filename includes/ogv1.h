@@ -99,9 +99,16 @@ typedef struct s_mlx
 	t_map		map;
 }	t_mlx;
 
+typedef struct s_point
+{
+	int	x;
+	int y;
+} t_point;
+
 void	put_pixel(t_img *img, int x, int y, int color);
 int		pick_color(t_src *img, int x, int y);
-void	draw_line(t_img *img, int x1, int y1, int x2, int y2, int color);
+/* void	draw_line(t_img *img, int x1, int y1, int x2, int y2, int color); */
+void	draw_line(t_img *img, t_point player, t_point inter, int color);
 void	draw_background(t_img *img, int color);
 void	draw_rect(t_img *img, int x, int y, int width, int height, int color);
 void	draw_map(t_mlx *mlx);
