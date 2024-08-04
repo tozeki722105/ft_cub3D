@@ -3,7 +3,7 @@
 #include "config.h"
 
 /// @brief use calc_origin
-int calc_img_x(t_inter inter, t_src img, int map_panel_side)
+int calc_img_x(t_inter inter, t_img img, int map_panel_side)
 {
 	int img_offset;
 	
@@ -15,7 +15,7 @@ int calc_img_x(t_inter inter, t_src img, int map_panel_side)
 }
 
 
-t_src get_img(t_mlx *mlx, t_inter inter)
+t_img get_img(t_mlx *mlx, t_inter inter)
 {
 	if (inter.axis == HORIZONTAL)
 	{
@@ -39,7 +39,7 @@ void draw_vertical_line_of_wall(t_mlx *mlx, t_inter inter, size_t put_x)
 	size_t wall_i;
 	size_t img_x;
 	size_t img_y;
-	t_src img;
+	t_img img;
 
 	img = get_img(mlx, inter);
 	img_x = (img.width * inter.origin_offset) / mlx->map.panel_side;
@@ -74,10 +74,10 @@ void  draw_wall(t_mlx *mlx, int start)
 	while (x < WINDOW_WIDTH)
 	{
 		inter = new_calc_inter(mlx, draw_angle);
-		if (inter.axis == HORIZONTAL)
-			draw_line(&(mlx->img), mlx->player.pos.x, mlx->player.pos.y, inter.pos.x, inter.pos.y, RED);
-		else
-			draw_line(&(mlx->img), mlx->player.pos.x, mlx->player.pos.y, inter.pos.x, inter.pos.y, BLUE);
+		// if (inter.axis == HORIZONTAL)
+		// 	draw_line(&(mlx->img), mlx->player.pos.x, mlx->player.pos.y, inter.pos.x, inter.pos.y, RED);
+		// else
+		// 	draw_line(&(mlx->img), mlx->player.pos.x, mlx->player.pos.y, inter.pos.x, inter.pos.y, BLUE);
 		draw_vertical_line_of_wall(mlx, inter, x);
 		draw_angle = fix_angle(draw_angle - step);
 		x++;

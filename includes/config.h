@@ -12,4 +12,6 @@
 
 #define FOV	60 
 
+#define PLAYER_SIDE	10
+
 #endif

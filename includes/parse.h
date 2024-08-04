@@ -14,11 +14,11 @@
 // 	double y;
 // } t_pos;
 
-typedef struct s_player
-{
-	t_pos	pos;
-	double	angle;
-} t_player;
+// typedef struct s_player
+// {
+// 	t_pos	pos;
+// 	double	angle;
+// } t_player;
 
 
 enum e_dir
@@ -82,6 +82,8 @@ typedef struct
 	int 		map_y_count;
 	int 		map_x_count;
 }	t_loader;
+
+t_loader	parse(char *path);
 
 //parse_utils.c
 t_loader	init_loader();

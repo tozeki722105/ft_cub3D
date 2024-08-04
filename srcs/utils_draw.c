@@ -2,7 +2,7 @@
 #include "config.h"
 
 void	put_pixel(t_img *img, int x, int y, int color);
-int		pick_color(t_src *img, int x, int y);
+int		pick_color(t_img *img, int x, int y);
 void	draw_line(t_img *img, int x1, int y1, int x2, int y2, int color);
 void	draw_background(t_img *img, int color);
 void	draw_rect(t_img *img, int x, int y, int width, int height, int color);
@@ -17,7 +17,7 @@ void	put_pixel(t_img *img, int x, int y, int color)
     *((int *)pixel) = color;
 }
 
-int		pick_color(t_src *img, int x, int y)
+int		pick_color(t_img *img, int x, int y)
 {
 	char    *pixel;
 
@@ -115,6 +115,6 @@ void draw_player(t_mlx *mlx)
 	int half_side;
 
 	player = mlx->player;
-	half_side = player.side / 2;
+	half_side = PLAYER_SIDE / 2;
 	draw_rect(&(mlx->img), player.pos.x - half_side, player.pos.y - half_side, player.side, player.side, WHITE);	
 }

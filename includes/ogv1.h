@@ -40,35 +40,14 @@ enum	e_key_code
 
 typedef struct s_img
 {
+	int		width;
+	int		height;
 	void	*handle;
 	char	*buffer;
 	int		bits_per_pixel;
 	int		line_size;
 	int		endian;
-	int		width;
-	int		height;
 }	t_img;
-
-typedef struct s_player
-{
-	// double x;
-	// double y;
-	t_pos	pos;
-	double angle;
-	double pdx; //視線のX成分
-	double pdy; //視線のY成分
-	int	side;
-} t_player;
-
-typedef struct s_map
-{
-	char **data;
-	int	x_count; //mapX パネルのx方向の個数
-	int y_count; //mapY パネルのy方向の個数
-	int panel_side; //パネルの一辺s
-	int height;
-	int width;
-} t_map;
 
 typedef struct s_source
 {
@@ -81,12 +60,34 @@ typedef struct s_source
 	int		endian;
 } t_src;
 
+typedef struct s_player
+{
+	// double x;
+	// double y;
+	t_pos	pos;
+	double angle;
+	// double pdx; //視線のX成分
+	// double pdy; //視線のY成分
+	// int	side;
+} t_player;
+
+typedef struct s_map
+{
+	char **data;
+	int	x_count; //mapX パネルのx方向の個数
+	int y_count; //mapY パネルのy方向の個数
+	int panel_side; //パネルの一辺s
+	int height;
+	int width;
+} t_map;
+
+
 typedef struct s_texture
 {
-	t_src	north;
-	t_src	south;
-	t_src	west;
-	t_src	east;
+	t_img	north;
+	t_img	south;
+	t_img	west;
+	t_img	east;
 	int 	floor;
 	int		ceiling;
 } t_tex;
@@ -102,7 +103,7 @@ typedef struct s_mlx
 }	t_mlx;
 
 void	put_pixel(t_img *img, int x, int y, int color);
-int		pick_color(t_src *img, int x, int y);
+int		pick_color(t_img *img, int x, int y);
 void	draw_line(t_img *img, int x1, int y1, int x2, int y2, int color);
 void	draw_background(t_img *img, int color);
 void	draw_rect(t_img *img, int x, int y, int width, int height, int color);
