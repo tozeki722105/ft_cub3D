@@ -116,5 +116,5 @@ void draw_player(t_mlx *mlx)
 
 	player = mlx->player;
 	half_side = PLAYER_SIDE / 2;
-	draw_rect(&(mlx->img), player.pos.x - half_side, player.pos.y - half_side, player.side, player.side, WHITE);	
+	draw_rect(&(mlx->img), player.pos.x - half_side, player.pos.y - half_side, PLAYER_SIDE, PLAYER_SIDE, WHITE);	
 }
