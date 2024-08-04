@@ -118,3 +118,12 @@ void draw_player(t_mlx *mlx)
 	half_side = PLAYER_SIDE / 2;
 	draw_rect(&(mlx->img), player.pos.x - half_side, player.pos.y - half_side, PLAYER_SIDE, PLAYER_SIDE, WHITE);	
 }
+
+void draw_rect_safely(t_mlx *mlx, t_pos pos, size_t rect_size, int color)
+{
+	if (pos.x < (mlx->map.x_count * mlx->map.panel_side) - (rect_size + (rect_size / 2) + (rect_size % 2))
+		&& pos.x > (rect_size / 2) + (rect_size % 2)
+		&& pos.y > (rect_size / 2) + (rect_size % 2)
+		&& pos.y < (mlx->map.y_count * mlx->map.panel_side) - (rect_size + (rect_size / 2) + (rect_size % 2)))
+		draw_rect(&(mlx->img), pos.x - (rect_size / 2), pos.y - (rect_size / 2), rect_size, rect_size, color);
+}
