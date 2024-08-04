@@ -109,9 +109,9 @@ void	draw_background(t_img *img, int color);
 void	draw_rect(t_img *img, int x, int y, int width, int height, int color);
 void	draw_map(t_mlx *mlx);
 void	draw_player(t_mlx *mlx);
+void draw_rect_safely(t_mlx *mlx, t_pos pos, size_t rect_size, int color);
 
 double fix_angle(double angle);
-double convert_radian(double angle);
 double cos_wrap(double angle);
 double sin_wrap(double angle);
 double tan_wrap(double angle);

@@ -73,7 +73,7 @@ void  draw_wall(t_mlx *mlx, int start)
 	x = 0;
 	while (x < WINDOW_WIDTH)
 	{
-		inter = new_calc_inter(mlx, draw_angle);
+		inter = calc_intersection(mlx, draw_angle);
 		// if (inter.axis == HORIZONTAL)
 		// 	draw_line(&(mlx->img), mlx->player.pos.x, mlx->player.pos.y, inter.pos.x, inter.pos.y, RED);
 		// else

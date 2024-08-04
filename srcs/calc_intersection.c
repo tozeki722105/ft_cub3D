@@ -1,5 +1,7 @@
 #include "calc.h"
-#include "ogv1.h"
+
+t_pos *calc_vertical_inter_pos(t_mlx *mlx, double ray_angle);
+t_pos *calc_horizontal_inter_pos(t_mlx *mlx, double ray_angle);
 
 static double	calc_distance(t_pos *pos, t_player player, double ray_angle)
 {
@@ -27,25 +29,6 @@ static int	calc_origin_offset(t_inter inter, int map_panel_side)
 	}
 }
 
-/// @brief use width calc_img_x 
-static int	calc_origin(t_inter inter, int map_panel_side)
-{
-	if (inter.axis == HORIZONTAL)
-	{
-		if (is_up(inter.angle))
-			return (((int)inter.pos.x / map_panel_side) * map_panel_side);
-		else
-			return (((int)inter.pos.x / map_panel_side) * map_panel_side) + map_panel_side;
-	}
-	else
-	{
-		if (is_right(inter.angle))
-			return (((int)inter.pos.y / map_panel_side) * map_panel_side);
-		else
-			return (((int)inter.pos.y / map_panel_side) * map_panel_side) + map_panel_side;
-	}
-}
-
 /// @brief fix distance from fisheye. and, calc wall_height.
 double calc_wall_height(t_inter inter, t_player player)
 {
@@ -56,7 +39,7 @@ double calc_wall_height(t_inter inter, t_player player)
 	return ((WINDOW_HEIGHT * 100) / fixed_distance); //map_panel_side??
 }
 
-t_inter	compare_make_inter(t_mlx *mlx, t_pos *v_inter_pos, t_pos *h_inter_pos, double ray_angle)
+static t_inter	compare_make_intersection(t_mlx *mlx, t_pos *v_inter_pos, t_pos *h_inter_pos, double ray_angle)
 {
 	t_inter inter;
 	double	v_distance;
@@ -80,5 +63,23 @@ t_inter	compare_make_inter(t_mlx *mlx, t_pos *v_inter_pos, t_pos *h_inter_pos, d
 	inter.angle = ray_angle;
 	inter.origin_offset = calc_origin_offset(inter, mlx->map.panel_side);
 	inter.wall_height = calc_wall_height(inter, mlx->player);
+	return (inter);
+}
+
+t_inter calc_intersection(t_mlx *mlx, double ray_angle)
+{
+	t_pos *v_inter_pos;
+	t_pos *h_inter_pos;
+	t_inter	inter;
+
+	v_inter_pos = calc_vertical_inter_pos(mlx, ray_angle);
+	h_inter_pos = calc_horizontal_inter_pos(mlx, ray_angle);
+	if (!v_inter_pos && !h_inter_pos)
+		v_inter_pos = calc_vertical_inter_pos(mlx, ray_angle - 0.1);
+	inter = compare_make_intersection(mlx, v_inter_pos, h_inter_pos, ray_angle);
+	if (v_inter_pos)
+		free(v_inter_pos);
+	if (h_inter_pos)
+		free(h_inter_pos);
 	return (inter);
 }

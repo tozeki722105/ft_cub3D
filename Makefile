@@ -6,7 +6,7 @@
 #    By: toshi <toshi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/08/05 04:41:28 by toshi            ###   ########.fr        #
+#    Updated: 2024/08/05 05:32:45 by toshi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,13 +42,12 @@ GNL_PATH	:=	$(LIBRARY_DIR)/gnl/
 INCLUDES_DIR = includes
 INCLUDES = -I$(INCLUDES_DIR) -I$(MLX_PATH) -I$(LIBFT_PATH) -I$(GNL_PATH)
 
-SRCS		:=	$(SRCS_DIR)calc_compare_make_inter.c \
-				$(SRCS_DIR)calc_inter_utils.c\
-				$(SRCS_DIR)calc_inter.c\
-				$(SRCS_DIR)calc_search_horizontal_inter.c\
-				$(SRCS_DIR)calc_search_vertical_inter.c\
+SRCS		:=	$(SRCS_DIR)calc_calc_horizontal_inter_pos.c\
+				$(SRCS_DIR)calc_calc_vertical_inter_pos.c\
+				$(SRCS_DIR)calc_intersection.c\
+				$(SRCS_DIR)calc_utils.c\
+				$(SRCS_DIR)calc_utils2.c\
 				$(SRCS_DIR)draw_wall.c \
-				$(SRCS_DIR)move.c \
 				$(SRCS_DIR)ogv1.c \
 				$(SRCS_DIR)parse_add_color.c \
 				$(SRCS_DIR)parse_load_map_list_to_data.c \
@@ -64,7 +63,6 @@ SRCS		:=	$(SRCS_DIR)calc_compare_make_inter.c \
 				$(SRCS_DIR)parse_utils.c \
 				$(SRCS_DIR)parse.c \
 				$(SRCS_DIR)parse_utils_libft.c \
-				$(SRCS_DIR)utils_calc.c \
 				$(SRCS_DIR)utils_draw.c 
 
 PARSE_SRCS	:=	$(SRCS_DIR)parse_load_utils.c \
