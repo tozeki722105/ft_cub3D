@@ -1,5 +1,19 @@
 #include "parse.h"
 
+/// @brief sapace_only_str is true 
+static bool	is_map_str(char *str)
+{
+	if (*str == '\n')
+		return (false);
+	while (*str && *str != '\n')
+	{
+		if (!is_map_element(*str))
+			return (false);
+		str++;
+	}
+	return (true);
+}
+
 t_line_kind	get_line_kind(char *str)
 {
 	if (*str == '\n')
@@ -37,24 +51,3 @@ char *extract_val(char *str, t_line_kind kind)
 	free(val_include_space);
 	return (val);
 }
-
-void	add_wall(t_loader *loader, t_line_kind kind, char *str)
-{
-	char *val;
-
-	val = extract_val(str, kind);
-	if (!ft_can_open(val, O_RDONLY))
-		ft_perror_exit("The texture path is incorrect", 0);
-	if (kind == KIND_NORTH)
-		loader->north_path = val;
-	else if (kind == KIND_SOUTH)
-		loader->south_path = val;
-	else if (kind == KIND_WEST)
-		loader->west_path = val;
-	else if (kind == KIND_EAST)
-		loader->east_path = val;
-}
-
-
-
-

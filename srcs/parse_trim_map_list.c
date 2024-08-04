@@ -1,14 +1,5 @@
 #include "parse.h"
 
-void	print_map_node(t_map_node *ptr)
-{
-	while (ptr)
-	{
-		printf("%s\n", ptr->val);
-		ptr = ptr->next;
-	}
-}
-
 static t_map_node *find_prev_of_first(t_map_node *ptr, char *trimed_node_val)
 {
 	t_map_node *prev;
@@ -58,9 +49,9 @@ void	trim_map_list(t_map_node **head, char *trimed_node_val)
 		
 		first = prev_of_first->next;
 		prev_of_first->next = NULL;
-		free_map_node_list(*head);
+		free_map_list(*head);
 		*head = first;
 	}
-	free_map_node_list(last->next);
+	free_map_list(last->next);
 	last->next = NULL;
 }

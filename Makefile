@@ -6,7 +6,7 @@
 #    By: toshi <toshi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/08/02 05:01:44 by toshi            ###   ########.fr        #
+#    Updated: 2024/08/05 04:41:28 by toshi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,19 +50,20 @@ SRCS		:=	$(SRCS_DIR)calc_compare_make_inter.c \
 				$(SRCS_DIR)draw_wall.c \
 				$(SRCS_DIR)move.c \
 				$(SRCS_DIR)ogv1.c \
-				$(SRCS_DIR)parse_load_utils.c \
-				$(SRCS_DIR)parse_load_utils2.c \
-				$(SRCS_DIR)parse_load.c \
+				$(SRCS_DIR)parse_add_color.c \
+				$(SRCS_DIR)parse_load_map_list_to_data.c \
+				$(SRCS_DIR)parse_load_map_str_to_list.c \
+				$(SRCS_DIR)parse_load_textures.c \
+				$(SRCS_DIR)parse_trim_map_list.c \
 				$(SRCS_DIR)parse_utils_bool.c \
-				$(SRCS_DIR)parse_utils_bool2.c \
-				$(SRCS_DIR)parse_utils_libft.c \
-				$(SRCS_DIR)parse_utils_libft2.c \
-				$(SRCS_DIR)parse_utils_map_node.c \
-				$(SRCS_DIR)parse_utils_map_node2.c \
-				$(SRCS_DIR)parse_utils.c \
+				$(SRCS_DIR)parse_utils_free.c \
+				$(SRCS_DIR)parse_utils_load.c \
+				$(SRCS_DIR)parse_utils_print.c \
 				$(SRCS_DIR)parse_validate_map_data_utils.c \
 				$(SRCS_DIR)parse_validate_map_data.c \
+				$(SRCS_DIR)parse_utils.c \
 				$(SRCS_DIR)parse.c \
+				$(SRCS_DIR)parse_utils_libft.c \
 				$(SRCS_DIR)utils_calc.c \
 				$(SRCS_DIR)utils_draw.c 
 
