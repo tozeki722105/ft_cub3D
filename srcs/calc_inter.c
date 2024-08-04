@@ -9,6 +9,8 @@ t_inter new_calc_inter(t_mlx *mlx, double ray_angle)
 
 	v_inter_pos = search_vertical_inter(mlx, ray_angle);
 	h_inter_pos = search_horizontal_inter(mlx, ray_angle);
+	if (!v_inter_pos && !h_inter_pos)
+		v_inter_pos = search_vertical_inter(mlx, ray_angle - 0.1);
 	inter = compare_make_inter(mlx, v_inter_pos, h_inter_pos, ray_angle);
 	if (v_inter_pos)
 		free(v_inter_pos);
