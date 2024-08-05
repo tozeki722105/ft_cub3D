@@ -32,7 +32,7 @@ static void	display_vertical_grid_inter_pos(t_mlx *mlx, double ray_angle, t_pos 
 	while (pos.x < map.width && pos.x > 0 
 		&& pos.y > 0 && pos.y < map.height)
 	{
-		draw_rect_safely(mlx, pos, 10, color);
+		draw_square_center_safely(mlx, pos, 10, color);
 		pos.x += step;
 		pos.y = player.pos.y - ((pos.x - player.pos.x) * tan_wrap(ray_angle));
 	}

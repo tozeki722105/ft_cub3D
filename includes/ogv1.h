@@ -102,26 +102,4 @@ typedef struct s_mlx
 	t_map		map;
 }	t_mlx;
 
-void	put_pixel(t_img *img, int x, int y, int color);
-int		pick_color(t_img *img, int x, int y);
-void	draw_line(t_img *img, int x1, int y1, int x2, int y2, int color);
-void	draw_background(t_img *img, int color);
-void	draw_rect(t_img *img, int x, int y, int width, int height, int color);
-void	draw_map(t_mlx *mlx);
-void	draw_player(t_mlx *mlx);
-void draw_rect_safely(t_mlx *mlx, t_pos pos, size_t rect_size, int color);
-
-double fix_angle(double angle);
-double cos_wrap(double angle);
-double sin_wrap(double angle);
-double tan_wrap(double angle);
-double cot_wrap(double angle);
-bool	is_up(double degree);
-bool	is_right(double degree);
-
-
-void draw_wall(t_mlx *mlx, int start);
-
-t_pos	fix_move(t_mlx *mlx, t_pos pos, double move_angle, int step);
-
 #endif

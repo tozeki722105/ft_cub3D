@@ -3,6 +3,7 @@
 
 #include <math.h>
 #include "ogv1.h"
+#include "draw.h"
 
 enum	e_axis
 {

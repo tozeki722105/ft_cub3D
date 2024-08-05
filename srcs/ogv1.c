@@ -2,16 +2,15 @@
 #include "calc.h"
 #include "config.h"
 #include "parse.h"
+#include "draw.h"
 
 void render(t_mlx *mlx)
 {   
-	draw_background(&(mlx->img), WHITE);
+	// draw_background(mlx, WHITE);
+	draw_ceiling_floor(mlx, mlx->textures.ceiling, mlx->textures.floor);
 	draw_wall(mlx, WINDOW_WIDTH/2);
 	mlx_put_image_to_window(mlx->handle, mlx->window, mlx->img.handle, 0, 0);
 }
-	// draw_map(mlx);
-	// draw_player(mlx);
-	// search_vertical_inter(mlx, mlx->player.angle);
 
 int	handle_keypress(int key, t_mlx *mlx)
 {

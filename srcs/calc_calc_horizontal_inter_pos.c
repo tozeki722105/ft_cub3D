@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calc_cald_horizontal_inter_pos.c                   :+:      :+:    :+:   */
+/*   calc_calc_horizontal_inter_pos.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 04:52:43 by toshi             #+#    #+#             */
-/*   Updated: 2024/08/05 05:24:26 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/05 08:51:53 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	display_horizontal_grid_inter_pos(t_mlx *mlx, double ray_angle, t_po
 	while (pos.x < map.width && pos.x > 0 
 		&& pos.y > 0 && pos.y < map.height)
 	{
-		draw_rect_safely(mlx, pos, 10, color);
+		draw_square_center_safely(mlx, pos, 10, color);
 		pos.y += step;
 		pos.x = player.pos.x + ((player.pos.y - pos.y) * cot_wrap(ray_angle));
 	}
