@@ -37,6 +37,11 @@ int	handle_keypress(int key, t_mlx *mlx)
 	return (0);
 }
 
+int	destroy_window_hook(t_mlx *mlx)
+{
+	exit(0);
+}
+
 void	initialize_render(t_mlx *mlx, t_loader loader)
 {
 	mlx->handle = mlx_init();
@@ -63,6 +68,11 @@ void	initialize_render(t_mlx *mlx, t_loader loader)
 	mlx->textures.floor = loader.floor_color;
 }
 
+__attribute__((destructor))
+static void destructor() {
+   system("leaks -q cub3d");
+}
+
 int main(int argc, char* argv[])
 {
 	t_mlx mlx;
@@ -74,6 +84,7 @@ int main(int argc, char* argv[])
 	initialize_render(&mlx, loader);
 	free_loader(loader);
 	render(&mlx);
+	mlx_hook(mlx.window, 17, 1L << 17, destroy_window_hook, &mlx);
 	mlx_hook(mlx.window, 02, 1L << 0, &handle_keypress, &mlx);
 	mlx_loop(mlx.handle);
 }
