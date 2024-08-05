@@ -1,7 +1,7 @@
 #ifndef DRAW_H
 # define DRAW_H
 
-#include "ogv1.h"
+#include "main.h"
 
 // draw_wall.c
 void 	draw_wall(t_mlx *mlx, int start);

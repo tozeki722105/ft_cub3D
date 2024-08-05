@@ -1,4 +1,4 @@
-#include "../ogv1.h"
+#include "../main.h"
 
 //0・1~89
 int get_vartical_first_1(t_mlx *mlx, int *pos_y, int ray_angle)

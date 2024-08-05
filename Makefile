@@ -6,7 +6,7 @@
 #    By: toshi <toshi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/08/05 08:55:55 by toshi            ###   ########.fr        #
+#    Updated: 2024/08/05 09:16:51 by toshi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ SRCS		:=	$(SRCS_DIR)calc_calc_horizontal_inter_pos.c\
 				$(SRCS_DIR)draw_rect.c \
 				$(SRCS_DIR)draw_utils.c \
 				$(SRCS_DIR)draw_wall.c \
-				$(SRCS_DIR)ogv1.c \
+				$(SRCS_DIR)main.c \
 				$(SRCS_DIR)parse_add_color.c \
 				$(SRCS_DIR)parse_load_map_list_to_data.c \
 				$(SRCS_DIR)parse_load_map_str_to_list.c \

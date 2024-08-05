@@ -1,5 +1,5 @@
-#ifndef OGV1_H
-# define OGV1_H
+#ifndef MAIN_H
+# define MAIN_H
 
 #include "utils.h"
 #include "config.h"
