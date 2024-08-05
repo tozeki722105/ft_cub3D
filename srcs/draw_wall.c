@@ -32,17 +32,22 @@ static void draw_vertical_line_of_wall(t_mlx *mlx, t_inter inter, size_t put_x)
 	img_x = (img.width * inter.origin_offset) / mlx->map.panel_side;
 	put_y = (WINDOW_HEIGHT / 2) - ((int)inter.wall_height / 2);
 	wall_i = 0;
+	// printf("%zd ", img_x);
 	while (wall_i < (int)inter.wall_height)
 	{
 
 		if (put_y >= 0 && put_y < WINDOW_HEIGHT)
 		{
 			img_y = (img.height * wall_i) / inter.wall_height;
+			// printf("%zd ", img_y);
+			if (img_y >= img.height - 4)
+				img_y = img.height - 4;
 			put_pixel(&(mlx->img), put_x, put_y, pick_color(&img, img_x, img_y));
 		}
 		put_y++;
 		wall_i++;
 	}
+	// printf("\n");
 }
 
 /// @brief If you call this function from the coordinates of a wall corner, 

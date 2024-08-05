@@ -6,11 +6,11 @@
 #    By: toshi <toshi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/08/05 09:16:51 by toshi            ###   ########.fr        #
+#    Updated: 2024/08/05 19:11:01 by toshi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC			:=	cc
+CC			:=	cc -fsanitize=address
 # CFLAGS		=	-Wall -Wextra -Werror
 RM			:=	rm -rf
 
