@@ -6,7 +6,6 @@
 void render(t_mlx *mlx)
 {   
 	// draw_background(mlx, WHITE);
-	printf("floor=%d\n", mlx->textures.floor);
 	draw_ceiling_floor(mlx, mlx->textures.ceiling, mlx->textures.floor);
 	draw_wall(mlx, WINDOW_WIDTH/2);
 	mlx_put_image_to_window(mlx->handle, mlx->window, mlx->img.handle, 0, 0);

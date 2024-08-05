@@ -16,30 +16,45 @@ int		pick_color(t_img *img, int x, int y)
     return(*((int *)pixel));
 }
 
-//chatgpt
-void	draw_line(t_img *img, int x1, int y1, int x2, int y2, int color)
+static void set_value_draw_line(t_point *player, t_point *div, 
+	t_point *inter, t_point *direction, int *err)
 {
-	int dx = abs(x2 - x1);
-    int dy = abs(y2 - y1);
-    int sx = (x1 < x2) ? 1 : -1;
-    int sy = (y1 < y2) ? 1 : -1;
-    int err = dx - dy;
-    int e2;
+	div->x = abs(player->x - inter->x);
+	div->y = abs(player->y - inter->y);
+	if(player->x < inter->x)
+		direction->x = 1;
+	else
+		direction->x = -1;
+	if(player->y < inter->y)
+		direction->y = 1;
+	else
+		direction->y = -1;
+	*err = div->x - div->y;
+}
 
+void	draw_line(t_img *img, t_point player, t_point inter, int color)
+{
+	t_point div;
+	t_point direction;
+	int err ;
+	int e2 ;
+
+	set_value_draw_line(&player,&div,&inter,&direction,&err);
     while (1)
     {
-        put_pixel(img, x1, y1, color); // 現在のピクセルを描画
-        if (x1 == x2 && y1 == y2) break; // 終点に到達したらループを終了
+        put_pixel(img, player.x, player.y, color); // 現在のピクセルを描画
+        if (player.x == inter.x && player.y == inter.y)
+			break; // 終点に到達したらループを終了
         e2 = 2 * err; // エラー項を2倍
-        if (e2 > -dy) // 水平方向のエラーが許容範囲内
+        if (e2 > -div.y) // 水平方向のエラーが許容範囲内
         {
-            err -= dy;
-            x1 += sx; // 次のピクセルのx座標を更新
+            err -= div.y;
+            player.x += direction.x; // 次のピクセルのx座標を更新
         }
-        if (e2 < dx) // 垂直方向のエラーが許容範囲内
+        if (e2 < div.x) // 垂直方向のエラーが許容範囲内
         {
-            err += dx;
-            y1 += sy; // 次のピクセルのy座標を更新
+            err += div.x;
+            player.y += direction.y; // 次のピクセルのy座標を更新
         }
     }
 }
