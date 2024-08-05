@@ -6,6 +6,7 @@
 void render(t_mlx *mlx)
 {   
 	// draw_background(mlx, WHITE);
+	printf("floor=%d\n", mlx->textures.floor);
 	draw_ceiling_floor(mlx, mlx->textures.ceiling, mlx->textures.floor);
 	draw_wall(mlx, WINDOW_WIDTH/2);
 	mlx_put_image_to_window(mlx->handle, mlx->window, mlx->img.handle, 0, 0);
@@ -59,6 +60,8 @@ void	initialize_render(t_mlx *mlx, t_loader loader)
 	mlx->textures.west.buffer = mlx_get_data_addr(mlx->textures.west.handle, &(mlx->textures.west.bits_per_pixel), &(mlx->textures.west.line_size), &(mlx->textures.west.endian));
 	mlx->textures.east.handle = mlx_xpm_file_to_image(mlx->handle, loader.east_path, &(mlx->textures.east.width), &(mlx->textures.east.height));
 	mlx->textures.east.buffer = mlx_get_data_addr(mlx->textures.east.handle, &(mlx->textures.east.bits_per_pixel), &(mlx->textures.east.line_size), &(mlx->textures.east.endian));
+	mlx->textures.ceiling = loader.ceiling_color;
+	mlx->textures.floor = loader.floor_color;
 }
 
 int main(int argc, char* argv[])
