@@ -8,7 +8,7 @@ bool	is_player(char c)
 /// @brief \t not true 
 bool	is_map_element(char c)
 {
-	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == ' ');
+	return (c == '0' || c == '1' || c == ' ' || is_player(c));
 }
 
 bool	is_wall(t_line_kind kind)

@@ -1,10 +1,9 @@
 #ifndef CALC_H
 # define CALC_H
 
-#include "utils.h"
 #include <math.h>
-
-#define	BOUND_ADJUSTMENT	0.001
+#include "main.h"
+#include "draw.h"
 
 enum	e_axis
 {
@@ -12,49 +11,29 @@ enum	e_axis
 	HORIZONTAL,
 };
 
-typedef struct s_intersection
-{
-	enum e_axis	touching_axis; //接している軸 vertical or horizontal
-	int			x;
-	int			y;
-	double		distance;
-	double		wall_height;
-	int			origin_offset;
-	double		degree;
-} t_intersection;
-
 typedef struct s_inter
 {
 	t_pos		pos;
 	double		distance;
-	enum e_axis	axis; //接している軸 vertical or horizontal
+	enum e_axis	axis;
 	double		angle;
-	int			origin_offset; //or orign_x & origin_y
+	int			origin_offset;
 	double		wall_height;
 } t_inter;
 
-//utiles 行き
-double calc_distance(double ray_angle, t_player player, t_intersection res);
-double calc_offset(double ray_angle, enum e_axis axis, t_intersection inter, t_map map, t_mlx *mlx);
-int get_vartical_first(t_mlx *mlx, int *pos_y, double ray_angle);
-int		get_horizontal_first(t_mlx *mlx, int *pos_y, double ray_angle);
-void	display_vartical_grid_intersection(t_mlx *mlx, t_intersection pos, int color, double ray_angle);
-t_intersection display_vertical_intersection(t_mlx *mlx, t_intersection pos, int color, double ray_angle);
-t_intersection	find_vartical_intersection(t_mlx *mlx, double ray_angle);
+//calc_interseciton.c
+t_inter calc_intersection(t_mlx *mlx, double ray_angle);
 
-//horizontal
-int		get_horizontal_first(t_mlx *mlx, int *pos_y, double ray_angle);
-void	display_horizontal_grid_intersection(t_mlx *mlx, t_intersection pos, int color, double ray_angle);
-t_intersection display_horizontal_intersection(t_mlx *mlx, t_intersection pos, int color, double ray_angle);
-t_intersection	find_horizontal_intersection(t_mlx *mlx, double ray_angle);
+//calc_utils.c
+double sin_wrap(double angle);
+double cos_wrap(double angle);
+double tan_wrap(double angle);
+double cot_wrap(double angle);
 
-t_intersection calc_intersection(t_mlx *mlx, double ray_angle);
-
-t_pos *find2_calc_inter(t_mlx *mlx, double ray_angle);
-t_pos *find_calc_inter(t_mlx *mlx, double ray_angle);
-
-void calc_test(t_mlx *mlx, double ray_angle);
-
-void draw_rect_safely(t_mlx *mlx, t_pos pos, size_t rect_size, int color);
+//calc_utils2.c
+double fix_angle(double angle);
+t_pos	fix_move(t_mlx *mlx, t_pos pos, double move_angle, int step);
+bool	is_up(double degree);
+bool	is_right(double degree);
 
 #endif
