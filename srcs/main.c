@@ -52,7 +52,7 @@ void	initialize_render(t_mlx *mlx, t_loader loader)
 	mlx->img.buffer = mlx_get_data_addr(mlx->img.handle, &(mlx->img.bits_per_pixel), &(mlx->img.line_size), &(mlx->img.endian));
 	mlx->player.pos = loader.player_pos;
 	mlx->player.angle = loader.player_angle;
-	mlx->map.data = ft_double_str_dup(loader.map_data);
+	mlx->map.data = ft_x_double_str_dup(loader.map_data);
 	mlx->map.y_count = loader.map_y_count;
 	mlx->map.x_count = loader.map_x_count;
 	mlx->map.panel_side = MAP_PANEL_SIDE;
@@ -104,7 +104,7 @@ int main(int argc, char* argv[])
 	// mlx.map.panel_side = WINDOW_HEIGHT / mlx.map.y_count;
 	// mlx.map.height = mlx.map.y_count * mlx.map.panel_side;
 	// mlx.map.width =  mlx.map.x_count * mlx.map.panel_side;
-	// mlx.map.data = (char **)malloc(sizeof(char *) * mlx.map.panel_side);
+	// mlx.map.data = (char **)ft_x_malloc(sizeof(char *) * mlx.map.panel_side);
 	// mlx.map.data[0] = strdup("1111111111");
 	// mlx.map.data[1] = strdup("1010001001");
 	// mlx.map.data[2] = strdup("1010001001");

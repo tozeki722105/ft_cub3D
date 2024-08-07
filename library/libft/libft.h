@@ -6,7 +6,7 @@
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 20:39:13 by tozeki            #+#    #+#             */
-/*   Updated: 2024/08/08 00:17:00 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/08 00:52:34 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ char	*ft_x_strjoin(const char *s1, const char *s2);
 char	*ft_x_strtrim(const char *s1, const char *set);
 char	*ft_x_substr(const char *s, unsigned int start, size_t len);
 char **ft_x_double_str_dup(char **d_str);
+char	*ft_x_strtrim_sepasets(const char *s1, const char *front_trim_set, const char *back_trim_set);
 //perror
 void	ft_perror_exit(char *err_title, int exit_code);
 

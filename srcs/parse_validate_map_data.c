@@ -52,7 +52,7 @@ bool	validate_map_data(char **map_data)
 
 	if (!validate_map_size(map_data))
 		return (ft_my_perror_ret_false("The map size is too small"));
-	map_cpy = ft_double_str_dup(map_data);
+	map_cpy = ft_x_double_str_dup(map_data);
 	if (!validate_surrounded_wall_and_fill_space(map_cpy))
 	{
 		ft_free_double_str(map_cpy);

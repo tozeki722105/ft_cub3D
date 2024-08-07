@@ -26,11 +26,11 @@ void load_map_list_to_data(t_map_node *ptr, t_loader *loader)
 	size_t i;
 
 	map_x_count = count_map_size(ptr, &map_y_count);
-	map = (char **)malloc(sizeof(char *) * (map_y_count + 1));
+	map = (char **)ft_x_malloc(sizeof(char *) * (map_y_count + 1));
 	i = 0;
 	while (i < map_y_count)
 	{
-		map[i] = (char *)malloc(sizeof(char) * (map_x_count + 1));
+		map[i] = (char *)ft_x_malloc(sizeof(char) * (map_x_count + 1));
 		ft_memset(map[i], ' ', map_x_count);
 		ft_memmove(map[i], ptr->val, ft_strlen(ptr->val));
 		map[i][map_x_count] = '\0';

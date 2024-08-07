@@ -5,7 +5,7 @@ static t_map_node *make_new_map_node(char *str)
 	t_map_node *new;
 
 	
-	new = (t_map_node *)malloc(sizeof(t_map_node));
+	new = (t_map_node *)ft_x_malloc(sizeof(t_map_node));
 	new->val = str;
 	new->next = NULL;
 	return (new);
@@ -34,7 +34,7 @@ static void	add_map_head(t_loader *loader, char *str)
 	t_map_node	*new;
 	char		*val;
 
-	val = ft_strtrim_sepasets(str, "\n", " \n");
+	val = ft_x_strtrim_sepasets(str, "\n", " \n");
 	new = make_new_map_node(val);
 	add_last_map_list(&(loader->map_head), new);
 }

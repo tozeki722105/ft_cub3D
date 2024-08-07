@@ -30,14 +30,14 @@ static int *make_rgb_array(char *str)
 	char *sep_ptr;
 	char *sub_s;
 
-	rgb_array = (int *)malloc(sizeof(int) * 3);
+	rgb_array = (int *)ft_x_malloc(sizeof(int) * 3);
 	i = 0;
 	while (i < 3)
 	{
 		sep_ptr = ft_strchr(str, ',');
 		if (!sep_ptr)
 			sep_ptr = ft_strchr(str, '\0');
-		sub_s = ft_substr(str, 0, (size_t)(sep_ptr - str));
+		sub_s = ft_x_substr(str, 0, (size_t)(sep_ptr - str));
 		rgb_array[i++] = ft_atoi(sub_s);
 		free(sub_s);
 		str = sep_ptr + sizeof(char);
