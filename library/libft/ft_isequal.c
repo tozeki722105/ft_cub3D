@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_isequal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 16:29:03 by tozeki            #+#    #+#             */
-/*   Updated: 2024/08/06 21:25:24 by toshi            ###   ########.fr       */
+/*   Created: 2024/08/08 00:24:48 by toshi             #+#    #+#             */
+/*   Updated: 2024/08/08 00:24:50 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-bool	ft_isprint(int c)
+bool	ft_isequal(char *s1, char *s2)
 {
-	return (32 <= c && c <= 126);
+	size_t len;
+
+	len = ft_strlen(s1);
+	return (len == ft_strlen(s2) && ft_strncmp(s1, s2, len) == 0);
 }

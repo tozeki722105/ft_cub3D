@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_x_substr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 16:29:03 by tozeki            #+#    #+#             */
-/*   Updated: 2024/08/06 21:25:24 by toshi            ###   ########.fr       */
+/*   Created: 2024/08/08 00:26:03 by toshi             #+#    #+#             */
+/*   Updated: 2024/08/08 00:26:03 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-bool	ft_isprint(int c)
+//malloc失敗したら、exitするだけのft_substr
+//ここのNULLリターンは必要か審議->今のところs=NULLのパターンはない
+char	*ft_x_substr(const char *s, unsigned int start, size_t len)
 {
-	return (32 <= c && c <= 126);
+	char	*str;
+
+	if (s == NULL)
+		return (NULL);
+	str = ft_substr(s, start, len);
+	if (!str)
+		ft_my_perror_exit("malloc", 1);
+	return (str);
 }

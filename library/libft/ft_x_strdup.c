@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_x_strdup.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 16:29:03 by tozeki            #+#    #+#             */
-/*   Updated: 2024/08/06 21:25:24 by toshi            ###   ########.fr       */
+/*   Created: 2024/08/08 00:25:43 by toshi             #+#    #+#             */
+/*   Updated: 2024/08/08 00:25:43 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-bool	ft_isprint(int c)
+//malloc失敗したら、exitするだけのft_strtrim
+//s1がNULLのときの対応追加
+char	*ft_x_strdup(const char *s1)
 {
-	return (32 <= c && c <= 126);
+	char	*str;
+
+	if (!s1)
+		return (NULL);
+	str = ft_strdup(s1);
+	if (!str)
+		ft_my_perror_exit("malloc", 1);
+	return (str);
 }

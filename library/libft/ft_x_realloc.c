@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_x_realloc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 16:29:03 by tozeki            #+#    #+#             */
-/*   Updated: 2024/08/06 21:25:24 by toshi            ###   ########.fr       */
+/*   Created: 2024/08/08 00:25:35 by toshi             #+#    #+#             */
+/*   Updated: 2024/08/08 00:25:36 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-bool	ft_isprint(int c)
+void	*ft_x_realloc(void *ptr, size_t size)
 {
-	return (32 <= c && c <= 126);
+	if (ptr != NULL)
+		free(ptr);
+	if (size == 0)
+		return (NULL);
+	return (ft_x_malloc(size));
 }

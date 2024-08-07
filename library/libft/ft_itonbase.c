@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   itonbase.c                                         :+:      :+:    :+:   */
+/*   ft_itonbase.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
+/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:53:30 by tozeki            #+#    #+#             */
-/*   Updated: 2023/03/25 21:31:08 by tozeki           ###   ########.fr       */
+/*   Updated: 2024/08/06 23:16:39 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
-#include <stdint.h>
+#include "libft.h"
 
-char	*itonbase(int num, unsigned int base);
-size_t	get_dig_nbase(unsigned int num, unsigned int base);
-char *set_string_nbase(unsigned int num, unsigned int base, size_t dig, int negative);
+char	*ft_itonbase(int num, unsigned int base);
+static size_t	get_dig_nbase(unsigned int num, unsigned int base);
+static char *set_string_nbase(unsigned int num, unsigned int base, size_t dig, int negative);
 
-void	*ft_calloc(size_t count, size_t size);
-void	*ft_bzero(void *buf, size_t n);
-void	*ft_memset(void *buf, int ch, size_t n);
-
-int main (void)
-{
-	int n = -96552;
-	int base = 16;
-	printf("\n%s\n", itonbase(n, base));
-	return (1);
-}
-
-char *itonbase(int num, unsigned int base)
+char *ft_itonbase(int num, unsigned int base)
 {
 	unsigned int	cnum;
 	int				negative;
@@ -48,7 +33,7 @@ char *itonbase(int num, unsigned int base)
 	return (set_string_nbase(cnum, base, dig, negative));
 }
 
-char *set_string_nbase(unsigned int num, unsigned int base, size_t dig, int negative)
+static char *set_string_nbase(unsigned int num, unsigned int base, size_t dig, int negative)
 {
 	const char	*string_base = "0123456789ABCDEF";
 	char		*str;
@@ -66,7 +51,7 @@ char *set_string_nbase(unsigned int num, unsigned int base, size_t dig, int nega
 	return (str);
 }
 
-size_t	get_dig_nbase(unsigned int num, unsigned int base)
+static size_t	get_dig_nbase(unsigned int num, unsigned int base)
 {
 	size_t	dig;
 	
@@ -78,6 +63,22 @@ size_t	get_dig_nbase(unsigned int num, unsigned int base)
 	}
 	return (dig);
 }
+
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <limits.h>
+// #include <stdint.h>
+// void	*ft_calloc(size_t count, size_t size);
+// void	*ft_bzero(void *buf, size_t n);
+// void	*ft_memset(void *buf, int ch, size_t n);
+
+// int main (void)
+// {
+// 	int n = -96552;
+// 	int base = 16;
+// 	printf("\n%s\n", ft_itonbase(n, base));
+// 	return (1);
+// }
 
 //void	*ft_calloc(size_t count, size_t size)
 //{

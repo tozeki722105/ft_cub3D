@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
+/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 16:29:11 by tozeki            #+#    #+#             */
-/*   Updated: 2023/03/15 17:39:38 by tozeki           ###   ########.fr       */
+/*   Updated: 2024/08/06 21:25:12 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+bool	ft_isascii(int c)
 {
 	return (0 <= c && c <= 127);
 }

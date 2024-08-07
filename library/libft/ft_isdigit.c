@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
+/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 16:29:07 by tozeki            #+#    #+#             */
-/*   Updated: 2023/02/25 21:20:45 by tozeki           ###   ########.fr       */
+/*   Updated: 2024/08/06 21:25:17 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int c)
+bool	ft_isdigit(int c)
 {
 	return ('0' <= c && c <= '9');
 }

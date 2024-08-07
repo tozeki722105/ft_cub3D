@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_validate_extention.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 16:29:03 by tozeki            #+#    #+#             */
-/*   Updated: 2024/08/06 21:25:24 by toshi            ###   ########.fr       */
+/*   Created: 2024/08/08 00:25:18 by toshi             #+#    #+#             */
+/*   Updated: 2024/08/08 00:25:19 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-bool	ft_isprint(int c)
+/// @param path not NULL
+/// @param extention not NULL (.)start
+bool	ft_validate_extention(char *path, char *extention)
 {
-	return (32 <= c && c <= 126);
+	char *ptr;
+
+	ptr = ft_strrchr(path, *extention);
+	if (!ptr || ptr == path)
+		return (false);
+	return (ft_isequal(ptr, extention));
 }

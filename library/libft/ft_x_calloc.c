@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_x_calloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 16:29:03 by tozeki            #+#    #+#             */
-/*   Updated: 2024/08/06 21:25:24 by toshi            ###   ########.fr       */
+/*   Created: 2024/08/08 00:25:22 by toshi             #+#    #+#             */
+/*   Updated: 2024/08/08 00:25:22 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-bool	ft_isprint(int c)
+void	*ft_x_calloc(size_t count, size_t size)
 {
-	return (32 <= c && c <= 126);
+	void	*ret;
+
+	if (count == 0 || size == 0 || size > SIZE_MAX / count)
+		return (NULL);
+	ret = ft_calloc(count, size);
+	if (ret == NULL)
+		ft_my_perror_exit("malloc", 1);
+	return (ret);
 }

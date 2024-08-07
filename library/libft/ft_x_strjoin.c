@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_x_strjoin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 16:29:03 by tozeki            #+#    #+#             */
-/*   Updated: 2024/08/06 21:25:24 by toshi            ###   ########.fr       */
+/*   Created: 2024/08/08 00:25:47 by toshi             #+#    #+#             */
+/*   Updated: 2024/08/08 00:25:47 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-bool	ft_isprint(int c)
+//ここのNULLリターンは必要か審議->必要
+char	*ft_x_strjoin(const char *s1, const char *s2)
 {
-	return (32 <= c && c <= 126);
+	char	*str;
+
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	str = ft_strjoin(s1, s2);
+	if (!str)
+		ft_my_perror_exit("malloc", 1);
+	return (str);
 }

@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_x_strtrim.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 16:29:03 by tozeki            #+#    #+#             */
-/*   Updated: 2024/08/06 21:25:24 by toshi            ###   ########.fr       */
+/*   Created: 2024/08/08 00:25:56 by toshi             #+#    #+#             */
+/*   Updated: 2024/08/08 00:25:57 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-bool	ft_isprint(int c)
+//malloc失敗したら、exitするだけのft_strtrim
+char	*ft_x_strtrim(const char *s1, const char *set)
 {
-	return (32 <= c && c <= 126);
+	char	*trimed_str;
+
+	if (s1 == NULL)
+		return (NULL);
+	if (set == NULL)
+		return ((char *)s1);
+	trimed_str = ft_strtrim(s1, set);
+	if (!trimed_str)
+		ft_my_perror_exit("malloc", 1);
+	return (trimed_str);
 }
