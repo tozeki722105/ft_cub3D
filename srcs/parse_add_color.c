@@ -10,16 +10,16 @@ static bool	validate_color_str(char *str)
 	while(*str)
 	{
 		if (!(ft_isdigit(*str) || *str == ','))
-			return (ft_perror_ret_false("Invalid character in F or C"));
+			return (ft_my_perror_ret_false("Invalid character in F or C"));
 		if (*str == ',' && (!prev || *prev == ','))
-			return (ft_perror_ret_false("Consecutive commas"));
+			return (ft_my_perror_ret_false("Consecutive commas"));
 		if (*str == ',')
 			comma_count++;
 		prev = str;
 		str++;
 	}
 	if (comma_count != 2)
-		return (ft_perror_ret_false("The number of rgb elements is not appropriate"));
+		return (ft_my_perror_ret_false("The number of rgb elements is not appropriate"));
 	return (true);
 }
 
@@ -72,7 +72,7 @@ void	add_color(t_loader *loader, t_line_kind kind, char *str)
 	free(val);
 	color = convert_rgb_color(rgb_array[0], rgb_array[1], rgb_array[2]);
 	if (color == -1)
-		ft_perror_exit("RGB contains value other than 0 to 255", 0);
+		ft_my_perror_exit("RGB contains value other than 0 to 255", 0);
 	free(rgb_array);
 	if (kind == KIND_FLOOR)
 		loader->floor_color = color;

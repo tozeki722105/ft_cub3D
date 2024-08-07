@@ -6,7 +6,7 @@
 #    By: toshi <toshi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/08/05 19:11:01 by toshi            ###   ########.fr        #
+#    Updated: 2024/08/08 00:30:22 by toshi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,8 +64,7 @@ SRCS		:=	$(SRCS_DIR)calc_calc_horizontal_inter_pos.c\
 				$(SRCS_DIR)parse_validate_map_data_utils.c \
 				$(SRCS_DIR)parse_validate_map_data.c \
 				$(SRCS_DIR)parse_utils.c \
-				$(SRCS_DIR)parse.c \
-				$(SRCS_DIR)parse_utils_libft.c 
+				$(SRCS_DIR)parse.c 
 
 PARSE_SRCS	:=	$(SRCS_DIR)parse_load_utils.c \
 				$(SRCS_DIR)parse_load_utils2.c \
@@ -81,14 +80,14 @@ PARSE_SRCS	:=	$(SRCS_DIR)parse_load_utils.c \
 				$(SRCS_DIR)parse_validate_map_data.c \
 				$(SRCS_DIR)parse.c 
 
-
 OBJS		:=	$(patsubst %.c, ${OBJS_DIR}/%.o, $(SRCS))
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(MLX_PATH)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) $(GNL_PATH)*.c $(MLX_FLAG) -o $(NAME)
+	make -C $(LIBFT_PATH)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) $(MLX_FLAG) -o $(NAME)
 
 ${OBJS_DIR}/%.o: %.c
 	$(DIR_DUP)
@@ -96,7 +95,7 @@ ${OBJS_DIR}/%.o: %.c
 
 parse: $(PARSE_SRCS)
 	make -C $(LIBFT_PATH)
-	$(CC) $(CFLAGS) $(INCLUDES) $(PARSE_SRCS) $(LIBFT_A) $(GNL_PATH)*.c
+	$(CC) $(CFLAGS) $(INCLUDES) $(PARSE_SRCS) $(LIBFT_A)
 
 reparse: clean parse
 

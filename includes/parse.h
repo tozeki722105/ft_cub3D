@@ -6,7 +6,6 @@
 #include "utils.h"
 #include "config.h"
 #include "../library/libft/libft.h"
-#include "../library/gnl/get_next_line.h"
 
 enum e_dir
 {
@@ -87,16 +86,5 @@ void	print_map_player(t_loader loader);
 
 // validate_map_data.c
 bool	validate_map_data(char **map_data);
-
-//utils_libft.c
-size_t	ft_count_rows(char **d_str);
-char	**ft_double_str_dup(char **d_str);
-void	ft_free_double_str(char **d_str);
-bool	ft_isequal(char *s1, char *s2);
-void	ft_perror_exit(char *err_s, int exit_code);
-bool	ft_perror_ret_false(char *err_s);
-bool	ft_validate_extention(char *path, char *extention);
-bool	ft_can_open(char *path, int open_mode);
-char	*ft_strtrim_sepasets(const char *s1, const char *front_trim_set, const char *back_trim_set);
 
 #endif

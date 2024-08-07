@@ -8,7 +8,7 @@ static void	add_wall(t_loader *loader, t_line_kind kind, char *str)
 
 	val = extract_val(str, kind);
 	if (!ft_can_open(val, O_RDONLY))
-		ft_perror_exit("The texture path is incorrect", 0);
+		ft_my_perror_exit("The texture path is incorrect", 0);
 	if (kind == KIND_NORTH)
 		loader->north_path = val;
 	else if (kind == KIND_SOUTH)
@@ -49,7 +49,7 @@ static bool	is_textures_full(t_loader loader)
 static void add_textures(t_loader *loader, char *str)
 {
 	if (!is_member_default(*loader, loader->kind))
-		ft_perror_exit("Duplicate elements", 0);
+		ft_my_perror_exit("Duplicate elements", 0);
 	else if (is_wall(loader->kind))
 		add_wall(loader, loader->kind, str);
 	else if (is_background(loader->kind))
@@ -64,12 +64,12 @@ void	load_textures(int fd, t_loader *loader)
 	{
 		str = get_next_line(fd);
 		if (!str)
-			ft_perror_exit("There is missing information before map_data", 0);
+			ft_my_perror_exit("There is missing information before map_data", 0);
 		loader->kind = get_line_kind(str);
 		if (loader->kind == KIND_MAP)
-			ft_perror_exit("There is missing information before map_data", 0);
+			ft_my_perror_exit("There is missing information before map_data", 0);
 		else if (loader->kind == KIND_FALSE)
-			ft_perror_exit("Contains invalid elements", 0);
+			ft_my_perror_exit("Contains invalid elements", 0);
 		add_textures(loader, str);
 		free(str);
 	}
