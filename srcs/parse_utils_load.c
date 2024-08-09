@@ -46,8 +46,8 @@ char *extract_val(char *str, t_line_kind kind)
 		identifer_len = 2;
 	else
 		identifer_len = 1;
-	val_include_space = ft_substr(str, identifer_len, ft_strlen(str) - identifer_len);
-	val = ft_strtrim(val_include_space, " \t\n");
+	val_include_space = ft_x_substr(str, identifer_len, ft_strlen(str) - identifer_len);
+	val = ft_x_strtrim(val_include_space, " \t\n");
 	free(val_include_space);
 	return (val);
 }

@@ -68,7 +68,7 @@ t_pos *calc_vertical_inter_pos(t_mlx *mlx, double ray_angle)
 
 	if ((int)ray_angle == 90 || (int)ray_angle == 270)
 		return (NULL);
-	pos = (t_pos *)malloc(sizeof(t_pos));
+	pos = (t_pos *)ft_x_malloc(sizeof(t_pos));
 	*pos = calc_vertical_start_pos(mlx, ray_angle);
 	*pos = search_vertical_inter_pos(mlx, ray_angle, *pos);
 	if (pos->x == -1 || pos->y == -1)

@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_x_strtrim_sepasets.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 16:29:03 by tozeki            #+#    #+#             */
-/*   Updated: 2024/08/06 21:25:24 by toshi            ###   ########.fr       */
+/*   Created: 2024/08/08 00:25:50 by toshi             #+#    #+#             */
+/*   Updated: 2024/08/08 00:54:46 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-bool	ft_isprint(int c)
+char	*ft_x_strtrim_sepasets(const char *s1, const char *front_trim_set, const char *back_trim_set)
 {
-	return (32 <= c && c <= 126);
+	char	*trimed_str;
+
+	if (s1 == NULL)
+		return (NULL);
+	if (front_trim_set == NULL && back_trim_set == NULL)
+		return ((char *)s1);
+	trimed_str = ft_strtrim_sepasets(s1, front_trim_set, back_trim_set);
+	if (!trimed_str)
+		ft_my_perror_exit("malloc", 1);
+	return (trimed_str);
 }

@@ -6,7 +6,7 @@
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 04:52:43 by toshi             #+#    #+#             */
-/*   Updated: 2024/08/05 08:51:53 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/08 01:03:49 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_pos *calc_horizontal_inter_pos(t_mlx *mlx, double ray_angle)
 
 	if ((int)ray_angle == 0 || (int)ray_angle == 180)
 		return (NULL);
-	pos = (t_pos *)malloc(sizeof(t_pos));
+	pos = (t_pos *)ft_x_malloc(sizeof(t_pos));
 	*pos = calc_horizontal_start_pos(mlx, ray_angle);
 	*pos = search_horizontal_inter_pos(mlx, ray_angle, *pos);
 	if (pos->x == -1 || pos->y == -1)

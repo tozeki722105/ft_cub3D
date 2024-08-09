@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_x_split.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 16:29:03 by tozeki            #+#    #+#             */
-/*   Updated: 2024/08/06 21:25:24 by toshi            ###   ########.fr       */
+/*   Created: 2024/08/08 00:25:39 by toshi             #+#    #+#             */
+/*   Updated: 2024/08/08 00:52:34 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-bool	ft_isprint(int c)
+//ここのNULLリターンは必要か審議->make_cmdで必要
+char	**ft_x_split(const char *s, char c)
 {
-	return (32 <= c && c <= 126);
+	char	**strs;
+
+	if (s == NULL)
+		return (NULL);
+	strs = ft_split(s, c);
+	if (!strs)
+		ft_my_perror_exit("malloc", 1);
+	return (strs);
 }

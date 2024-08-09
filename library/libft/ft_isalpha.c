@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
+/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 16:29:14 by tozeki            #+#    #+#             */
-/*   Updated: 2023/02/25 21:20:53 by tozeki           ###   ########.fr       */
+/*   Updated: 2024/08/06 21:24:59 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalpha(int c)
+bool	ft_isalpha(int c)
 {
 	return (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z'));
 }
