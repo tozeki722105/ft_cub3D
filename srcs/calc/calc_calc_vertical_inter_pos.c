@@ -1,12 +1,25 @@
-#include "calc.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   calc_calc_vertical_inter_pos.c                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/13 14:08:51 by tyamauch          #+#    #+#             */
+/*   Updated: 2024/08/13 14:08:59 by tyamauch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static t_pos calc_vertical_start_pos(t_mlx *mlx, double ray_angle)
+#include "calc.h"
+#include "draw.h"
+
+static t_pos	calc_vertical_start_pos(t_mlx *mlx, double ray_angle)
 {
-	t_player player;
-	t_map map;
-	t_pos pos;
-	int panel_origin_x;
-	
+	t_player	player;
+	t_map		map;
+	t_pos		pos;
+	int			panel_origin_x;
+
 	player = mlx->player;
 	map = mlx->map;
 	panel_origin_x = ((int)(player.pos.x / map.panel_side) * map.panel_side);
@@ -18,19 +31,19 @@ static t_pos calc_vertical_start_pos(t_mlx *mlx, double ray_angle)
 	return (pos);
 }
 
-static void	display_vertical_grid_inter_pos(t_mlx *mlx, double ray_angle, t_pos pos, int color)
+static void	display_vertical_grid_inter_pos(t_mlx *mlx, double ray_angle,
+		t_pos pos, int color)
 {
-	t_map map;
-	t_player player;
-	int step;
+	t_map		map;
+	t_player	player;
+	int			step;
 
 	map = mlx->map;
 	player = mlx->player;
 	step = map.panel_side;
 	if (!is_right(ray_angle))
 		step *= -1;
-	while (pos.x < map.width && pos.x > 0 
-		&& pos.y > 0 && pos.y < map.height)
+	while (pos.x < map.width && pos.x > 0 && pos.y > 0 && pos.y < map.height)
 	{
 		draw_square_center_safely(mlx, pos, 10, color);
 		pos.x += step;
@@ -38,12 +51,14 @@ static void	display_vertical_grid_inter_pos(t_mlx *mlx, double ray_angle, t_pos 
 	}
 }
 
-static t_pos	search_vertical_inter_pos(t_mlx *mlx, double ray_angle, t_pos pos)
+static t_pos	search_vertical_inter_pos(t_mlx *mlx, double ray_angle,
+		t_pos pos)
 {
-	t_map map;
-	t_player player;
-	int step;
-	int flag;
+	t_map		map;
+	t_player	player;
+	t_point		point;
+	int			step;
+	int			flag;
 
 	map = mlx->map;
 	player = mlx->player;
@@ -53,8 +68,9 @@ static t_pos	search_vertical_inter_pos(t_mlx *mlx, double ray_angle, t_pos pos)
 		step *= -1;
 	while (pos.x < map.width && pos.x > 0 && pos.y > 0 && pos.y < map.height)
 	{
-		if (map.data[((int)pos.y / map.panel_side)]
-			[((int)pos.x / map.panel_side) - flag] == '1')
+		point.y = ((int)pos.y / map.panel_side);
+		point.x = ((int)pos.x / map.panel_side) - flag;
+		if (map.data[point.y][point.x] == '1')
 			return (pos);
 		pos.x += step;
 		pos.y = player.pos.y - ((pos.x - player.pos.x) * tan_wrap(ray_angle));
@@ -62,9 +78,9 @@ static t_pos	search_vertical_inter_pos(t_mlx *mlx, double ray_angle, t_pos pos)
 	return ((t_pos){-1, -1});
 }
 
-t_pos *calc_vertical_inter_pos(t_mlx *mlx, double ray_angle)
+t_pos	*calc_vertical_inter_pos(t_mlx *mlx, double ray_angle)
 {
-	t_pos *pos;
+	t_pos	*pos;
 
 	if ((int)ray_angle == 90 || (int)ray_angle == 270)
 		return (NULL);
@@ -73,7 +89,7 @@ t_pos *calc_vertical_inter_pos(t_mlx *mlx, double ray_angle)
 	*pos = search_vertical_inter_pos(mlx, ray_angle, *pos);
 	if (pos->x == -1 || pos->y == -1)
 	{
-		free (pos);
+		free(pos);
 		return (NULL);
 	}
 	return (pos);
