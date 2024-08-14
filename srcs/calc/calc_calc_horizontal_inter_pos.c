@@ -6,18 +6,19 @@
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 04:52:43 by toshi             #+#    #+#             */
-/*   Updated: 2024/08/08 01:03:49 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/13 14:06:09 by tyamauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "calc.h"
+#include "draw.h"
 
-static t_pos calc_horizontal_start_pos(t_mlx *mlx, double ray_angle)
+static t_pos	calc_horizontal_start_pos(t_mlx *mlx, double ray_angle)
 {
-	t_player player;
-	t_map map;
-	t_pos pos;
-	int panel_origin_y;
+	t_player	player;
+	t_map		map;
+	t_pos		pos;
+	int			panel_origin_y;
 
 	player = mlx->player;
 	map = mlx->map;
@@ -30,19 +31,19 @@ static t_pos calc_horizontal_start_pos(t_mlx *mlx, double ray_angle)
 	return (pos);
 }
 
-static void	display_horizontal_grid_inter_pos(t_mlx *mlx, double ray_angle, t_pos pos, int color)
+static void	display_horizontal_grid_inter_pos(t_mlx *mlx, double ray_angle,
+		t_pos pos, int color)
 {
-	t_map map;
-	t_player player;
-	int step;
+	t_map		map;
+	t_player	player;
+	int			step;
 
 	map = mlx->map;
 	player = mlx->player;
 	step = map.panel_side;
 	if (is_up(ray_angle))
 		step *= -1;
-	while (pos.x < map.width && pos.x > 0 
-		&& pos.y > 0 && pos.y < map.height)
+	while (pos.x < map.width && pos.x > 0 && pos.y > 0 && pos.y < map.height)
 	{
 		draw_square_center_safely(mlx, pos, 10, color);
 		pos.y += step;
@@ -50,12 +51,14 @@ static void	display_horizontal_grid_inter_pos(t_mlx *mlx, double ray_angle, t_po
 	}
 }
 
-static t_pos	search_horizontal_inter_pos(t_mlx *mlx, double ray_angle, t_pos pos)
+static t_pos	search_horizontal_inter_pos(t_mlx *mlx, double ray_angle,
+		t_pos pos)
 {
-	t_map map;
-	t_player player;
-	int step;
-	int flag;
+	t_map		map;
+	t_player	player;
+	t_point		point;
+	int			step;
+	int			flag;
 
 	map = mlx->map;
 	player = mlx->player;
@@ -65,8 +68,9 @@ static t_pos	search_horizontal_inter_pos(t_mlx *mlx, double ray_angle, t_pos pos
 		step *= -1;
 	while (pos.x < map.width && pos.x > 0 && pos.y > 0 && pos.y < map.height)
 	{
-		if (map.data[((int)pos.y / map.panel_side) - flag]
-			[(int)pos.x / map.panel_side] == '1')
+		point.y = ((int)pos.y / map.panel_side) - flag;
+		point.x = (int)pos.x / map.panel_side;
+		if (map.data[point.y][point.x] == '1')
 			return (pos);
 		pos.y += step;
 		pos.x = player.pos.x + ((player.pos.y - pos.y) * cot_wrap(ray_angle));
@@ -74,9 +78,9 @@ static t_pos	search_horizontal_inter_pos(t_mlx *mlx, double ray_angle, t_pos pos
 	return ((t_pos){-1, -1});
 }
 
-t_pos *calc_horizontal_inter_pos(t_mlx *mlx, double ray_angle)
+t_pos	*calc_horizontal_inter_pos(t_mlx *mlx, double ray_angle)
 {
-	t_pos *pos;
+	t_pos	*pos;
 
 	if ((int)ray_angle == 0 || (int)ray_angle == 180)
 		return (NULL);
@@ -85,7 +89,7 @@ t_pos *calc_horizontal_inter_pos(t_mlx *mlx, double ray_angle)
 	*pos = search_horizontal_inter_pos(mlx, ray_angle, *pos);
 	if (pos->x == -1 || pos->y == -1)
 	{
-		free (pos);
+		free(pos);
 		return (NULL);
 	}
 	return (pos);

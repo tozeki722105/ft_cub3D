@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   calc_utils2.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/13 14:07:54 by tyamauch          #+#    #+#             */
+/*   Updated: 2024/08/13 14:07:56 by tyamauch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "calc.h"
 
-double fix_angle(double angle)
+double	fix_angle(double angle)
 {
 	if (angle < 0.0)
 		return (angle + 360.0);
@@ -11,7 +23,7 @@ double fix_angle(double angle)
 
 t_pos	fix_move(t_mlx *mlx, t_pos pos, double move_angle, int step)
 {
-	t_inter inter;
+	t_inter	inter;
 	t_pos	res;
 
 	inter = calc_intersection(mlx, move_angle);
@@ -24,7 +36,7 @@ t_pos	fix_move(t_mlx *mlx, t_pos pos, double move_angle, int step)
 
 bool	is_up(double degree)
 {
-	return (sin_wrap(degree) > 0.0001);	
+	return (sin_wrap(degree) > 0.0001);
 }
 
 bool	is_right(double degree)
