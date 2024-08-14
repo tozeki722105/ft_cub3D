@@ -1,24 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_load_map_str_to_list.c                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/13 14:32:11 by tyamauch          #+#    #+#             */
+/*   Updated: 2024/08/13 14:32:16 by tyamauch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parse.h"
 
-static t_map_node *make_new_map_node(char *str)
+static t_map_node	*make_new_map_node(char *str)
 {
-	t_map_node *new;
+	t_map_node	*new;
 
-	
 	new = (t_map_node *)ft_x_malloc(sizeof(t_map_node));
 	new->val = str;
 	new->next = NULL;
 	return (new);
 }
 
-static t_map_node *find_last_map_node(t_map_node *ptr)
+static t_map_node	*find_last_map_node(t_map_node *ptr)
 {
-	while(ptr->next)
+	while (ptr->next)
 		ptr = ptr->next;
 	return (ptr);
 }
 
-static void add_last_map_list(t_map_node **head, t_map_node *new)
+static void	add_last_map_list(t_map_node **head, t_map_node *new)
 {
 	if (!(*head))
 	{
@@ -27,7 +38,6 @@ static void add_last_map_list(t_map_node **head, t_map_node *new)
 	}
 	find_last_map_node(*head)->next = new;
 }
-
 
 static void	add_map_head(t_loader *loader, char *str)
 {
@@ -41,7 +51,7 @@ static void	add_map_head(t_loader *loader, char *str)
 
 void	load_map_str_to_list(int fd, t_loader *loader)
 {
-	char		*str;
+	char	*str;
 
 	while (1)
 	{
@@ -55,5 +65,5 @@ void	load_map_str_to_list(int fd, t_loader *loader)
 			ft_my_perror_exit("Duplicate elements", 0);
 		add_map_head(loader, str);
 		free(str);
-	}	
+	}
 }

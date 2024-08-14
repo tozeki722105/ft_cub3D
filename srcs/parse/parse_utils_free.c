@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_utils_free.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/13 14:39:01 by tyamauch          #+#    #+#             */
+/*   Updated: 2024/08/13 14:39:03 by tyamauch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parse.h"
 
 static void	free_map_node(t_map_node *map_node)
@@ -8,7 +20,7 @@ static void	free_map_node(t_map_node *map_node)
 
 void	free_map_list(t_map_node *ptr)
 {
-	t_map_node *next_ptr;
+	t_map_node	*next_ptr;
 
 	if (!ptr)
 		return ;
