@@ -1,8 +1,20 @@
-#include "main.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_wall.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/13 14:12:37 by tyamauch          #+#    #+#             */
+/*   Updated: 2024/08/13 14:13:08 by tyamauch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "calc.h"
 #include "config.h"
+#include "main.h"
 
-static t_img get_img(t_mlx *mlx, t_inter inter)
+static t_img	get_img(t_mlx *mlx, t_inter inter)
 {
 	if (inter.axis == HORIZONTAL)
 	{
@@ -20,26 +32,23 @@ static t_img get_img(t_mlx *mlx, t_inter inter)
 	}
 }
 
-static void draw_vertical_line_of_wall(t_mlx *mlx, t_inter inter, size_t put_x)
+static void	draw_vertical_line_of_wall(t_mlx *mlx, t_inter inter, size_t put_x)
 {
-	int put_y;
-	size_t wall_i;
-	size_t img_x;
-	size_t img_y;
-	t_img img;
+	int		put_y;
+	size_t	wall_i;
+	size_t	img_x;
+	size_t	img_y;
+	t_img	img;
 
 	img = get_img(mlx, inter);
 	img_x = (img.width * inter.origin_offset) / mlx->map.panel_side;
 	put_y = (WINDOW_HEIGHT / 2) - ((int)inter.wall_height / 2);
 	wall_i = 0;
-	// printf("%zd ", img_x);
 	while (wall_i < (int)inter.wall_height)
 	{
-
 		if (put_y >= 0 && put_y < WINDOW_HEIGHT)
 		{
 			img_y = (img.height * wall_i) / inter.wall_height;
-			// printf("%zd ", img_y);
 			if (img_y >= img.height - 4)
 				img_y = img.height - 4;
 			put_pixel(&(mlx->img), put_x, put_y, pick_color(&img, img_x, img_y));
@@ -47,17 +56,16 @@ static void draw_vertical_line_of_wall(t_mlx *mlx, t_inter inter, size_t put_x)
 		put_y++;
 		wall_i++;
 	}
-	// printf("\n");
 }
 
-/// @brief If you call this function from the coordinates of a wall corner, 
+/// @brief If you call this function from the coordinates of a wall corner,
 ///	the process never finishes. The angle is also related.
-void  draw_wall(t_mlx *mlx, int start)
+void	draw_wall(t_mlx *mlx, int start)
 {
-	double draw_angle;
-	double step;
-	size_t x;
-	t_inter inter;
+	double	draw_angle;
+	double	step;
+	size_t	x;
+	t_inter	inter;
 
 	draw_angle = fix_angle(mlx->player.angle + (FOV / 2));
 	step = (double)FOV / ((double)WINDOW_WIDTH);

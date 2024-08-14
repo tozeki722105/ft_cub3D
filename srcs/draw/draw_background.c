@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_background.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/13 14:20:51 by tyamauch          #+#    #+#             */
+/*   Updated: 2024/08/14 15:08:21 by tyamauch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "draw.h"
 
 void	draw_ceiling_floor(t_mlx *mlx, int ceiling_color, int floor_color)
 {
-	size_t half_height;
-	size_t y;
-	size_t x;
+	size_t	half_height;
+	size_t	y;
+	size_t	x;
 
 	half_height = WINDOW_HEIGHT / 2;
 	y = 0;
