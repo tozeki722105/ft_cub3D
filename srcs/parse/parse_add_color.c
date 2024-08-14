@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_add_color.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/13 14:30:58 by tyamauch          #+#    #+#             */
+/*   Updated: 2024/08/13 14:30:59 by tyamauch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parse.h"
 
 static bool	validate_color_str(char *str)
 {
-	char *prev;
-	size_t comma_count;
+	char	*prev;
+	size_t	comma_count;
 
 	prev = NULL;
 	comma_count = 0;
-	while(*str)
+	while (*str)
 	{
 		if (!(ft_isdigit(*str) || *str == ','))
 			return (ft_my_perror_ret_false("Invalid character in F or C"));
@@ -19,16 +31,17 @@ static bool	validate_color_str(char *str)
 		str++;
 	}
 	if (comma_count != 2)
-		return (ft_my_perror_ret_false("The number of rgb elements is not appropriate"));
+		return (ft_my_perror_ret_false(
+				"The number of rgb elements is not appropriate"));
 	return (true);
 }
 
-static int *make_rgb_array(char *str)
+static int	*make_rgb_array(char *str)
 {
-	int *rgb_array;
-	int i;
-	char *sep_ptr;
-	char *sub_s;
+	int		*rgb_array;
+	int		i;
+	char	*sep_ptr;
+	char	*sub_s;
 
 	rgb_array = (int *)ft_x_malloc(sizeof(int) * 3);
 	i = 0;
@@ -45,9 +58,9 @@ static int *make_rgb_array(char *str)
 	return (rgb_array);
 }
 
-static int convert_rgb_color(int r, int g, int b)
+static int	convert_rgb_color(int r, int g, int b)
 {
-	int res;
+	int	res;
 
 	if (r > 255 || r < 0 || g > 255 || g < 0 || b > 255 || b < 0)
 		return (-1);
@@ -61,13 +74,13 @@ static int convert_rgb_color(int r, int g, int b)
 
 void	add_color(t_loader *loader, t_line_kind kind, char *str)
 {
-	char *val;
-	int color;
-	int *rgb_array;
+	char	*val;
+	int		color;
+	int		*rgb_array;
 
 	val = extract_val(str, kind);
 	if (!validate_color_str(val))
-		exit (0);
+		exit(0);
 	rgb_array = make_rgb_array(val);
 	free(val);
 	color = convert_rgb_color(rgb_array[0], rgb_array[1], rgb_array[2]);

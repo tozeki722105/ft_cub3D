@@ -1,12 +1,25 @@
-#include "parse.h"
-#define WALL	'1'
-#define SPACE	' '
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_validate_map_data_utils.c                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/13 14:36:07 by tyamauch          #+#    #+#             */
+/*   Updated: 2024/08/13 14:36:09 by tyamauch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static bool	validate_vertical_wall_and_fill_space(char **map_data, size_t x, int step, char fill_char)
+#include "parse.h"
+#define WALL '1'
+#define SPACE ' '
+
+static bool	validate_vertical_wall_and_fill_space(char **map_data, size_t x,
+		int step, char fill_char)
 {
-	size_t i;
-	size_t end;
-	size_t y;
+	size_t	i;
+	size_t	end;
+	size_t	y;
 
 	end = ft_count_rows(map_data);
 	if (end == 0)
@@ -15,8 +28,8 @@ static bool	validate_vertical_wall_and_fill_space(char **map_data, size_t x, int
 	y = i;
 	if (step < 0)
 		y = end - 1;
-	while (i++ < end
-		&& (map_data[y][x] == SPACE || map_data[y][x] == fill_char))
+	while (i++ < end && (map_data[y][x] == SPACE
+		|| map_data[y][x] == fill_char))
 	{
 		map_data[y][x] = fill_char;
 		y += step;
@@ -26,11 +39,12 @@ static bool	validate_vertical_wall_and_fill_space(char **map_data, size_t x, int
 	return (false);
 }
 
-static bool	validate_horizontal_wall_and_fill_space(char **map_data, size_t y, int step, char fill_char)
+static bool	validate_horizontal_wall_and_fill_space(char **map_data, size_t y,
+		int step, char fill_char)
 {
-	size_t i;
-	size_t end;
-	size_t x;
+	size_t	i;
+	size_t	end;
+	size_t	x;
 
 	end = ft_strlen(map_data[y]);
 	if (end == 0)
@@ -39,8 +53,8 @@ static bool	validate_horizontal_wall_and_fill_space(char **map_data, size_t y, i
 	x = i;
 	if (step < 0)
 		x = end - 1;
-	while (i++ < end
-		&& (map_data[y][x] == SPACE || map_data[y][x] == fill_char))
+	while (i++ < end && (map_data[y][x] == SPACE
+		|| map_data[y][x] == fill_char))
 	{
 		map_data[y][x] = fill_char;
 		x += step;
@@ -52,8 +66,8 @@ static bool	validate_horizontal_wall_and_fill_space(char **map_data, size_t y, i
 
 bool	validate_surrounded_wall_and_fill_space(char **map_data)
 {
-	size_t x;
-	size_t y;
+	size_t	x;
+	size_t	y;
 
 	y = 0;
 	while (map_data[y])

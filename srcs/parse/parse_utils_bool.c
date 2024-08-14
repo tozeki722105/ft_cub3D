@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_utils_bool.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/13 14:37:24 by tyamauch          #+#    #+#             */
+/*   Updated: 2024/08/13 14:37:26 by tyamauch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parse.h"
 
 bool	is_player(char c)
@@ -13,7 +25,8 @@ bool	is_map_element(char c)
 
 bool	is_wall(t_line_kind kind)
 {
-	return (kind == KIND_NORTH || kind == KIND_SOUTH || kind == KIND_WEST || kind == KIND_EAST);
+	return (kind == KIND_NORTH || kind == KIND_SOUTH
+		|| kind == KIND_WEST || kind == KIND_EAST);
 }
 
 bool	is_background(t_line_kind kind)

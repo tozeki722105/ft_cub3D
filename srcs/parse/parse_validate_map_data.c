@@ -1,16 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_validate_map_data.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/13 14:31:41 by tyamauch          #+#    #+#             */
+/*   Updated: 2024/08/13 14:31:42 by tyamauch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parse.h"
 
-bool	validate_surrounded_wall_and_fill_space(char **map_data);
+bool		validate_surrounded_wall_and_fill_space(char **map_data);
 
 static bool	is_filled_map_element(char c)
 {
-	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == '!');
+	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'W' || c == 'E'
+		|| c == '!');
 }
 
 static bool	validate_map_elements(char **map_data)
 {
-	size_t y;
-	size_t x;
+	size_t	y;
+	size_t	x;
 
 	y = 0;
 	while (map_data[y])
@@ -29,7 +42,7 @@ static bool	validate_map_elements(char **map_data)
 
 static bool	validate_map_size(char **map_data)
 {
-	size_t y;
+	size_t	y;
 
 	y = 0;
 	while (map_data[y])
@@ -48,7 +61,7 @@ static bool	validate_map_size(char **map_data)
 
 bool	validate_map_data(char **map_data)
 {
-	char **map_cpy;
+	char	**map_cpy;
 
 	if (!validate_map_size(map_data))
 		return (ft_my_perror_ret_false("The map size is too small"));

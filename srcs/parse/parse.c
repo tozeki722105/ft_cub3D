@@ -12,7 +12,7 @@
 
 #include "parse.h"
 
-t_loader init_loader();
+t_loader		init_loader(void);
 
 bool	is_contained_newline(t_map_node *ptr)
 {
@@ -25,7 +25,7 @@ bool	is_contained_newline(t_map_node *ptr)
 
 static bool	validate_grid_pos(char **map_data, t_pos *grid_pos)
 {
-	t_pos cur;
+	t_pos	cur;
 
 	cur.y = 0;
 	while (map_data[(int)cur.y])
@@ -49,7 +49,7 @@ static bool	validate_grid_pos(char **map_data, t_pos *grid_pos)
 	return (true);
 }
 
-static double convert_player_angle(char **map_data, t_pos grid_pos)
+static double	convert_player_angle(char **map_data, t_pos grid_pos)
 {
 	if (map_data[(int)grid_pos.y][(int)grid_pos.x] == 'N')
 		return (90);
@@ -61,9 +61,9 @@ static double convert_player_angle(char **map_data, t_pos grid_pos)
 		return (0);
 }
 
-static t_pos convert_player_pos(t_pos grid_pos)
+static t_pos	convert_player_pos(t_pos grid_pos)
 {
-	t_pos pos;
+	t_pos	pos;
 
 	pos.x = (grid_pos.x * MAP_PANEL_SIDE) + (MAP_PANEL_SIDE / 2);
 	pos.y = (grid_pos.y * MAP_PANEL_SIDE) + (MAP_PANEL_SIDE / 2);
@@ -94,7 +94,7 @@ t_loader	parse(char *path)
 		ft_my_perror_exit("Put only one player element in the map", 0);
 	loader.player_pos = convert_player_pos(loader.player_grid_pos);
 	loader.player_angle = convert_player_angle(loader.map_data,
-		loader.player_grid_pos);
+			loader.player_grid_pos);
 	return (loader);
 }
 

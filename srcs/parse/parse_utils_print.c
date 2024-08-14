@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_utils_print.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/13 14:38:36 by tyamauch          #+#    #+#             */
+/*   Updated: 2024/08/13 14:38:40 by tyamauch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parse.h"
 
 void	print_map_list(t_map_node *ptr)
@@ -21,16 +33,16 @@ void	print_texture(t_loader loader)
 
 void	print_map_player(t_loader loader)
 {
-	char **map;
-	size_t x;
-	size_t y;
+	char	**map;
+	size_t	x;
+	size_t	y;
 
 	printf("x_count=%d, y_count=%d\n", loader.map_y_count, loader.map_x_count);
 	map = loader.map_data;
 	y = 0;
 	while (map[y])
 	{
-		x=0;
+		x = 0;
 		while (map[y][x])
 		{
 			if (map[y][x] == '\n')
@@ -41,6 +53,6 @@ void	print_map_player(t_loader loader)
 		printf(";\n");
 		y++;
 	}
-	printf("player.pos.x=%lf, player.pos.y=%lf, player.angle=%lf\n", 
+	printf("player.pos.x=%lf, player.pos.y=%lf, player.angle=%lf\n",
 		loader.player_pos.x, loader.player_pos.y, loader.player_angle);
 }
