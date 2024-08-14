@@ -51,7 +51,8 @@ static void	draw_vertical_line_of_wall(t_mlx *mlx, t_inter inter, size_t put_x)
 			img_y = (img.height * wall_i) / inter.wall_height;
 			if (img_y >= img.height - 4)
 				img_y = img.height - 4;
-			put_pixel(&(mlx->img), put_x, put_y, pick_color(&img, img_x, img_y));
+			put_pixel(&(mlx->img), put_x, put_y,
+				pick_color(&img, img_x, img_y));
 		}
 		put_y++;
 		wall_i++;
