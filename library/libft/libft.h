@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 20:39:13 by tozeki            #+#    #+#             */
-/*   Updated: 2024/08/08 00:52:34 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/15 20:09:53 by tozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,13 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 // original
-size_t ft_count_rows(char **d_str);
-char **ft_double_str_dup(char **d_str);
+size_t	ft_count_rows(char **d_str);
+char	**ft_double_str_dup(char **d_str);
 void	ft_free_double_str(char **d_str);
 bool	ft_isequal(char *s1, char *s2);
 bool	ft_my_perror_ret_false(char *err_s);
-char	*ft_strtrim_sepasets(const char *s1, const char *front_trim_set, const char *back_trim_set);
+char	*ft_strtrim_sepasets(const char *s1, const char *front_trim_set,
+			const char *back_trim_set);
 bool	ft_validate_extention(char *path, char *extention);
 char	*ft_itonbase(int num, unsigned int base);
 // open 
@@ -78,8 +79,9 @@ char	*ft_x_strdup(const char *s1);
 char	*ft_x_strjoin(const char *s1, const char *s2);
 char	*ft_x_strtrim(const char *s1, const char *set);
 char	*ft_x_substr(const char *s, unsigned int start, size_t len);
-char **ft_x_double_str_dup(char **d_str);
-char	*ft_x_strtrim_sepasets(const char *s1, const char *front_trim_set, const char *back_trim_set);
+char	**ft_x_double_str_dup(char **d_str);
+char	*ft_x_strtrim_sepasets(const char *s1, const char *front_trim_set,
+			const char *back_trim_set);
 //perror
 void	ft_perror_exit(char *err_title, int exit_code);
 

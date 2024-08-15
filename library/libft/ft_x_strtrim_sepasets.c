@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_x_strtrim_sepasets.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 00:25:50 by toshi             #+#    #+#             */
-/*   Updated: 2024/08/08 00:54:46 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/15 20:11:48 by tozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_x_strtrim_sepasets(const char *s1, const char *front_trim_set, const char *back_trim_set)
+char	*ft_x_strtrim_sepasets(const char *s1, const char *front_trim_set,
+		const char *back_trim_set)
 {
 	char	*trimed_str;
 

@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itonbase.c                                         :+:      :+:    :+:   */
+/*   ft_itonbase.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:53:30 by tozeki            #+#    #+#             */
-/*   Updated: 2024/08/06 23:16:39 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/15 20:26:13 by tozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itonbase(int num, unsigned int base);
+char			*ft_itonbase(int num, unsigned int base);
 static size_t	get_dig_nbase(unsigned int num, unsigned int base);
-static char *set_string_nbase(unsigned int num, unsigned int base, size_t dig, int negative);
+static char		*set_string_nbase(unsigned int num, unsigned int base,
+					size_t dig, int negative);
 
-char *ft_itonbase(int num, unsigned int base)
+char	*ft_itonbase(int num, unsigned int base)
 {
 	unsigned int	cnum;
 	int				negative;
@@ -33,7 +34,8 @@ char *ft_itonbase(int num, unsigned int base)
 	return (set_string_nbase(cnum, base, dig, negative));
 }
 
-static char *set_string_nbase(unsigned int num, unsigned int base, size_t dig, int negative)
+static char	*set_string_nbase(unsigned int num, unsigned int base, size_t dig,
+		int negative)
 {
 	const char	*string_base = "0123456789ABCDEF";
 	char		*str;
@@ -54,7 +56,7 @@ static char *set_string_nbase(unsigned int num, unsigned int base, size_t dig, i
 static size_t	get_dig_nbase(unsigned int num, unsigned int base)
 {
 	size_t	dig;
-	
+
 	dig = 1;
 	while (num >= base)
 	{

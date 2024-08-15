@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim_sepasets.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 00:25:14 by toshi             #+#    #+#             */
-/*   Updated: 2024/08/08 00:25:15 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/15 20:04:49 by tozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static size_t	get_end_count(const char *s1, const char *set, size_t start)
 	return (len - 1);
 }
 
-char	*ft_strtrim_sepasets(const char *s1, const char *front_trim_set, const char *back_trim_set)
+char	*ft_strtrim_sepasets(const char *s1, const char *front_trim_set,
+		const char *back_trim_set)
 {
 	size_t	start;
 	size_t	end;
