@@ -12,7 +12,7 @@
 
 #include "draw.h"
 
-void	put_pixel(t_img *img, int x, int y, int color)
+void	put_pixel(t_image *img, int x, int y, int color)
 {
 	char	*pixel;
 
@@ -20,7 +20,7 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	*((int *)pixel) = color;
 }
 
-int	pick_color(t_img *img, int x, int y)
+int	pick_color(t_image *img, int x, int y)
 {
 	char	*pixel;
 
@@ -43,14 +43,14 @@ static void	set_value_draw_line(t_point *player, t_point *div, t_point *inter,
 		direction->y = -1;
 }
 
-void	draw_line(t_img *img, t_point player, t_point inter, int color)
+void	draw_line(t_image *img, t_point player, t_point inter, int color)
 {
 	t_point	div;
 	t_point	direction;
 	int		err;
 	int		e2;
 
-	set_value_draw_line(&player, &div, &inter, &direction, &err);
+	set_value_draw_line(&player, &div, &inter, &direction);
 	err = div.x - div.y;
 	while (1)
 	{

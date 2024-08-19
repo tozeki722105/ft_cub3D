@@ -22,7 +22,7 @@ static t_pos	calc_vertical_start_pos(t_mlx *mlx, double ray_angle)
 
 	player = mlx->player;
 	map = mlx->map;
-	panel_origin_x = ((int)(player.pos.x / map.panel_side) * map.panel_side);
+	panel_origin_x = ((int)(player.pos.x / map.panel_side) *map.panel_side);
 	if (player.pos.x == panel_origin_x || !is_right(ray_angle))
 		pos.x = panel_origin_x;
 	else

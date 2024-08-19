@@ -3,8 +3,10 @@
 
 #if defined(__linux__)
 	#include "mlx.h"
+	#include "mlx_int.h"
 #else
 	#include "mlx.h" 
+	#include "mlx_int.h"
 #endif
 #include <stdbool.h>
 #include <stdio.h>
@@ -58,4 +60,7 @@ typedef struct s_pos
 	double	y;
 } t_pos;
 
+void	*ft_x_mlx_init();
+void	*ft_x_mlx_new_image(t_xvar *xvar,int width, int height);
+void	*ft_x_mlx_new_window(t_xvar *xvar,int size_x,int size_y,char *title);
 #endif

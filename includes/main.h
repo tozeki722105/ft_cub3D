@@ -4,7 +4,7 @@
 #include "utils.h"
 #include "config.h"
 
-typedef struct s_img
+typedef struct s_image
 {
 	void	*handle;
 	char	*buffer;
@@ -13,7 +13,7 @@ typedef struct s_img
 	int		endian;
 	int		width;
 	int		height;
-}	t_img;
+}	t_image;
 
 typedef struct s_player
 {
@@ -33,10 +33,10 @@ typedef struct s_map
 
 typedef struct s_texture
 {
-	t_img	north;
-	t_img	south;
-	t_img	west;
-	t_img	east;
+	t_image	north;
+	t_image	south;
+	t_image	west;
+	t_image	east;
 	int 	floor;
 	int		ceiling;
 } t_tex;
@@ -45,7 +45,7 @@ typedef struct s_mlx
 {
 	void		*handle;
 	void		*window;
-	t_img		img;
+	t_image		img;
 	t_tex		textures;
 	t_player	player;
 	t_map		map;

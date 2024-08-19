@@ -6,7 +6,7 @@
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 21:38:01 by tozeki            #+#    #+#             */
-/*   Updated: 2024/08/08 00:52:34 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/10 20:39:17 by tyamauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h> //malloc free
 # include <unistd.h> //ssize_t
+# include <stdint.h> //ssize_t
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42

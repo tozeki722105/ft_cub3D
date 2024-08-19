@@ -26,6 +26,8 @@ DRAW_DIR = draw
 
 PARSE_DIR = parse
 
+MLX_WRAPPER_DIR = mlx_wrapper
+
 OBJS_DIR = objs
 
 LIBRARY_DIR = library
@@ -70,7 +72,10 @@ SRCS		:=	$(SRCS_DIR)/$(CALC_DIR)/calc_calc_horizontal_inter_pos.c\
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_validate_map_data_utils.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_validate_map_data.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_utils.c \
-				$(SRCS_DIR)/$(PARSE_DIR)/parse.c 
+				$(SRCS_DIR)/$(PARSE_DIR)/parse.c \
+				$(SRCS_DIR)/$(MLX_WRAPPER_DIR)/ft_x_mlx_init.c \
+				$(SRCS_DIR)/$(MLX_WRAPPER_DIR)/ft_x_mlx_new_image.c \
+				$(SRCS_DIR)/$(MLX_WRAPPER_DIR)/ft_x_mlx_new_window.c
 
 PARSE_SRCS	:=	$(SRCS_DIR)/$(PARSE_DIR)/parse_load_utils.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_load_utils2.c \
