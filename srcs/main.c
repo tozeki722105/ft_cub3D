@@ -53,7 +53,7 @@ void	initialize_render(t_mlx *mlx, t_loader loader)
 	mlx->img.buffer = mlx_get_data_addr(mlx->img.handle, &(mlx->img.bits_per_pixel), &(mlx->img.line_size), &(mlx->img.endian));
 	mlx->player.pos = loader.player_pos;
 	mlx->player.angle = loader.player_angle;
-	mlx->map.data = ft_double_str_dup(loader.map_data);
+	mlx->map.data = ft_x_double_str_dup(loader.map_data);
 	mlx->map.y_count = loader.map_y_count;
 	mlx->map.x_count = loader.map_x_count;
 	mlx->map.panel_side = MAP_PANEL_SIDE;
@@ -105,7 +105,8 @@ int main(int argc, char* argv[])
 	mlx.map.data[7] = strdup("1000000001");
 	mlx.map.data[8] = strdup("1000000101");
 	mlx.map.data[9] = strdup("1111111111");
-	mlx.textures.north.handle = mlx_xpm_file_to_image(mlx.handle, "./img/collect.xpm", &(mlx.textures.north.width), &(mlx.textures.north.height));
+	//mlx.textures.north.handle = mlx_xpm_file_to_image(mlx.handle, "./img/collect.xpm", &(mlx.textures.north.width), &(mlx.textures.north.height));
+	mlx.textures.north.handle = mlx_xpm_file_to_image(mlx.handle, "./img/mini-capy.xpm", &(mlx.textures.north.width), &(mlx.textures.north.height));
 	mlx.textures.north.buffer = mlx_get_data_addr(mlx.textures.north.handle, &(mlx.textures.north.bits_per_pixel), &(mlx.textures.north.line_size), &(mlx.textures.north.endian));
 	mlx.textures.south.handle = mlx_xpm_file_to_image(mlx.handle, "./img/exit.xpm", &(mlx.textures.south.width), &(mlx.textures.south.height));
 	mlx.textures.south.buffer = mlx_get_data_addr(mlx.textures.south.handle, &(mlx.textures.south.bits_per_pixel), &(mlx.textures.south.line_size), &(mlx.textures.south.endian));
