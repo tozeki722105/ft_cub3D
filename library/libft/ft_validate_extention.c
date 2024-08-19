@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_validate_extention.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 00:25:18 by toshi             #+#    #+#             */
-/*   Updated: 2024/08/08 00:25:19 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/15 20:06:12 by tozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /// @param extention not NULL (.)start
 bool	ft_validate_extention(char *path, char *extention)
 {
-	char *ptr;
+	char	*ptr;
 
 	ptr = ft_strrchr(path, *extention);
 	if (!ptr || ptr == path)

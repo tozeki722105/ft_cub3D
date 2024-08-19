@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_count_rows.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 00:27:01 by toshi             #+#    #+#             */
-/*   Updated: 2024/08/08 00:27:01 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/15 19:56:38 by tozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t ft_count_rows(char **d_str)
+size_t	ft_count_rows(char **d_str)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (d_str[i])

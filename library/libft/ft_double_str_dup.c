@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_double_str_dup.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 00:27:07 by toshi             #+#    #+#             */
-/*   Updated: 2024/08/08 00:52:34 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/15 19:57:37 by tozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char **ft_double_str_dup(char **d_str)
+char	**ft_double_str_dup(char **d_str)
 {
-	char **res;
+	char	**res;
 	size_t	i;
 	size_t	y_count;
 
