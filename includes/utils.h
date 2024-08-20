@@ -4,7 +4,7 @@
 #if defined(__linux__)
 	#include "mlx.h"
 #else
-	#include "mlx.h" 
+	#include "../library/minilibx_opengl_20191021/mlx.h"
 #endif
 #include <stdbool.h>
 #include <stdio.h>

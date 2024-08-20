@@ -6,7 +6,7 @@
 /*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:15:01 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/13 14:15:35 by tyamauch         ###   ########.fr       */
+/*   Updated: 2024/08/20 09:57:32 by tyamauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	draw_line(t_img *img, t_point player, t_point inter, int color)
 	int		err;
 	int		e2;
 
-	set_value_draw_line(&player, &div, &inter, &direction, &err);
+	set_value_draw_line(&player, &div, &inter, &direction);
 	err = div.x - div.y;
 	while (1)
 	{

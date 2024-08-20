@@ -50,7 +50,13 @@ typedef struct
 	int 		map_x_count;
 }	t_loader;
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 t_loader	parse(char *path);
+#ifdef __cplusplus
+}
+#endif
 
 //load_map_list_to_data.c
 void load_map_list_to_data(t_map_node *ptr, t_loader *loader);

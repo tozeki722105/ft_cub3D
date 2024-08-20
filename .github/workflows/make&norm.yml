@@ -17,3 +17,5 @@ jobs:
       run: make
     - name: norm check
       run: make norm
+    - name: tests
+      run: make test      

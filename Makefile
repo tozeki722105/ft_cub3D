@@ -6,7 +6,7 @@
 #    By: toshi <toshi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/08/08 01:05:48 by toshi            ###   ########.fr        #
+#    Updated: 2024/08/20 10:03:00 by tyamauch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,8 @@ PARSE_DIR = parse
 OBJS_DIR = objs
 
 LIBRARY_DIR = library
+
+TESTS_DIR = tests
 
 DIR_DUP = mkdir -p $(@D)
 
@@ -113,4 +115,9 @@ fclean: clean
 
 re: fclean all
 
-.PHONY:	all clean fclean re
+test:
+	cmake -S . -B $(TESTS_DIR)/build
+	cmake --build $(TESTS_DIR)/build
+	./$(TESTS_DIR)/build/parse_test
+
+.PHONY:	all clean fclean re test
