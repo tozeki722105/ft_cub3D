@@ -120,4 +120,7 @@ test:
 	cmake --build $(TESTS_DIR)/build
 	./$(TESTS_DIR)/build/parse_test
 
+norm:
+	norminette $(SRCS_DIR) | grep -v "OK" || true
+
 .PHONY:	all clean fclean re test
