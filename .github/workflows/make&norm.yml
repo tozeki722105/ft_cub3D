@@ -13,6 +13,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+      # Add the following step to install dependencies
+    - name: Install dependencies
+      run: sudo apt-get update && sudo apt-get install -y libbsd-dev
     - name: make
       run: make
     - name: norm check
