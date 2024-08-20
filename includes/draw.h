@@ -13,9 +13,9 @@ typedef struct s_point
 void 	draw_wall(t_mlx *mlx, int start);
 
 //draw_utils.c
-void	put_pixel(t_img *img, int x, int y, int color);
-int		pick_color(t_img *img, int x, int y);
-void	draw_line(t_img *img, t_point player, t_point inter, int color);
+void	put_pixel(t_image *img, int x, int y, int color);
+int		pick_color(t_image *img, int x, int y);
+void	draw_line(t_image *img, t_point player, t_point inter, int color);
 void	draw_map(t_mlx *mlx, int floor_color, int wall_color);
 
 //draw_background.c
