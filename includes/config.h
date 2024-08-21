@@ -7,7 +7,7 @@
 #define MAP_PANEL_SIDE	50
 #define	MAP_PADDING	10
 
-#define ANGLE_STEP	5
+#define ANGLE_STEP	1
 #define MOVE_STEP	5
 
 #define FOV	60 
