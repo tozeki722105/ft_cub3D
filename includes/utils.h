@@ -5,8 +5,7 @@
 	#include "mlx.h"
 	#include "mlx_int.h"
 #else
-	#include "mlx.h" 
-	#include "mlx_int.h"
+	#include "../library/minilibx_opengl_20191021/mlx.h"
 #endif
 #include <stdbool.h>
 #include <stdio.h>
@@ -61,6 +60,12 @@ typedef struct s_pos
 } t_pos;
 
 void	*ft_x_mlx_init();
-void	*ft_x_mlx_new_image(t_xvar *xvar,int width, int height);
-void	*ft_x_mlx_new_window(t_xvar *xvar,int size_x,int size_y,char *title);
+#if defined(__linux__)
+	void	*ft_x_mlx_new_image(t_xvar *xvar,int width, int height);
+	void	*ft_x_mlx_new_window(t_xvar *xvar,int size_x,int size_y,char *title);
+#else
+	void	*ft_x_mlx_new_image(void *mlx_ptr,int width,int height);
+	void	*ft_x_mlx_new_window(void *mlx_ptr, int size_x, int size_y, char *title);
+#endif
+
 #endif
