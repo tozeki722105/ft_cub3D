@@ -2,6 +2,7 @@
 #include "calc.h"
 #include "parse.h"
 #include "draw.h"
+#include "utils.h"
 
 void render(t_mlx *mlx)
 {   
@@ -46,9 +47,9 @@ int	destroy_window_hook(t_mlx *mlx)
 
 void	initialize_render(t_mlx *mlx, t_loader loader)
 {
-	mlx->handle = mlx_init();
-	mlx->window = mlx_new_window(mlx->handle, WINDOW_WIDTH, WINDOW_HEIGHT, "cuv3d"); 
-	mlx->img.handle = mlx_new_image(mlx->handle, WINDOW_WIDTH, WINDOW_HEIGHT);
+	mlx->handle = ft_x_mlx_init();
+	mlx->window = ft_x_mlx_new_window(mlx->handle, WINDOW_WIDTH, WINDOW_HEIGHT, "cuv3d"); 
+	mlx->img.handle = ft_x_mlx_new_image(mlx->handle, WINDOW_WIDTH, WINDOW_HEIGHT);
 	mlx->img.buffer = mlx_get_data_addr(mlx->img.handle, &(mlx->img.bits_per_pixel), &(mlx->img.line_size), &(mlx->img.endian));
 	mlx->player.pos = loader.player_pos;
 	mlx->player.angle = loader.player_angle;

@@ -14,7 +14,7 @@
 #include "config.h"
 #include "main.h"
 
-static t_img	get_img(t_mlx *mlx, t_inter inter)
+static t_image	get_img(t_mlx *mlx, t_inter inter)
 {
 	if (inter.axis == HORIZONTAL)
 	{
@@ -38,7 +38,7 @@ static void	draw_vertical_line_of_wall(t_mlx *mlx, t_inter inter, size_t put_x)
 	size_t	wall_i;
 	size_t	img_x;
 	size_t	img_y;
-	t_img	img;
+	t_image	img;
 
 	img = get_img(mlx, inter);
 	img_x = (img.width * inter.origin_offset) / mlx->map.panel_side;
