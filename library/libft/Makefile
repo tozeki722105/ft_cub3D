@@ -7,9 +7,9 @@ OS := $(shell uname -s)
 CFLAGS	:=	-Wall -Wextra -Werror
 
 ifeq ($(OS),Linux)
-	CFLAGS  += -arch arm64 -arch x86_64
-else
 	CFLAGS  += 
+else
+	CFLAGS  += -arch arm64 -arch x86_64
 endif
 
 NAME	:=	libft.a
