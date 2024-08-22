@@ -53,7 +53,7 @@ void	initialize_render(t_mlx *mlx, t_loader loader)
 	mlx->img.buffer = mlx_get_data_addr(mlx->img.handle, &(mlx->img.bits_per_pixel), &(mlx->img.line_size), &(mlx->img.endian));
 	mlx->player.pos = loader.player_pos;
 	mlx->player.angle = loader.player_angle;
-	mlx->map.data = ft_double_str_dup(loader.map_data);
+	mlx->map.data = ft_x_double_str_dup(loader.map_data);
 	mlx->map.y_count = loader.map_y_count;
 	mlx->map.x_count = loader.map_x_count;
 	mlx->map.panel_side = MAP_PANEL_SIDE;
