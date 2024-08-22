@@ -2,7 +2,7 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ "new_calc_intersection" ]
+    branches: [ "tyamauch-tests" ]
   pull_request:
     branches: [ "main" ]
 
@@ -13,7 +13,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+      # Add the following step to install dependencies
+    - name: Install dependencies
+      run: sudo apt-get update && sudo apt-get install -y libbsd-dev
+      # Install dependencies, including norminette and libbsd-dev
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libbsd-dev python3-pip
+        pip3 install norminette
     - name: make
       run: make
     - name: norm check
       run: make norm
+    - name: tests
+      run: make test      

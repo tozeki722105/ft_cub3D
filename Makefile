@@ -6,7 +6,7 @@
 #    By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/08/20 17:00:22 by tozeki           ###   ########.fr        #
+#    Updated: 2024/08/22 15:15:01 by tyamauch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ MLX_WRAPPER_DIR = mlx_wrapper
 OBJS_DIR = objs
 
 LIBRARY_DIR = library
+
+TESTS_DIR = tests
 
 DIR_DUP = mkdir -p $(@D)
 
@@ -118,4 +120,12 @@ fclean: clean
 
 re: fclean all
 
-.PHONY:	all clean fclean re
+test:
+	cmake -S . -B $(TESTS_DIR)/build
+	cmake --build $(TESTS_DIR)/build
+	./$(TESTS_DIR)/build/parse_test
+
+norm:
+	norminette $(SRCS_DIR) | grep -v "OK" || true
+
+.PHONY:	all clean fclean re test

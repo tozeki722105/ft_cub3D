@@ -4,7 +4,7 @@
 #include <math.h>
 #include "main.h"
 #include "draw.h"
-#include "../libft/libft.h"
+#include "../library/libft/libft.h"
 
 enum	e_axis
 {

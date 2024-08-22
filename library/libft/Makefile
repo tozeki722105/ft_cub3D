@@ -2,7 +2,15 @@ CC		:=	cc
 AR		:=	ar rcs
 RM		:=	rm -f
 
+OS := $(shell uname -s)
+
 CFLAGS	:=	-Wall -Wextra -Werror
+
+ifeq ($(OS),Linux)
+	CFLAGS  += 
+else
+	CFLAGS  += -arch arm64 -arch x86_64
+endif
 
 NAME	:=	libft.a
 

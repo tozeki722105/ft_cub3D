@@ -21,6 +21,7 @@
 # include <stdbool.h> //bool
 # include <stdio.h> //perror
 # include "get_next_line.h"
+# include <stdint.h> //perror
 
 bool	ft_isalpha(int c);
 bool	ft_isdigit(int c);

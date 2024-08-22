@@ -2,11 +2,12 @@
 # define UTILS_H
 
 #if defined(__linux__)
-	#include "mlx.h"
-	#include "mlx_int.h"
+	#include "../library/minilibx-linux/mlx.h"
+	#include "../library/minilibx-linux/mlx_int.h"
 #else
 	#include "../library/minilibx_opengl_20191021/mlx.h"
 #endif
+
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
