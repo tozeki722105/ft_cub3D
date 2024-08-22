@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_load_textures.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:33:34 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/13 14:33:36 by tyamauch         ###   ########.fr       */
+/*   Updated: 2024/08/20 17:36:33 by tozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static bool	is_member_default(t_loader loader, t_line_kind kind)
 		return (loader.ceiling_color == -1);
 	if (kind == KIND_MAP)
 		return (loader.map_data == NULL);
+	if (kind == KIND_NEWLINE)
+		return (true);
 	else
 		return (false);
 }

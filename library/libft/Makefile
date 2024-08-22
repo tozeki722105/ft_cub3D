@@ -3,6 +3,7 @@ AR		:=	ar rcs
 RM		:=	rm -f
 
 CFLAGS	:=	-Wall -Wextra -Werror
+CFLAGS  += -arch arm64 -arch x86_64
 
 NAME	:=	libft.a
 
