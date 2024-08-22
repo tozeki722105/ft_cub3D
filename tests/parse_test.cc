@@ -4,7 +4,7 @@
 // Demonstrate some basic assertions.
 TEST(ParseTest, BasicAssertions) {
   // Expect equality.
-	char *path = "/Users/taka/42/test2_ft_cub3D/map/test_subject.cub";
+	char *path = "../map/test_subject.cub";
   t_loader actual = parse(path);
   // cahr *
   EXPECT_STREQ(actual.north_path, "./img/collect.xpm");
