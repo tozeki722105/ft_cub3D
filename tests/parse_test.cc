@@ -43,10 +43,10 @@ TEST(ParseTest, BasicAssertions) {
 	TestPath test;	
 	test.setNorthPath("./img/collect.xpm");
 	test.setSouthPath("./img/exit.xpm");
-	test.setWestPath("./img/title.xpm");
+	test.setWestPath("./img/tile.xpm");
 	test.setEastPath("./img/wall.xpm");
 
-	char *path = "../map/test_subject.cub";
+	char *path = "./map/test_subject.cub";
   t_loader actual = parse(path);
   // cahr *
   EXPECT_STREQ(actual.north_path, test.getNorthPath().c_str());

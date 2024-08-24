@@ -6,7 +6,7 @@
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:36:49 by toshi             #+#    #+#             */
-/*   Updated: 2024/08/08 00:09:13 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/22 16:19:23 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_loader	parse(char *path)
 		ft_my_perror_exit("The file extension is different", 0);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		ft_my_perror_exit("A system call failed", 0);
+		ft_perror_exit("A system call failed", 0);
 	loader = init_loader();
 	load_textures(fd, &loader);
 	load_map_str_to_list(fd, &loader);
