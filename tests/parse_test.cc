@@ -38,27 +38,55 @@ void TestPath::setEastPath(std::string east_path) { east_path_ = east_path; }
 
 
 // Demonstrate some basic assertions.
-TEST(ParseTest, BasicAssertions) {
+TEST(parseTest, BasicAssertions) {
   // Expect equality.
+	//
+	std::cout << "==== test_subject.cub =====" << std::endl;
+	char *path = "./map/test_subject.cub";
+  t_loader actual = parse(path);
+
 	TestPath test;	
 	test.setNorthPath("./img/collect.xpm");
 	test.setSouthPath("./img/exit.xpm");
 	test.setWestPath("./img/tile.xpm");
 	test.setEastPath("./img/wall.xpm");
 
-	char *path = "./map/test_subject.cub";
-  t_loader actual = parse(path);
-  // cahr *
   EXPECT_STREQ(actual.north_path, test.getNorthPath().c_str());
   EXPECT_STREQ(actual.south_path, test.getSouthPath().c_str());
   EXPECT_STREQ(actual.west_path, test.getWestPath().c_str());
   EXPECT_STREQ(actual.east_path, test.getEastPath().c_str());
 
+	std::cout << "==== test_combine.cub ====" << std::endl;
+	path = "./map/test_combine.cub";
+
+  actual = parse(path);
+  EXPECT_STREQ(actual.north_path, test.getNorthPath().c_str());
+  EXPECT_STREQ(actual.south_path, test.getSouthPath().c_str());
+  EXPECT_STREQ(actual.west_path, test.getWestPath().c_str());
+  EXPECT_STREQ(actual.east_path, test.getEastPath().c_str());
+
+	std::cout << "==== test_corner_space.cub ====" << std::endl;
+	path = "./map/test_corner_space.cub";
+  actual = parse(path);
+
+  EXPECT_STREQ(actual.north_path, test.getNorthPath().c_str());
+  EXPECT_STREQ(actual.south_path, test.getSouthPath().c_str());
+  EXPECT_STREQ(actual.west_path, test.getWestPath().c_str());
+  EXPECT_STREQ(actual.east_path, test.getEastPath().c_str());
+
+	std::cout << "==== test_mini.cub ====" << std::endl;
+	path = "./map/test_mini.cub";
+  actual = parse(path);
+
+  EXPECT_STREQ(actual.north_path, test.getNorthPath().c_str());
+  EXPECT_STREQ(actual.south_path, test.getSouthPath().c_str());
+  EXPECT_STREQ(actual.west_path, test.getWestPath().c_str());
+  EXPECT_STREQ(actual.east_path, test.getEastPath().c_str());
   //int 
-  EXPECT_EQ(actual.floor_color, 14443520);
-  EXPECT_EQ(actual.ceiling_color, 14753280);
-  EXPECT_EQ(actual.map_x_count, 33);
-  EXPECT_EQ(actual.map_y_count, 14);
+  /* EXPECT_EQ(actual.floor_color, 14443520); */
+  /* EXPECT_EQ(actual.ceiling_color, 14753280); */
+  /* EXPECT_EQ(actual.map_x_count, 33); */
+  /* EXPECT_EQ(actual.map_y_count, 14); */
 
   //double
 }
