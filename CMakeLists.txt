@@ -20,15 +20,15 @@ add_executable(
   # hello_test.cc
 	parse_test
   tests/parse_test.cc
-	srcs/calc/calc_calc_horizontal_inter_pos.c
-  srcs/calc/calc_calc_vertical_inter_pos.c
-  srcs/calc/calc_intersection.c
-  srcs/calc/calc_utils.c
-  srcs/calc/calc_utils2.c
-	srcs/draw/draw_background.c
-	srcs/draw/draw_rect.c
-	srcs/draw/draw_utils.c
-	srcs/draw/draw_wall.c
+	# srcs/calc/calc_calc_horizontal_inter_pos.c
+  # srcs/calc/calc_calc_vertical_inter_pos.c
+  # srcs/calc/calc_intersection.c
+  # srcs/calc/calc_utils.c
+  # srcs/calc/calc_utils2.c
+	# srcs/draw/draw_background.c
+	# srcs/draw/draw_rect.c
+	# srcs/draw/draw_utils.c
+	# srcs/draw/draw_wall.c
 	srcs/parse/parse.c
   srcs/parse/parse_add_color.c
   srcs/parse/parse_load_map_list_to_data.c
