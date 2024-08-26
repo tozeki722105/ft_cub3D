@@ -16,6 +16,11 @@
 # include "config.h"
 # include "utils.h"
 
+#define	KEYPRESS			2
+#define	DESTROY_NOTIFY		17
+#define	KEYPRESS_MASK		1L<<0
+#define STRUCTURE_NOTIFY_MASK	1L<<17
+
 typedef struct s_image
 {
 	void		*handle;

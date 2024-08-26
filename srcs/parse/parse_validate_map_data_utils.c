@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_validate_map_data_utils.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:36:07 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/13 14:36:09 by tyamauch         ###   ########.fr       */
+/*   Updated: 2024/08/26 18:52:50 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #define SPACE ' '
 
 static bool	validate_vertical_wall_and_fill_space(char **map_data, size_t x,
-		int step, char fill_char)
+		t_dir step, char fill_char)
 {
 	size_t	i;
 	size_t	end;
@@ -26,13 +26,13 @@ static bool	validate_vertical_wall_and_fill_space(char **map_data, size_t x,
 		return (false);
 	i = 0;
 	y = i;
-	if (step < 0)
+	if (step == BACK)
 		y = end - 1;
 	while (i++ < end && (map_data[y][x] == SPACE
 		|| map_data[y][x] == fill_char))
 	{
 		map_data[y][x] = fill_char;
-		y += step;
+		y += (int)step;
 	}
 	if (map_data[y][x] == WALL)
 		return (true);
@@ -40,7 +40,7 @@ static bool	validate_vertical_wall_and_fill_space(char **map_data, size_t x,
 }
 
 static bool	validate_horizontal_wall_and_fill_space(char **map_data, size_t y,
-		int step, char fill_char)
+		t_dir step, char fill_char)
 {
 	size_t	i;
 	size_t	end;
@@ -51,13 +51,13 @@ static bool	validate_horizontal_wall_and_fill_space(char **map_data, size_t y,
 		return (false);
 	i = 0;
 	x = i;
-	if (step < 0)
+	if (step == BACK)
 		x = end - 1;
 	while (i++ < end && (map_data[y][x] == SPACE
 		|| map_data[y][x] == fill_char))
 	{
 		map_data[y][x] = fill_char;
-		x += step;
+		x += (int)step;
 	}
 	if (map_data[y][x] == WALL)
 		return (true);
@@ -72,8 +72,8 @@ bool	validate_surrounded_wall_and_fill_space(char **map_data)
 	y = 0;
 	while (map_data[y])
 	{
-		if (!validate_horizontal_wall_and_fill_space(map_data, y, 1, '!')
-			|| !validate_horizontal_wall_and_fill_space(map_data, y, -1, '!'))
+		if (!validate_horizontal_wall_and_fill_space(map_data, y, FRONT, '!')
+			|| !validate_horizontal_wall_and_fill_space(map_data, y, BACK, '!'))
 			return (false);
 		y++;
 	}
@@ -81,8 +81,8 @@ bool	validate_surrounded_wall_and_fill_space(char **map_data)
 	x = 0;
 	while (map_data[y][x])
 	{
-		if (!validate_vertical_wall_and_fill_space(map_data, x, 1, '!')
-			|| !validate_vertical_wall_and_fill_space(map_data, x, -1, '!'))
+		if (!validate_vertical_wall_and_fill_space(map_data, x, FRONT, '!')
+			|| !validate_vertical_wall_and_fill_space(map_data, x, BACK, '!'))
 			return (false);
 		x++;
 	}
