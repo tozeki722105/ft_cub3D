@@ -6,7 +6,7 @@
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:36:49 by toshi             #+#    #+#             */
-/*   Updated: 2024/08/22 16:19:23 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/26 14:39:23 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,22 +76,22 @@ t_loader	parse(char *path)
 	int			fd;
 
 	if (!ft_validate_extention(path, ".cub"))
-		ft_my_perror_exit("The file extension is different", 0);
+		ft_my_perror_exit("The file extension is different", 1);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		ft_perror_exit("A system call failed", 0);
+		ft_perror_exit(NULL, 1);
 	loader = init_loader();
 	load_textures(fd, &loader);
 	load_map_str_to_list(fd, &loader);
 	close(fd);
 	trim_map_list(&(loader.map_head), "");
 	if (is_contained_newline(loader.map_head))
-		ft_my_perror_exit("Only one map_data is allowed", 0);
+		ft_my_perror_exit("Only one map_data is allowed", 1);
 	load_map_list_to_data(loader.map_head, &loader);
 	if (!validate_map_data(loader.map_data))
 		exit(0);
 	if (!validate_grid_pos(loader.map_data, &(loader.player_grid_pos)))
-		ft_my_perror_exit("Put only one player element in the map", 0);
+		ft_my_perror_exit("Put only one player element in the map", 1);
 	loader.player_pos = convert_player_pos(loader.player_grid_pos);
 	loader.player_angle = convert_player_angle(loader.map_data,
 			loader.player_grid_pos);

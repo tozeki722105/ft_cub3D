@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_add_color.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:30:58 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/13 14:30:59 by tyamauch         ###   ########.fr       */
+/*   Updated: 2024/08/26 14:40:18 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	add_color(t_loader *loader, t_line_kind kind, char *str)
 	free(val);
 	color = convert_rgb_color(rgb_array[0], rgb_array[1], rgb_array[2]);
 	if (color == -1)
-		ft_my_perror_exit("RGB contains value other than 0 to 255", 0);
+		ft_my_perror_exit("RGB contains value other than 0 to 255", 1);
 	free(rgb_array);
 	if (kind == KIND_FLOOR)
 		loader->floor_color = color;
