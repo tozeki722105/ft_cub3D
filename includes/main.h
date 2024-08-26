@@ -6,7 +6,7 @@
 /*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 19:46:09 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/26 19:46:10 by tyamauch         ###   ########.fr       */
+/*   Updated: 2024/08/26 20:30:40 by tyamauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 # include "config.h"
 # include "utils.h"
 
-#define	KEYPRESS			2
-#define	DESTROY_NOTIFY		17
-#define	KEYPRESS_MASK		1L<<0
-#define STRUCTURE_NOTIFY_MASK	1L<<17
+# define KEYPRESS 2
+# define DESTROY_NOTIFY 17
 
 typedef struct s_image
 {

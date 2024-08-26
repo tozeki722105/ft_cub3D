@@ -22,7 +22,7 @@ typedef struct s_point
 }		t_point;
 
 // draw_wall.c
-void 	draw_wall(t_mlx *mlx);
+void	draw_wall(t_mlx *mlx);
 
 //draw_utils.c
 void	put_pixel(t_image *img, int x, int y, int color);
