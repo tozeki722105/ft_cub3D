@@ -6,7 +6,7 @@
 /*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 19:16:28 by tozeki            #+#    #+#             */
-/*   Updated: 2024/08/26 20:32:29 by tozeki           ###   ########.fr       */
+/*   Updated: 2024/08/26 20:40:53 by tozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "draw.h"
 #include "utils.h"
 
-// void	initialize_mlx(t_mlx *mlx, t_loader loader);
+void	initialize_mlx(t_mlx *mlx, t_loader loader);
 
 // __attribute__((destructor))
 // static void destructor() {
