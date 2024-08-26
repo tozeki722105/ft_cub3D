@@ -6,7 +6,7 @@
 #    By: toshi <toshi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/08/26 14:50:22 by toshi            ###   ########.fr        #
+#    Updated: 2024/08/26 19:12:12 by toshi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -126,6 +126,6 @@ test:
 	./$(TESTS_DIR)/build/parse_test
 
 norm:
-	norminette $(SRCS_DIR) | grep -v "OK" || true
+	norminette $(SRCS_DIR) $(INCLUDES_DIR) $(LIBFT_PATH) | grep -v "OK" || true
 
 .PHONY:	all clean fclean re test
