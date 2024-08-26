@@ -83,14 +83,13 @@ int main(int argc, char* argv[])
 	t_loader loader;
 
 	if (argc != 2)
-		return (1);
+		ft_my_perror_exit("Incorrect number of arguments", 1);
 	loader = parse(argv[1]);
 	initialize_render(&mlx, loader);
 	free_loader(loader);	
-
 	render(&mlx);
-	mlx_hook(mlx.window, 17, 1L << 17, destroy_window_hook, &mlx);
-	mlx_hook(mlx.window, 02, 1L << 0, &handle_keypress, &mlx);
+	mlx_hook(mlx.window, DESTROY_NOTIFY, STRUCTURE_NOTIFY_MASK, destroy_window_hook, &mlx);
+	mlx_hook(mlx.window, KEYPRESS, KEYPRESS_MASK, &handle_keypress, &mlx);
 	mlx_loop(mlx.handle);
 }
 
