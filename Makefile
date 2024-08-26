@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: toshi <toshi@student.42.fr>                +#+  +:+       +#+         #
+#    By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/08/26 19:12:12 by toshi            ###   ########.fr        #
+#    Updated: 2024/08/26 20:33:05 by tozeki           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,7 @@ SRCS		:=	$(SRCS_DIR)/$(CALC_DIR)/calc_calc_horizontal_inter_pos.c\
 				$(SRCS_DIR)/$(DRAW_DIR)/draw_rect.c \
 				$(SRCS_DIR)/$(DRAW_DIR)/draw_utils.c \
 				$(SRCS_DIR)/$(DRAW_DIR)/draw_wall.c \
+				$(SRCS_DIR)/initialize_mlx.c \
 				$(SRCS_DIR)/main.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_add_color.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_load_map_list_to_data.c \
