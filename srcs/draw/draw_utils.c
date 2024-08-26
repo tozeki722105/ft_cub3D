@@ -6,7 +6,7 @@
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:15:01 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/26 14:31:48 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/26 15:04:06 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ void	draw_map(t_mlx *mlx, int floor_color, int wall_color)
 			color = floor_color;
 			if (map.data[y][x] == '1')
 				color = wall_color;
-				pos.x = (x * map.panel_side) + 1;
-				pos.y = (x * map.panel_side) + 1;
+			pos.x = (x * map.panel_side) + 1;
+			pos.y = (x * map.panel_side) + 1;
 			draw_square_safely(mlx, pos, map.panel_side - 2, color);
 			x++;
 		}
