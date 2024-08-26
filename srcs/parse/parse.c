@@ -6,7 +6,7 @@
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:36:49 by toshi             #+#    #+#             */
-/*   Updated: 2024/08/26 14:39:23 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/26 19:08:23 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ t_loader	parse(char *path)
 	if (!ft_validate_extention(path, ".cub"))
 		ft_my_perror_exit("The file extension is different", 1);
 	fd = open(path, O_RDONLY);
-	if (fd == -1)
+	if (fd == SYSERR)
 		ft_perror_exit(NULL, 1);
 	loader = init_loader();
 	load_textures(fd, &loader);
