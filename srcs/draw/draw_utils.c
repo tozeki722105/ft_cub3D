@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:15:01 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/20 09:57:32 by tyamauch         ###   ########.fr       */
+/*   Updated: 2024/08/26 15:04:06 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void	draw_line(t_image *img, t_point player, t_point inter, int color)
 void	draw_map(t_mlx *mlx, int floor_color, int wall_color)
 {
 	t_map	map;
-	size_t	y;
-	size_t	x;
+	int	y;
+	int	x;
 	int		color;
 	t_pos	pos;
 
@@ -89,8 +89,8 @@ void	draw_map(t_mlx *mlx, int floor_color, int wall_color)
 			color = floor_color;
 			if (map.data[y][x] == '1')
 				color = wall_color;
-				pos.x = (x * map.panel_side) + 1;
-				pos.y = (x * map.panel_side) + 1;
+			pos.x = (x * map.panel_side) + 1;
+			pos.y = (x * map.panel_side) + 1;
 			draw_square_safely(mlx, pos, map.panel_side - 2, color);
 			x++;
 		}

@@ -7,11 +7,11 @@
 #include "config.h"
 #include "../library/libft/libft.h"
 
-enum e_dir
+typedef enum e_dir
 {
 	FRONT = 1,
 	BACK = -1
-} ;
+} t_dir;
 
 typedef	enum e_line_kind
 {
