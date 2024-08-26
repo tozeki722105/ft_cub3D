@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 19:48:15 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/26 20:04:34 by tyamauch         ###   ########.fr       */
+/*   Updated: 2024/08/26 20:44:55 by tozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef enum e_dir
 {
 	FRONT = 1,
 	BACK = -1
-} t_dir;
+}	t_dir;
 
 typedef enum e_line_kind
 {
