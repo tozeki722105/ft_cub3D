@@ -6,7 +6,7 @@
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 04:52:43 by toshi             #+#    #+#             */
-/*   Updated: 2024/08/13 14:06:09 by tyamauch         ###   ########.fr       */
+/*   Updated: 2024/08/26 14:30:34 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,6 @@ static t_pos	calc_horizontal_start_pos(t_mlx *mlx, double ray_angle)
 		pos.y = panel_origin_y + map.panel_side;
 	pos.x = player.pos.x + ((player.pos.y - pos.y) * cot_wrap(ray_angle));
 	return (pos);
-}
-
-static void	display_horizontal_grid_inter_pos(t_mlx *mlx, double ray_angle,
-		t_pos pos, int color)
-{
-	t_map		map;
-	t_player	player;
-	int			step;
-
-	map = mlx->map;
-	player = mlx->player;
-	step = map.panel_side;
-	if (is_up(ray_angle))
-		step *= -1;
-	while (pos.x < map.width && pos.x > 0 && pos.y > 0 && pos.y < map.height)
-	{
-		draw_square_center_safely(mlx, pos, 10, color);
-		pos.y += step;
-		pos.x = player.pos.x + ((player.pos.y - pos.y) * cot_wrap(ray_angle));
-	}
 }
 
 static t_pos	search_horizontal_inter_pos(t_mlx *mlx, double ray_angle,

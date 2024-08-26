@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+         #
+#    By: toshi <toshi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/08/22 15:15:01 by tyamauch         ###   ########.fr        #
+#    Updated: 2024/08/26 14:50:22 by toshi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			:=	cc -fsanitize=address
-# CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		:=	-Wall -Wextra -Werror
 RM			:=	rm -rf
 
 NAME		:=	cub3d

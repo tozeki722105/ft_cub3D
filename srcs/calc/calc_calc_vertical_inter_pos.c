@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc_calc_vertical_inter_pos.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:08:51 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/13 14:08:59 by tyamauch         ###   ########.fr       */
+/*   Updated: 2024/08/26 14:30:16 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,6 @@ static t_pos	calc_vertical_start_pos(t_mlx *mlx, double ray_angle)
 		pos.x = panel_origin_x + map.panel_side;
 	pos.y = player.pos.y - ((pos.x - player.pos.x) * tan_wrap(ray_angle));
 	return (pos);
-}
-
-static void	display_vertical_grid_inter_pos(t_mlx *mlx, double ray_angle,
-		t_pos pos, int color)
-{
-	t_map		map;
-	t_player	player;
-	int			step;
-
-	map = mlx->map;
-	player = mlx->player;
-	step = map.panel_side;
-	if (!is_right(ray_angle))
-		step *= -1;
-	while (pos.x < map.width && pos.x > 0 && pos.y > 0 && pos.y < map.height)
-	{
-		draw_square_center_safely(mlx, pos, 10, color);
-		pos.x += step;
-		pos.y = player.pos.y - ((pos.x - player.pos.x) * tan_wrap(ray_angle));
-	}
 }
 
 static t_pos	search_vertical_inter_pos(t_mlx *mlx, double ray_angle,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:15:01 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/20 09:57:32 by tyamauch         ###   ########.fr       */
+/*   Updated: 2024/08/26 14:31:48 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void	draw_line(t_image *img, t_point player, t_point inter, int color)
 void	draw_map(t_mlx *mlx, int floor_color, int wall_color)
 {
 	t_map	map;
-	size_t	y;
-	size_t	x;
+	int	y;
+	int	x;
 	int		color;
 	t_pos	pos;
 

@@ -8,7 +8,7 @@ void render(t_mlx *mlx)
 {   
 	// draw_background(mlx, WHITE);
 	draw_ceiling_floor(mlx, mlx->textures.ceiling, mlx->textures.floor);
-	draw_wall(mlx, WINDOW_WIDTH/2);
+	draw_wall(mlx);
 	// draw_map(mlx, GRAY, BLACK);
 	// draw_square_center_safely(mlx, mlx->player.pos, PLAYER_SIDE, WHITE);
 	mlx_put_image_to_window(mlx->handle, mlx->window, mlx->img.handle, 0, 0);
@@ -40,7 +40,7 @@ int	handle_keypress(int key, t_mlx *mlx)
 	return (0);
 }
 
-int	destroy_window_hook(t_mlx *mlx)
+int	destroy_window_hook(void)
 {
 	exit(0);
 }
