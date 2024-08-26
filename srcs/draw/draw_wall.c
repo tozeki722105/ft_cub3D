@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:12:37 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/26 14:33:44 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/26 19:39:31 by tozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	draw_vertical_line_of_wall(t_mlx *mlx, t_inter inter, size_t put_x)
 	int		put_y;
 	int		wall_i;
 	int		img_x;
-	int 	img_y;
+	int		img_y;
 	t_image	img;
 
 	img = get_img(mlx, inter);
