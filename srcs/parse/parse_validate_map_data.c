@@ -6,7 +6,7 @@
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:31:41 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/28 22:16:45 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/28 22:18:08 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,9 +139,7 @@ bool	validate_map_data(char **map_data)
 {
 	char	**map_cpy;
 
-	print_map_data(map_data);
 	map_cpy = double_strdup_pad_space(map_data);
-	print_map_data(map_cpy);
 	if (!validate_surrounded_wall(map_cpy))
 	{
 		ft_free_double_str(map_cpy);
@@ -149,20 +147,4 @@ bool	validate_map_data(char **map_data)
 	}
 	ft_free_double_str(map_cpy);
 	return (true);
-	// if (!validate_map_size(map_data))
-	// 	return (ft_my_perror_ret_false("The map size is too small"));
-	// map_cpy = ft_x_double_str_dup(map_data);
-	// if (!validate_surrounded_wall_and_fill_space(map_cpy))
-	// {
-	// 	ft_free_double_str(map_cpy);
-	// 	return (ft_my_perror_ret_false("The map is not surrounded by walls"));
-	// }
-	// print_map_data(map_data);
-	// if (!validate_map_elements(map_data))
-	// {
-	// 	// ft_free_double_str(map_cpy);
-	// 	return (ft_my_perror_ret_false("There is space in the map area"));
-	// }
-	// print_map_data(map_cpy);
-	// exit(1);
 }
