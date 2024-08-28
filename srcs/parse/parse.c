@@ -6,7 +6,7 @@
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:36:49 by toshi             #+#    #+#             */
-/*   Updated: 2024/08/26 19:08:23 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/28 20:59:40 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,11 @@ t_loader	parse(char *path)
 	load_map_str_to_list(fd, &loader);
 	close(fd);
 	trim_map_list(&(loader.map_head), "");
-	if (is_contained_newline(loader.map_head))
-		ft_my_perror_exit("Only one map_data is allowed", 1);
+	// if (is_contained_newline(loader.map_head))
+	// 	ft_my_perror_exit("Only one map_data is allowed", 1);
 	load_map_list_to_data(loader.map_head, &loader);
 	if (!validate_map_data(loader.map_data))
-		exit(0);
+		exit(1);
 	if (!validate_grid_pos(loader.map_data, &(loader.player_grid_pos)))
 		ft_my_perror_exit("Put only one player element in the map", 1);
 	loader.player_pos = convert_player_pos(loader.player_grid_pos);
@@ -109,7 +109,6 @@ t_loader	parse(char *path)
 // 		return (1);
 // 	loader = parse(argv[1]);
 // 	print_texture(loader);
-// 	print_player(loader);
 // 	print_map_player(loader);
 // 	free_loader(loader);
 // }
