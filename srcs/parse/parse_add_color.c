@@ -6,7 +6,7 @@
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:30:58 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/26 14:40:18 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/28 22:53:33 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	add_color(t_loader *loader, t_line_kind kind, char *str)
 
 	val = extract_val(str, kind);
 	if (!validate_color_str(val))
-		exit(0);
+		exit(1);
 	rgb_array = make_rgb_array(val);
 	free(val);
 	color = convert_rgb_color(rgb_array[0], rgb_array[1], rgb_array[2]);

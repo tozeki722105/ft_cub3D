@@ -1,0 +1,19 @@
+NO ./img/collect.xpm
+SO ./img/exit.xpm
+WE ./img/tile.xpm
+EA ./img/wall.xpm
+F 220,100,0
+C 225,30,0
+
+
+
+
+   11111111
+11110001111
+111100011
+1W00000111
+ 111111
+
+
+
+

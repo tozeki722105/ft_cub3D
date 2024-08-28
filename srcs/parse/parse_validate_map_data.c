@@ -3,57 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   parse_validate_map_data.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:31:41 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/13 14:31:42 by tyamauch         ###   ########.fr       */
+/*   Updated: 2024/08/29 04:09:45 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-bool		validate_surrounded_wall_and_fill_space(char **map_data);
-
-static bool	is_filled_map_element(char c)
+static bool is_wall_or_space(char c)
 {
-	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'W' || c == 'E'
-		|| c == '!');
+	return (c == ' ' || c == '1');
 }
 
-static bool	validate_map_elements(char **map_data)
+static bool is_surrounded_wall_or_space(char **map_data, size_t y, size_t x)
 {
-	size_t	y;
-	size_t	x;
+	return ((y == 0 || is_wall_or_space(map_data[y - 1][x]))
+		&& (x == 0 || is_wall_or_space(map_data[y][x - 1]))
+		&& (map_data[y][x + 1] == '\0' || is_wall_or_space(map_data[y][x + 1]))
+		&& (map_data[y + 1] == NULL || is_wall_or_space(map_data[y + 1][x])));
+}
 
+static bool validate_surrounded_wall(char **map_data)
+{
+	size_t y;
+	size_t x;
 	y = 0;
 	while (map_data[y])
 	{
 		x = 0;
 		while (map_data[y][x])
 		{
-			if (!is_filled_map_element(map_data[y][x]))
+			if (map_data[y][x] == ' '
+				&& !is_surrounded_wall_or_space(map_data, y, x))
 				return (false);
 			x++;
 		}
-		y++;
-	}
-	return (true);
-}
-
-static bool	validate_map_size(char **map_data)
-{
-	size_t	y;
-
-	y = 0;
-	while (map_data[y])
-		y++;
-	if (y < 4)
-		return (false);
-	y = 0;
-	while (map_data[y])
-	{
-		if (ft_strlen(map_data[y]) < 4)
-			return (false);
 		y++;
 	}
 	return (true);
@@ -63,18 +49,11 @@ bool	validate_map_data(char **map_data)
 {
 	char	**map_cpy;
 
-	if (!validate_map_size(map_data))
-		return (ft_my_perror_ret_false("The map size is too small"));
-	map_cpy = ft_x_double_str_dup(map_data);
-	if (!validate_surrounded_wall_and_fill_space(map_cpy))
+	map_cpy = double_strdup_padd_space(map_data);
+	if (!validate_surrounded_wall(map_cpy))
 	{
 		ft_free_double_str(map_cpy);
-		return (ft_my_perror_ret_false("The map is not surrounded by walls"));
-	}
-	if (!validate_map_elements(map_cpy))
-	{
-		ft_free_double_str(map_cpy);
-		return (ft_my_perror_ret_false("There is space in the map area"));
+		return (false);
 	}
 	ft_free_double_str(map_cpy);
 	return (true);

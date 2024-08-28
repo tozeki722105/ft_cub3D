@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
+/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 19:48:15 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/26 20:44:55 by tozeki           ###   ########.fr       */
+/*   Updated: 2024/08/29 04:02:41 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,23 @@ void					load_map_list_to_data(t_map_node *ptr,
 // load_map_str_to_list.c
 void					load_map_str_to_list(int fd, t_loader *loader);
 
+// add_color.c
+void					add_color(t_loader *loader, t_line_kind kind, char *str);
+
+// add_wall.c
+void					add_wall(t_loader *loader, t_line_kind kind, char *str);
+
 //load_textures.c
 void					load_textures(int fd, t_loader *loader);
 
 //trim_map_list.c
 void					trim_map_list(t_map_node **head, char *trimed_node_val);
+
+// extract_val.c
+char					*extract_val(char *str, t_line_kind kind);
+
+// get_line_kind.c
+t_line_kind				get_line_kind(char *str);
 
 // utils_bool.c
 bool					is_player(char c);
@@ -107,9 +119,13 @@ char					*extract_val(char *str, t_line_kind kind);
 // utils_print.c
 void					print_map_list(t_map_node *ptr);
 void					print_texture(t_loader loader);
+void					print_map_data(char **map_data);
 void					print_map_player(t_loader loader);
 
 // validate_map_data.c
 bool					validate_map_data(char **map_data);
+
+//double_strdup_padd_space.c
+char					**double_strdup_padd_space(char **d_str);
 
 # endif
