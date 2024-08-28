@@ -6,21 +6,27 @@
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:36:49 by toshi             #+#    #+#             */
-/*   Updated: 2024/08/29 03:49:51 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/29 03:56:54 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-t_loader		init_loader(void);
-
-bool	is_contained_newline(t_map_node *ptr)
+t_loader	init_loader(void)
 {
-	while (ptr && !ft_isequal(ptr->val, ""))
-		ptr = ptr->next;
-	if (ptr)
-		return (true);
-	return (false);
+	t_loader	loader;
+
+	loader.north_path = NULL;
+	loader.south_path = NULL;
+	loader.west_path = NULL;
+	loader.east_path = NULL;
+	loader.floor_color = -1;
+	loader.ceiling_color = -1;
+	loader.map_head = NULL;
+	loader.map_data = NULL;
+	loader.player_grid_pos = (t_pos){-1, -1};
+	loader.player_pos = (t_pos){-1, -1};
+	return (loader);
 }
 
 static bool	validate_grid_pos(char **map_data, t_pos *grid_pos)

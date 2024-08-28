@@ -6,7 +6,7 @@
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:31:41 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/28 22:27:04 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/29 04:09:45 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static bool is_surrounded_wall_or_space(char **map_data, size_t y, size_t x)
 	return ((y == 0 || is_wall_or_space(map_data[y - 1][x]))
 		&& (x == 0 || is_wall_or_space(map_data[y][x - 1]))
 		&& (map_data[y][x + 1] == '\0' || is_wall_or_space(map_data[y][x + 1]))
-		&& (map_data[y + 1]) == NULL || is_wall_or_space(map_data[y + 1][x]));
+		&& (map_data[y + 1] == NULL || is_wall_or_space(map_data[y + 1][x])));
 }
 
 static bool validate_surrounded_wall(char **map_data)
