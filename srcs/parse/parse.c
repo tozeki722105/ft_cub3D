@@ -6,7 +6,7 @@
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:36:49 by toshi             #+#    #+#             */
-/*   Updated: 2024/08/28 22:26:52 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/29 03:49:51 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,6 @@ t_loader	parse(char *path)
 	load_map_str_to_list(fd, &loader);
 	close(fd);
 	trim_map_list(&(loader.map_head), "");
-	// if (is_contained_newline(loader.map_head))
-	// 	ft_my_perror_exit("Only one map_data is allowed", 1);
 	load_map_list_to_data(loader.map_head, &loader);
 	if (!validate_map_data(loader.map_data))
 		ft_my_perror_exit("The map is not surrounded by walls", 1);
