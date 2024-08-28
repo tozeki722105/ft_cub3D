@@ -6,7 +6,7 @@
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:32:11 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/26 14:40:13 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/28 20:57:16 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,6 @@ void	load_map_str_to_list(int fd, t_loader *loader)
 		add_map_head(loader, str);
 		free(str);
 	}
+	if (!loader->map_head)
+		ft_my_perror_exit("Missing map_data", 1);
 }
