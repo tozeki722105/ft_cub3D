@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils_load.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:36:36 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/13 14:45:24 by tyamauch         ###   ########.fr       */
+/*   Updated: 2024/08/28 22:08:14 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,18 @@
 /// @brief sapace_only_str is true 
 static bool	is_map_str(char *str)
 {
+	bool	player_flag;
+
+	player_flag = false;
 	if (*str == '\n')
 		return (false);
 	while (*str && *str != '\n')
 	{
-		if (!is_map_element(*str))
+		if (!is_map_element(*str)
+			|| player_flag && is_player(*str))
 			return (false);
+		if (is_player(*str))
+			player_flag = true;
 		str++;
 	}
 	return (true);
@@ -32,20 +38,19 @@ t_line_kind	get_line_kind(char *str)
 		return (KIND_NEWLINE);
 	if (is_map_str(str))
 		return (KIND_MAP);
-	if (*str == 'N' && *(str + sizeof(char)) == 'O')
+	if (ft_strncmp(str, "NO ", 3) == 0)
 		return (KIND_NORTH);
-	if (*str == 'S' && *(str + sizeof(char)) == 'O')
+	if (ft_strncmp(str, "SO ", 3) == 0)
 		return (KIND_SOUTH);
-	if (*str == 'W' && *(str + sizeof(char)) == 'E')
+	if (ft_strncmp(str, "WE ", 3) == 0)
 		return (KIND_WEST);
-	if (*str == 'E' && *(str + sizeof(char)) == 'A')
+	if (ft_strncmp(str, "EA ", 3) == 0)
 		return (KIND_EAST);
-	if (*str == 'F')
+	if (ft_strncmp(str, "F ", 2) == 0)
 		return (KIND_FLOOR);
-	if (*str == 'C')
+	if (ft_strncmp(str, "C ", 2) == 0)
 		return (KIND_CEILING);
-	else
-		return (KIND_FALSE);
+	return (KIND_FALSE);
 }
 
 char	*extract_val(char *str, t_line_kind kind)
