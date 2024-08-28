@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 19:42:55 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/26 19:43:00 by tyamauch         ###   ########.fr       */
+/*   Updated: 2024/08/29 02:34:26 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_inter
 	double		distance;
 	enum e_axis	axis;
 	double		angle;
-	int			origin_offset;
+	double		origin_offset;
 	double		wall_height;
 }				t_inter;
 
