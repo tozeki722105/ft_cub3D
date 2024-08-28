@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+         #
+#    By: toshi <toshi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/08/26 20:33:05 by tozeki           ###   ########.fr        #
+#    Updated: 2024/08/28 22:23:17 by toshi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			:=	cc -fsanitize=address
-CFLAGS		:=	-Wall -Wextra -Werror
+# CFLAGS		:=	-Wall -Wextra -Werror
 RM			:=	rm -rf
 
 NAME		:=	cub3d
@@ -72,7 +72,7 @@ SRCS		:=	$(SRCS_DIR)/$(CALC_DIR)/calc_calc_horizontal_inter_pos.c\
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_utils_free.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_utils_load.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_utils_print.c \
-				$(SRCS_DIR)/$(PARSE_DIR)/parse_validate_map_data_utils.c \
+				$(SRCS_DIR)/$(PARSE_DIR)/parse_double_strdup_padd_space.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_validate_map_data.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_utils.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse.c \
