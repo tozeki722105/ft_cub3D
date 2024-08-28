@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
+/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 19:48:15 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/26 20:44:55 by tozeki           ###   ########.fr       */
+/*   Updated: 2024/08/28 22:25:10 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,13 @@ char					*extract_val(char *str, t_line_kind kind);
 // utils_print.c
 void					print_map_list(t_map_node *ptr);
 void					print_texture(t_loader loader);
+void					print_map_data(char **map_data);
 void					print_map_player(t_loader loader);
 
 // validate_map_data.c
 bool					validate_map_data(char **map_data);
+
+//double_strdup_padd_space.c
+char					**double_strdup_padd_space(char **d_str);
 
 # endif
