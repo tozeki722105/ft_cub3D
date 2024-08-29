@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   parse_double_strdup_pad_space.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 22:22:13 by toshi             #+#    #+#             */
-/*   Updated: 2024/08/29 15:22:57 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/29 19:36:53 by tozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static char *double_strdup_pad_space_helper(char *str, size_t x_count, bool padding_flag)
+static char	*double_strdup_pad_space_helper(char *str, size_t x_count,
+			bool padding_flag)
 {
-	char *res;
+	char	*res;
 
 	res = (char *)malloc((x_count + 1) * sizeof(char));
 	if (!res)
@@ -33,7 +34,7 @@ char	**double_strdup_pad_space(char **d_str)
 	char	**res;
 	size_t	i;
 	size_t	y_count;
-	size_t 	x_count;
+	size_t	x_count;
 
 	y_count = ft_count_rows(d_str) + 2;
 	res = (char **)malloc((y_count + 1) * sizeof(char *));
@@ -43,8 +44,8 @@ char	**double_strdup_pad_space(char **d_str)
 	i = 0;
 	while (i < y_count)
 	{
-		res[i] = double_strdup_pad_space_helper(*d_str, 
-			x_count, (i == 0 || i == y_count - 1));
+		res[i] = double_strdup_pad_space_helper(*d_str,
+				x_count, (i == 0 || i == y_count - 1));
 		if (!res[i])
 		{
 			ft_free_double_str(res);

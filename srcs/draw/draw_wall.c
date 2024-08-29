@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:12:37 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/27 13:47:18 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/29 19:33:19 by tozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static void	draw_vertical_line_of_wall(t_mlx *mlx, t_inter inter, size_t put_x)
 		if (put_y >= 0 && put_y < WINDOW_HEIGHT)
 		{
 			img_y = (img.height * wall_i) / inter.wall_height;
-			if (img_y >= img.height - (int)sizeof(int))
-				img_y = img.height - (int)sizeof(int);
+			if (img_y >= img.height - (int)(sizeof(int)))
+				img_y = img.height - (int)(sizeof(int));
 			put_pixel(&(mlx->img), put_x, put_y,
 				pick_color(&img, img_x, img_y));
 		}

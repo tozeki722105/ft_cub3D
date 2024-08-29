@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 19:48:15 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/29 15:07:08 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/29 19:37:50 by tozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ void					load_map_list_to_data(t_map_node *ptr,
 void					load_map_str_to_list(int fd, t_loader *loader);
 
 // add_color.c
-void					add_color(t_loader *loader, t_line_kind kind, char *str);
+void					add_color(t_loader *loader, t_line_kind kind,
+							char *str);
 
 // add_wall.c
 void					add_wall(t_loader *loader, t_line_kind kind, char *str);

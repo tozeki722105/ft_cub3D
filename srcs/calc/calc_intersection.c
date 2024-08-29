@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc_intersection.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:06:46 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/29 02:38:25 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/29 19:31:19 by tozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static double	calc_origin_offset(t_inter inter, int map_panel_side)
 	{
 		if (is_up(inter.angle))
 			return (inter.pos.x - (((int)inter.pos.x / map_panel_side)
-						* map_panel_side));
+					* map_panel_side));
 		else
 			return (((((int)inter.pos.x / map_panel_side) * map_panel_side)
 					+ map_panel_side) - inter.pos.x);
@@ -38,7 +38,7 @@ static double	calc_origin_offset(t_inter inter, int map_panel_side)
 	{
 		if (is_right(inter.angle))
 			return (inter.pos.y - (((int)inter.pos.y / map_panel_side)
-						* map_panel_side));
+					* map_panel_side));
 		else
 			return (((((int)inter.pos.y / map_panel_side) * map_panel_side)
 					+ map_panel_side) - inter.pos.y);
