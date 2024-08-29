@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils_print.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:38:36 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/13 14:38:40 by tyamauch         ###   ########.fr       */
+/*   Updated: 2024/08/28 16:45:18 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,31 @@ void	print_texture(t_loader loader)
 	printf("ceiling=%d;\n", loader.ceiling_color);
 }
 
-void	print_map_player(t_loader loader)
+void	print_map_data(char **map_data)
 {
-	char	**map;
 	size_t	x;
 	size_t	y;
 
-	printf("x_count=%d, y_count=%d\n", loader.map_y_count, loader.map_x_count);
-	map = loader.map_data;
 	y = 0;
-	while (map[y])
+	while (map_data[y])
 	{
 		x = 0;
-		while (map[y][x])
+		while (map_data[y][x])
 		{
-			if (map[y][x] == '\n')
+			if (map_data[y][x] == '\n')
 				printf("[n->]");
-			printf("%c", map[y][x]);
+			printf("%c", map_data[y][x]);
 			x++;
 		}
 		printf(";\n");
 		y++;
 	}
+}
+
+void	print_map_player(t_loader loader)
+{
+	printf("x_count=%d, y_count=%d\n", loader.map_y_count, loader.map_x_count);
+	print_map_data(loader.map_data);
 	printf("player.pos.x=%lf, player.pos.y=%lf, player.angle=%lf\n",
 		loader.player_pos.x, loader.player_pos.y, loader.player_angle);
 }

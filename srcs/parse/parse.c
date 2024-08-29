@@ -6,21 +6,27 @@
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:36:49 by toshi             #+#    #+#             */
-/*   Updated: 2024/08/22 16:19:23 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/29 03:56:54 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-t_loader		init_loader(void);
-
-bool	is_contained_newline(t_map_node *ptr)
+t_loader	init_loader(void)
 {
-	while (ptr && !ft_isequal(ptr->val, ""))
-		ptr = ptr->next;
-	if (ptr)
-		return (true);
-	return (false);
+	t_loader	loader;
+
+	loader.north_path = NULL;
+	loader.south_path = NULL;
+	loader.west_path = NULL;
+	loader.east_path = NULL;
+	loader.floor_color = -1;
+	loader.ceiling_color = -1;
+	loader.map_head = NULL;
+	loader.map_data = NULL;
+	loader.player_grid_pos = (t_pos){-1, -1};
+	loader.player_pos = (t_pos){-1, -1};
+	return (loader);
 }
 
 static bool	validate_grid_pos(char **map_data, t_pos *grid_pos)
@@ -76,22 +82,20 @@ t_loader	parse(char *path)
 	int			fd;
 
 	if (!ft_validate_extention(path, ".cub"))
-		ft_my_perror_exit("The file extension is different", 0);
+		ft_my_perror_exit("The file extension is different", 1);
 	fd = open(path, O_RDONLY);
-	if (fd == -1)
-		ft_perror_exit("A system call failed", 0);
+	if (fd == SYSERR)
+		ft_perror_exit(NULL, 1);
 	loader = init_loader();
 	load_textures(fd, &loader);
 	load_map_str_to_list(fd, &loader);
 	close(fd);
 	trim_map_list(&(loader.map_head), "");
-	if (is_contained_newline(loader.map_head))
-		ft_my_perror_exit("Only one map_data is allowed", 0);
 	load_map_list_to_data(loader.map_head, &loader);
 	if (!validate_map_data(loader.map_data))
-		exit(0);
+		ft_my_perror_exit("The map is not surrounded by walls", 1);
 	if (!validate_grid_pos(loader.map_data, &(loader.player_grid_pos)))
-		ft_my_perror_exit("Put only one player element in the map", 0);
+		ft_my_perror_exit("Put only one player element in the map", 1);
 	loader.player_pos = convert_player_pos(loader.player_grid_pos);
 	loader.player_angle = convert_player_angle(loader.map_data,
 			loader.player_grid_pos);
@@ -109,7 +113,6 @@ t_loader	parse(char *path)
 // 		return (1);
 // 	loader = parse(argv[1]);
 // 	print_texture(loader);
-// 	print_player(loader);
 // 	print_map_player(loader);
 // 	free_loader(loader);
 // }

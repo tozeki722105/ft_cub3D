@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:12:37 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/13 14:13:08 by tyamauch         ###   ########.fr       */
+/*   Updated: 2024/08/27 13:47:18 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static t_image	get_img(t_mlx *mlx, t_inter inter)
 static void	draw_vertical_line_of_wall(t_mlx *mlx, t_inter inter, size_t put_x)
 {
 	int		put_y;
-	size_t	wall_i;
-	size_t	img_x;
-	size_t	img_y;
+	int		wall_i;
+	int		img_x;
+	int		img_y;
 	t_image	img;
 
 	img = get_img(mlx, inter);
@@ -49,8 +49,8 @@ static void	draw_vertical_line_of_wall(t_mlx *mlx, t_inter inter, size_t put_x)
 		if (put_y >= 0 && put_y < WINDOW_HEIGHT)
 		{
 			img_y = (img.height * wall_i) / inter.wall_height;
-			if (img_y >= img.height - 4)
-				img_y = img.height - 4;
+			if (img_y >= img.height - (int)sizeof(int))
+				img_y = img.height - (int)sizeof(int);
 			put_pixel(&(mlx->img), put_x, put_y,
 				pick_color(&img, img_x, img_y));
 		}
@@ -61,7 +61,7 @@ static void	draw_vertical_line_of_wall(t_mlx *mlx, t_inter inter, size_t put_x)
 
 /// @brief If you call this function from the coordinates of a wall corner,
 ///	the process never finishes. The angle is also related.
-void	draw_wall(t_mlx *mlx, int start)
+void	draw_wall(t_mlx *mlx)
 {
 	double	draw_angle;
 	double	step;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_load_map_str_to_list.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:32:11 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/13 14:32:16 by tyamauch         ###   ########.fr       */
+/*   Updated: 2024/08/28 20:57:16 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,12 @@ void	load_map_str_to_list(int fd, t_loader *loader)
 			break ;
 		loader->kind = get_line_kind(str);
 		if (loader->kind == KIND_FALSE)
-			ft_my_perror_exit("Contains invalid elements", 0);
+			ft_my_perror_exit("Contains invalid elements", 1);
 		if (is_texture(loader->kind))
-			ft_my_perror_exit("Duplicate elements", 0);
+			ft_my_perror_exit("Duplicate elements", 1);
 		add_map_head(loader, str);
 		free(str);
 	}
+	if (!loader->map_head)
+		ft_my_perror_exit("Missing map_data", 1);
 }

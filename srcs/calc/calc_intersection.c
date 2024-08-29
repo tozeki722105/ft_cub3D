@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc_intersection.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyamauch <tyamauch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:06:46 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/13 14:07:08 by tyamauch         ###   ########.fr       */
+/*   Updated: 2024/08/29 02:38:25 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,25 @@ static double	calc_distance(t_pos *pos, t_player player, double ray_angle)
 		* (pos->y - player.pos.y));
 }
 
-static int	calc_origin_offset(t_inter inter, int map_panel_side)
+static double	calc_origin_offset(t_inter inter, int map_panel_side)
 {
 	if (inter.axis == HORIZONTAL)
 	{
 		if (is_up(inter.angle))
-			return ((int)inter.pos.x - (((int)inter.pos.x / map_panel_side)
-					* map_panel_side));
+			return (inter.pos.x - (((int)inter.pos.x / map_panel_side)
+						* map_panel_side));
 		else
 			return (((((int)inter.pos.x / map_panel_side) * map_panel_side)
-					+ map_panel_side) - (int)inter.pos.x);
+					+ map_panel_side) - inter.pos.x);
 	}
 	else
 	{
 		if (is_right(inter.angle))
-			return ((int)inter.pos.y - (((int)inter.pos.y / map_panel_side)
-					* map_panel_side));
+			return (inter.pos.y - (((int)inter.pos.y / map_panel_side)
+						* map_panel_side));
 		else
 			return (((((int)inter.pos.y / map_panel_side) * map_panel_side)
-					+ map_panel_side) - (int)inter.pos.y);
+					+ map_panel_side) - inter.pos.y);
 	}
 }
 

@@ -41,8 +41,8 @@ void TestPath::setEastPath(std::string east_path) { east_path_ = east_path; }
 TEST(parseTest, BasicAssertions) {
   // Expect equality.
 	//
-	std::cout << "==== test_subject.cub =====" << std::endl;
-	char *path = "./map/test_subject.cub";
+	std::cout << "==== ok_subject.cub =====" << std::endl;
+	char *path = "./map/ok_basic.cub";
   t_loader actual = parse(path);
 
 	TestPath test;	
@@ -56,8 +56,8 @@ TEST(parseTest, BasicAssertions) {
   EXPECT_STREQ(actual.west_path, test.getWestPath().c_str());
   EXPECT_STREQ(actual.east_path, test.getEastPath().c_str());
 
-	std::cout << "==== test_combine.cub ====" << std::endl;
-	path = "./map/test_combine.cub";
+	std::cout << "==== ok_corner_space.cub ====" << std::endl;
+	path = "./map/ok_corner_space.cub";
 
   actual = parse(path);
   EXPECT_STREQ(actual.north_path, test.getNorthPath().c_str());
@@ -65,8 +65,8 @@ TEST(parseTest, BasicAssertions) {
   EXPECT_STREQ(actual.west_path, test.getWestPath().c_str());
   EXPECT_STREQ(actual.east_path, test.getEastPath().c_str());
 
-	std::cout << "==== test_corner_space.cub ====" << std::endl;
-	path = "./map/test_corner_space.cub";
+	std::cout << "==== ok_divide_map.cub ====" << std::endl;
+	path = "./map/ok_devide_map.cub";
   actual = parse(path);
 
   EXPECT_STREQ(actual.north_path, test.getNorthPath().c_str());
@@ -74,14 +74,55 @@ TEST(parseTest, BasicAssertions) {
   EXPECT_STREQ(actual.west_path, test.getWestPath().c_str());
   EXPECT_STREQ(actual.east_path, test.getEastPath().c_str());
 
-	std::cout << "==== test_mini.cub ====" << std::endl;
-	path = "./map/test_mini.cub";
+	std::cout << "==== ok_mini.cub ====" << std::endl;
+	path = "./map/ok_mini.cub";
   actual = parse(path);
 
   EXPECT_STREQ(actual.north_path, test.getNorthPath().c_str());
   EXPECT_STREQ(actual.south_path, test.getSouthPath().c_str());
   EXPECT_STREQ(actual.west_path, test.getWestPath().c_str());
   EXPECT_STREQ(actual.east_path, test.getEastPath().c_str());
+
+	std::cout << "==== ok_nl_down.cub ====" << std::endl;
+	path = "./map/ok_nl_down.cub";
+  actual = parse(path);
+
+  EXPECT_STREQ(actual.north_path, test.getNorthPath().c_str());
+  EXPECT_STREQ(actual.south_path, test.getSouthPath().c_str());
+  EXPECT_STREQ(actual.west_path, test.getWestPath().c_str());
+  EXPECT_STREQ(actual.east_path, test.getEastPath().c_str());
+
+	std::cout << "==== ok_nl_up.cub ====" << std::endl;
+	path = "./map/ok_nl_up.cub";
+  actual = parse(path);
+
+  EXPECT_STREQ(actual.north_path, test.getNorthPath().c_str());
+  EXPECT_STREQ(actual.south_path, test.getSouthPath().c_str());
+  EXPECT_STREQ(actual.west_path, test.getWestPath().c_str());
+  EXPECT_STREQ(actual.east_path, test.getEastPath().c_str());
+
+	std::cout << "==== ok_squea.cub ====" << std::endl;
+	path = "./map/ok_squea.cub";
+  actual = parse(path);
+
+  EXPECT_STREQ(actual.north_path, test.getNorthPath().c_str());
+  EXPECT_STREQ(actual.south_path, test.getSouthPath().c_str());
+  EXPECT_STREQ(actual.west_path, test.getWestPath().c_str());
+  EXPECT_STREQ(actual.east_path, test.getEastPath().c_str());
+
+	std::cout << "==== ok_subject ====" << std::endl;
+	path = "./map/ok_subject.cub";
+  actual = parse(path);
+
+  EXPECT_STREQ(actual.north_path, test.getNorthPath().c_str());
+  EXPECT_STREQ(actual.south_path, test.getSouthPath().c_str());
+  EXPECT_STREQ(actual.west_path, test.getWestPath().c_str());
+  EXPECT_STREQ(actual.east_path, test.getEastPath().c_str());
+
+	/* std::cout << "==== err1_no_map.cub ====" << std::endl; */
+	/* path = "./map/err1_no_map.cub"; */
+
+  /* EXPECT_STREQ(parse(path), "Missing map data"); */
   //int 
   /* EXPECT_EQ(actual.floor_color, 14443520); */
   /* EXPECT_EQ(actual.ceiling_color, 14753280); */

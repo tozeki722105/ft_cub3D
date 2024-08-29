@@ -20,19 +20,24 @@ add_executable(
   tests/parse_test.cc
 	srcs/parse/parse.c
   srcs/parse/parse_add_color.c
+	srcs/parse/parse_add_wall.c
   srcs/parse/parse_load_map_list_to_data.c
   srcs/parse/parse_load_map_str_to_list.c
   srcs/parse/parse_load_textures.c
   srcs/parse/parse_trim_map_list.c
-  srcs/parse/parse_utils.c
+	srcs/parse/parse_double_strdup_padd_space.c
+	srcs/parse/parse_extract_val.c
+  # srcs/parse/parse_utils.c
   srcs/parse/parse_utils_bool.c
   srcs/parse/parse_utils_free.c
-  srcs/parse/parse_utils_load.c
+  # srcs/parse/parse_utils_load.c
   srcs/parse/parse_utils_print.c
+	srcs/parse/parse_get_line_kind.c
   srcs/parse/parse_validate_map_data.c
-  srcs/parse/parse_validate_map_data_utils.c
+  # srcs/parse/parse_validate_map_data_utils.c
   library/libft/get_next_line.c
   library/libft/get_next_line_utils.c
+
 )
 
 include_directories(
