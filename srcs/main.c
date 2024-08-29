@@ -73,6 +73,6 @@ int	main(int argc, char *argv[])
 	free_loader(loader);
 	render(&mlx);
 	mlx_hook(mlx.window, DESTROY_NOTIFY, 1L << 17, destroy_window_hook, &mlx);
-	mlx_hook(mlx.window, KEYPRESS, 1L << 0, &handle_keypress, &mlx);
+	mlx_hook(mlx.window, KEYPRESS, 1L << 0, handle_keypress, &mlx);
 	mlx_loop(mlx.handle);
 }
