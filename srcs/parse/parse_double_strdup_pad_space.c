@@ -6,7 +6,7 @@
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 22:22:13 by toshi             #+#    #+#             */
-/*   Updated: 2024/08/29 15:05:54 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/29 15:22:57 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static char *double_strdup_pad_space_helper(char *str, size_t x_count, bool padd
 	return (res);
 }
 
+// Not recommended if each string is not the same length
+// Copy char ** type surrounded by spaces
 char	**double_strdup_pad_space(char **d_str)
 {
 	char	**res;
