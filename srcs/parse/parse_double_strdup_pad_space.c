@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_double_strdup_padd_space.c                   :+:      :+:    :+:   */
+/*   parse_double_strdup_pad_space.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 22:22:13 by toshi             #+#    #+#             */
-/*   Updated: 2024/08/28 22:23:43 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/29 15:05:54 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static char *double_strdup_padd_space_helper(char *str, size_t x_count, bool padding_flag)
+static char *double_strdup_pad_space_helper(char *str, size_t x_count, bool padding_flag)
 {
 	char *res;
 
-	res = (char *)ft_x_malloc((x_count + 1) * sizeof(char));
+	res = (char *)malloc((x_count + 1) * sizeof(char));
 	if (!res)
 		return (NULL);
 	ft_memset(res, ' ', x_count);
@@ -26,7 +26,7 @@ static char *double_strdup_padd_space_helper(char *str, size_t x_count, bool pad
 	return (res);
 }
 
-char	**double_strdup_padd_space(char **d_str)
+char	**double_strdup_pad_space(char **d_str)
 {
 	char	**res;
 	size_t	i;
@@ -34,14 +34,14 @@ char	**double_strdup_padd_space(char **d_str)
 	size_t 	x_count;
 
 	y_count = ft_count_rows(d_str) + 2;
-	res = (char **)ft_x_malloc((y_count + 1) * sizeof(char *));
+	res = (char **)malloc((y_count + 1) * sizeof(char *));
 	if (!res)
 		return (NULL);
 	x_count = ft_strlen(*d_str) + 2;
 	i = 0;
 	while (i < y_count)
 	{
-		res[i] = double_strdup_padd_space_helper(*d_str, 
+		res[i] = double_strdup_pad_space_helper(*d_str, 
 			x_count, (i == 0 || i == y_count - 1));
 		if (!res[i])
 		{

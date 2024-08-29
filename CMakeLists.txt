@@ -25,7 +25,7 @@ add_executable(
   srcs/parse/parse_load_map_str_to_list.c
   srcs/parse/parse_load_textures.c
   srcs/parse/parse_trim_map_list.c
-	srcs/parse/parse_double_strdup_padd_space.c
+	srcs/parse/parse_double_strdup_pad_space.c
 	srcs/parse/parse_extract_val.c
   # srcs/parse/parse_utils.c
   srcs/parse/parse_utils_bool.c

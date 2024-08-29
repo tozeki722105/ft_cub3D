@@ -6,7 +6,7 @@
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 19:48:15 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/29 10:15:07 by tyamauch         ###   ########.fr       */
+/*   Updated: 2024/08/29 15:07:08 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void					print_map_player(t_loader loader);
 // validate_map_data.c
 bool					validate_map_data(char **map_data);
 
-//double_strdup_padd_space.c
-char					**double_strdup_padd_space(char **d_str);
+//double_strdup_pad_space.c
+char					**double_strdup_pad_space(char **d_str);
 
 # endif

@@ -6,7 +6,7 @@
 /*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:31:41 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/29 04:09:45 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/29 15:07:08 by toshi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ bool	validate_map_data(char **map_data)
 {
 	char	**map_cpy;
 
-	map_cpy = double_strdup_padd_space(map_data);
+	map_cpy = double_strdup_pad_space(map_data);
 	if (!validate_surrounded_wall(map_cpy))
 	{
 		ft_free_double_str(map_cpy);
