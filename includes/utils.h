@@ -84,12 +84,13 @@ void		*ft_x_mlx_init(void);
 void		*ft_x_mlx_new_image(t_xvar *xvar, int width, int height);
 void		*ft_x_mlx_new_window(t_xvar *xvar, int size_x, int size_y,
 				char *title);
-
+void	*ft_x_mlx_xpm_file_to_image(t_xvar *xvar,char *filename, int *width,int *height)
 # else
 
 void		*ft_x_mlx_new_image(void *mlx_ptr, int width, int height);
 void		*ft_x_mlx_new_window(void *mlx_ptr, int size_x, int size_y,
 				char *title);
+void *ft_x_mlx_xpm_file_to_image(void *mlx_ptr,char *filename,int *width,int *height);
 # endif
 
 #endif
