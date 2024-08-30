@@ -21,26 +21,26 @@ static void	initialize_img_textures(t_mlx *mlx, t_loader loader)
 	mlx->textures.north.handle = ft_x_mlx_xpm_file_to_image(mlx->handle,
 			loader.north_path, &(mlx->textures.north.width),
 			&(mlx->textures.north.height));
-	mlx->textures.north.buffer = ft_x_mlx_get_data_addr(mlx->textures.north.handle,
-			&(mlx->textures.north.bits_per_pixel),
+	mlx->textures.north.buffer = ft_x_mlx_get_data_addr(
+			mlx->textures.north.handle, &(mlx->textures.north.bits_per_pixel),
 			&(mlx->textures.north.line_size), &(mlx->textures.north.endian));
 	mlx->textures.south.handle = ft_x_mlx_xpm_file_to_image(mlx->handle,
 			loader.south_path, &(mlx->textures.south.width),
 			&(mlx->textures.south.height));
-	mlx->textures.south.buffer = ft_x_mlx_get_data_addr(mlx->textures.south.handle,
-			&(mlx->textures.south.bits_per_pixel),
+	mlx->textures.south.buffer = ft_x_mlx_get_data_addr(
+			mlx->textures.south.handle, &(mlx->textures.south.bits_per_pixel),
 			&(mlx->textures.south.line_size), &(mlx->textures.south.endian));
 	mlx->textures.west.handle = ft_x_mlx_xpm_file_to_image(mlx->handle,
 			loader.west_path, &(mlx->textures.west.width),
 			&(mlx->textures.west.height));
-	mlx->textures.west.buffer = ft_x_mlx_get_data_addr(mlx->textures.west.handle,
-			&(mlx->textures.west.bits_per_pixel),
+	mlx->textures.west.buffer = ft_x_mlx_get_data_addr(
+			mlx->textures.west.handle, &(mlx->textures.west.bits_per_pixel),
 			&(mlx->textures.west.line_size), &(mlx->textures.west.endian));
 	mlx->textures.east.handle = ft_x_mlx_xpm_file_to_image(mlx->handle,
 			loader.east_path, &(mlx->textures.east.width),
 			&(mlx->textures.east.height));
-	mlx->textures.east.buffer = ft_x_mlx_get_data_addr(mlx->textures.east.handle,
-			&(mlx->textures.east.bits_per_pixel),
+	mlx->textures.east.buffer = ft_x_mlx_get_data_addr(
+			mlx->textures.east.handle, &(mlx->textures.east.bits_per_pixel),
 			&(mlx->textures.east.line_size), &(mlx->textures.east.endian));
 }
 
