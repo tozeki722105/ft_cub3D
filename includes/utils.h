@@ -78,6 +78,7 @@ typedef struct s_pos
 }			t_pos;
 
 void		*ft_x_mlx_init(void);
+void		*ft_x_mlx_get_data_addr(void *img_ptr, int *bits_per_pixel,int *size_line, int *endian);
 
 # if defined(__linux__)
 
