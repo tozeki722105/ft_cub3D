@@ -6,7 +6,7 @@
 #    By: toshi <toshi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 03:56:20 by toshi             #+#    #+#              #
-#    Updated: 2024/08/29 04:08:16 by toshi            ###   ########.fr        #
+#    Updated: 2024/08/29 15:11:14 by toshi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC			:=	cc -fsanitize=address
 CFLAGS		:=	-Wall -Wextra -Werror
 RM			:=	rm -rf
 
-NAME		:=	cub3d
+NAME		:=	cub3D
 
 OS := $(shell uname -s)
 
@@ -47,10 +47,8 @@ endif
 LIBFT_PATH	:=	$(LIBRARY_DIR)/libft/
 LIBFT_A		:=	$(LIBFT_PATH)libft.a
 
-GNL_PATH	:=	$(LIBRARY_DIR)/gnl/
-
 INCLUDES_DIR = includes
-INCLUDES = -I$(INCLUDES_DIR) -I$(MLX_PATH) -I$(LIBFT_PATH) -I$(GNL_PATH)
+INCLUDES = -I$(INCLUDES_DIR) -I$(MLX_PATH) -I$(LIBFT_PATH)
 
 SRCS		:=	$(SRCS_DIR)/$(CALC_DIR)/calc_calc_horizontal_inter_pos.c\
 				$(SRCS_DIR)/$(CALC_DIR)/calc_calc_vertical_inter_pos.c\
@@ -65,7 +63,7 @@ SRCS		:=	$(SRCS_DIR)/$(CALC_DIR)/calc_calc_horizontal_inter_pos.c\
 				$(SRCS_DIR)/main.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_add_color.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_add_wall.c \
-				$(SRCS_DIR)/$(PARSE_DIR)/parse_double_strdup_padd_space.c \
+				$(SRCS_DIR)/$(PARSE_DIR)/parse_double_strdup_pad_space.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_extract_val.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_get_line_kind.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_load_map_list_to_data.c \

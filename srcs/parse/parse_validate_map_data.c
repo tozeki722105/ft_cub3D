@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   parse_validate_map_data.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:31:41 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/29 04:09:45 by toshi            ###   ########.fr       */
+/*   Updated: 2024/08/29 19:36:03 by tozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static bool is_wall_or_space(char c)
+static bool	is_wall_or_space(char c)
 {
 	return (c == ' ' || c == '1');
 }
 
-static bool is_surrounded_wall_or_space(char **map_data, size_t y, size_t x)
+static bool	is_surrounded_wall_or_space(char **map_data, size_t y, size_t x)
 {
 	return ((y == 0 || is_wall_or_space(map_data[y - 1][x]))
 		&& (x == 0 || is_wall_or_space(map_data[y][x - 1]))
@@ -25,10 +25,11 @@ static bool is_surrounded_wall_or_space(char **map_data, size_t y, size_t x)
 		&& (map_data[y + 1] == NULL || is_wall_or_space(map_data[y + 1][x])));
 }
 
-static bool validate_surrounded_wall(char **map_data)
+static bool	validate_surrounded_wall(char **map_data)
 {
-	size_t y;
-	size_t x;
+	size_t	y;
+	size_t	x;
+
 	y = 0;
 	while (map_data[y])
 	{
@@ -49,7 +50,7 @@ bool	validate_map_data(char **map_data)
 {
 	char	**map_cpy;
 
-	map_cpy = double_strdup_padd_space(map_data);
+	map_cpy = double_strdup_pad_space(map_data);
 	if (!validate_surrounded_wall(map_cpy))
 	{
 		ft_free_double_str(map_cpy);
