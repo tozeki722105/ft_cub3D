@@ -18,14 +18,14 @@ static t_image	get_img(t_mlx *mlx, t_inter inter)
 {
 	if (inter.axis == HORIZONTAL)
 	{
-		if (is_up(inter.angle))
+		if (!is_up(inter.angle))
 			return (mlx->textures.north);
 		else
 			return (mlx->textures.south);
 	}
 	else
 	{
-		if (is_right(inter.angle))
+		if (!is_right(inter.angle))
 			return (mlx->textures.east);
 		else
 			return (mlx->textures.west);
