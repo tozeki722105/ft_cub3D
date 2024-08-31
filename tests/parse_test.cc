@@ -46,10 +46,10 @@ TEST(parseTest, BasicAssertions) {
   t_loader actual = parse(path);
 
 	TestPath test;	
-	test.setNorthPath("./img/collect.xpm");
-	test.setSouthPath("./img/exit.xpm");
-	test.setWestPath("./img/tile.xpm");
-	test.setEastPath("./img/wall.xpm");
+	test.setNorthPath("./img/text_n.xpm");
+	test.setSouthPath("./img/text_s.xpm");
+	test.setWestPath("./img/text_w.xpm");
+	test.setEastPath("./img/text_e.xpm");
 
   EXPECT_STREQ(actual.north_path, test.getNorthPath().c_str());
   EXPECT_STREQ(actual.south_path, test.getSouthPath().c_str());
@@ -59,6 +59,10 @@ TEST(parseTest, BasicAssertions) {
 	std::cout << "==== ok_corner_space.cub ====" << std::endl;
 	path = "./map/ok_corner_space.cub";
 
+	test.setNorthPath("./img/collect.xpm");
+	test.setSouthPath("./img/exit.xpm");
+	test.setWestPath("./img/tile.xpm");
+	test.setEastPath("./img/wall.xpm");
   actual = parse(path);
   EXPECT_STREQ(actual.north_path, test.getNorthPath().c_str());
   EXPECT_STREQ(actual.south_path, test.getSouthPath().c_str());
@@ -119,8 +123,8 @@ TEST(parseTest, BasicAssertions) {
   EXPECT_STREQ(actual.west_path, test.getWestPath().c_str());
   EXPECT_STREQ(actual.east_path, test.getEastPath().c_str());
 
-	/* std::cout << "==== err1_no_map.cub ====" << std::endl; */
-	/* path = "./map/err1_no_map.cub"; */
+	std::cout << "==== err1_no_map.cub ====" << std::endl;
+	path = "./map/err1_no_map.cub";
 
   /* EXPECT_STREQ(parse(path), "Missing map data"); */
   //int 
