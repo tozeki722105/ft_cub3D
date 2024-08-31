@@ -1,0 +1,19 @@
+NO ./img/text_n.xpm
+SO ./img/text_s.xpm
+WE ./img/text_w.xpm
+EA ./img/text_e.xpm
+F 220,100,0
+C 225,30,0
+
+
+
+
+   11111111
+11110001111
+11110W011
+1000000111
+ 111111
+
+
+
+
