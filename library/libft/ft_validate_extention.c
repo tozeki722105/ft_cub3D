@@ -19,7 +19,8 @@ bool	ft_validate_extention(char *path, char *extention)
 	char	*ptr;
 
 	ptr = ft_strrchr(path, *extention);
-	if (!ptr || ptr == path)
+	if (!ptr || ptr == path
+		|| *(ptr - sizeof(char)) == '/' || *(ptr - sizeof(char)) == '/')
 		return (false);
 	return (ft_isequal(ptr, extention));
 }
