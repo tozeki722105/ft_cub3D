@@ -91,7 +91,10 @@ t_inter	calc_intersection(t_mlx *mlx, double ray_angle)
 	v_inter_pos = calc_vertical_inter_pos(mlx, ray_angle);
 	h_inter_pos = calc_horizontal_inter_pos(mlx, ray_angle);
 	if (!v_inter_pos && !h_inter_pos)
-		h_inter_pos = calc_horizontal_inter_pos(mlx, ray_angle - 1.0);
+	{
+		v_inter_pos = calc_vertical_inter_pos(mlx, ray_angle - 0.1);
+		h_inter_pos = calc_horizontal_inter_pos(mlx, ray_angle - 0.1);
+	}
 	inter = compare_make_intersection(mlx, v_inter_pos, h_inter_pos, ray_angle);
 	if (v_inter_pos)
 		free(v_inter_pos);
