@@ -10,8 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC			:=	cc -fsanitize=address
+CC			:=	cc
 CFLAGS		:=	-Wall -Wextra -Werror
+# CFLAGS		+=	-fsanitize=address
 RM			:=	rm -rf
 
 NAME		:=	cub3D
