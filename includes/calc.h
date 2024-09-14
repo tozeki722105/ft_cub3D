@@ -16,6 +16,7 @@
 # include "../library/libft/libft.h"
 # include "draw.h"
 # include "main.h"
+# include "config.h"
 # include <math.h>
 
 enum			e_axis

@@ -23,6 +23,7 @@
 # define MOVE_STEP 5
 
 # define FOV 60
+# define WALL_HEIGHT_SCALE 100
 
 # define PLAYER_SIDE 10
 

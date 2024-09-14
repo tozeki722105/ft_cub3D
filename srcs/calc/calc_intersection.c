@@ -52,7 +52,7 @@ double	calc_wall_height(t_inter inter, t_player player)
 
 	fixed_distance = inter.distance * cos_wrap(fix_angle(player.angle
 				- inter.angle));
-	return ((WINDOW_HEIGHT * 100) / fixed_distance);
+	return ((WINDOW_HEIGHT * WALL_HEIGHT_SCALE) / fixed_distance);
 }
 
 static t_inter	compare_make_intersection(t_mlx *mlx, t_pos *v_inter_pos,
