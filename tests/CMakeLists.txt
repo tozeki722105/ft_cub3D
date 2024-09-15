@@ -40,6 +40,7 @@ add_executable(
   ../srcs/parse/parse_utils_free.c
   ../srcs/parse/parse_utils_load.c
   ../srcs/parse/parse_utils_print.c
+  ../srcs/parse/parse_validate_grid_pos.c
   ../srcs/parse/parse_validate_map_data.c
   ../srcs/parse/parse_validate_map_data_utils.c
   ../library/libft/get_next_line.c
