@@ -126,6 +126,9 @@ void					print_map_player(t_loader loader);
 // validate_map_data.c
 bool					validate_map_data(char **map_data);
 
+// validate_grid_pos.c
+bool	validate_grid_pos(char **map_data, t_pos *grid_pos);
+
 //double_strdup_pad_space.c
 char					**double_strdup_pad_space(char **d_str);
 

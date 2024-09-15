@@ -23,10 +23,10 @@ static bool	is_surrounded_wall_or_space(char **map_data, size_t y, size_t x)
 		&& (x == 0 || is_wall_or_space(map_data[y][x - 1]))
 		&& (map_data[y][x + 1] == '\0' || is_wall_or_space(map_data[y][x + 1]))
 		&& (map_data[y + 1] == NULL || is_wall_or_space(map_data[y + 1][x]))
-		&& (y == 0 || x == 0 || is_wall_or_space(map_data[y - 1][x - 1])) //y - 1 x- 1  
-		&& (map_data[y + 1] == NULL || x == 0 || is_wall_or_space(map_data[y + 1][x - 1])) //y + 1 x- 1 
-		&& (y == 0 || map_data[y][x + 1] == '\0' || is_wall_or_space(map_data[y - 1][x + 1])) //y-1 x+ 1 
-		&& (map_data[y + 1] == NULL || map_data[y][x + 1] == '\0' || is_wall_or_space(map_data[y + 1][x + 1])) //y+1 x+1
+		// && (y == 0 || x == 0 || is_wall_or_space(map_data[y - 1][x - 1])) //y - 1 x- 1  
+		// && (map_data[y + 1] == NULL || x == 0 || is_wall_or_space(map_data[y + 1][x - 1])) //y + 1 x- 1 
+		// && (y == 0 || map_data[y][x + 1] == '\0' || is_wall_or_space(map_data[y - 1][x + 1])) //y-1 x+ 1 
+		// && (map_data[y + 1] == NULL || map_data[y][x + 1] == '\0' || is_wall_or_space(map_data[y + 1][x + 1])) //y+1 x+1
 		); 
 }
 
@@ -61,7 +61,6 @@ bool	validate_map_data(char **map_data)
 		ft_free_double_str(map_cpy);
 		return (false);
 	}
-	printf("lgnalnlaa\n");
 	ft_free_double_str(map_cpy);
 	return (true);
 }

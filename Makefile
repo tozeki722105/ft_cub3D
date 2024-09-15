@@ -74,6 +74,7 @@ SRCS		:=	$(SRCS_DIR)/$(CALC_DIR)/calc_calc_horizontal_inter_pos.c\
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_utils_bool.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_utils_free.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_utils_print.c \
+				$(SRCS_DIR)/$(PARSE_DIR)/parse_validate_grid_pos.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_validate_map_data.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse.c \
 				$(SRCS_DIR)/$(MLX_WRAPPER_DIR)/ft_x_mlx_init.c \
@@ -93,6 +94,7 @@ PARSE_SRCS	:=	$(SRCS_DIR)/$(PARSE_DIR)/parse_load_utils.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_utils_map_node2.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_utils.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_validate_map_data_utils.c \
+				$(SRCS_DIR)/$(PARSE_DIR)/parse_validate_grid_pos.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse_validate_map_data.c \
 				$(SRCS_DIR)/$(PARSE_DIR)/parse.c 
 
