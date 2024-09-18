@@ -6,7 +6,7 @@
 /*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:31:41 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/29 19:36:03 by tozeki           ###   ########.fr       */
+/*   Updated: 2024/09/18 18:08:28 by tozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,7 @@ static bool	is_surrounded_wall_or_space(char **map_data, size_t y, size_t x)
 	return ((y == 0 || is_wall_or_space(map_data[y - 1][x]))
 		&& (x == 0 || is_wall_or_space(map_data[y][x - 1]))
 		&& (map_data[y][x + 1] == '\0' || is_wall_or_space(map_data[y][x + 1]))
-		&& (map_data[y + 1] == NULL || is_wall_or_space(map_data[y + 1][x]))
-		// && (y == 0 || x == 0 || is_wall_or_space(map_data[y - 1][x - 1])) //y - 1 x- 1  
-		// && (map_data[y + 1] == NULL || x == 0 || is_wall_or_space(map_data[y + 1][x - 1])) //y + 1 x- 1 
-		// && (y == 0 || map_data[y][x + 1] == '\0' || is_wall_or_space(map_data[y - 1][x + 1])) //y-1 x+ 1 
-		// && (map_data[y + 1] == NULL || map_data[y][x + 1] == '\0' || is_wall_or_space(map_data[y + 1][x + 1])) //y+1 x+1
-		); 
+		&& (map_data[y + 1] == NULL || is_wall_or_space(map_data[y + 1][x]))); 
 }
 
 static bool	validate_surrounded_wall(char **map_data)

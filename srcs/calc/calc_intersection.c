@@ -6,7 +6,7 @@
 /*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:06:46 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/09/14 18:27:17 by tozeki           ###   ########.fr       */
+/*   Updated: 2024/09/18 18:07:04 by tozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ t_inter	calc_intersection(t_mlx *mlx, double ray_angle)
 	h_inter_pos = calc_horizontal_inter_pos(mlx, ray_angle);
 	if (!v_inter_pos && !h_inter_pos)
 	{
-		// printf("ngalnglanlgnalnglanglanlgalnlanla\n");
 		v_inter_pos = calc_vertical_inter_pos(mlx, ray_angle - 0.1);
 		h_inter_pos = calc_horizontal_inter_pos(mlx, ray_angle - 0.1);
 	}

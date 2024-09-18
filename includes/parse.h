@@ -6,7 +6,7 @@
 /*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 19:48:15 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/29 19:37:50 by tozeki           ###   ########.fr       */
+/*   Updated: 2024/09/18 18:08:13 by tozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void					print_map_player(t_loader loader);
 bool					validate_map_data(char **map_data);
 
 // validate_grid_pos.c
-bool	validate_grid_pos(char **map_data, t_pos *grid_pos);
+bool					validate_grid_pos(char **map_data, t_pos *grid_pos);
 
 //double_strdup_pad_space.c
 char					**double_strdup_pad_space(char **d_str);

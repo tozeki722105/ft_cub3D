@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:36:49 by toshi             #+#    #+#             */
-/*   Updated: 2024/08/29 03:56:54 by toshi            ###   ########.fr       */
+/*   Updated: 2024/09/18 18:07:34 by tozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	fill_space_to_wall(char **map_data)
 	while (map_data[y])
 	{
 		x = 0;
-		while(map_data[y][x])
+		while (map_data[y][x])
 		{
 			if (map_data[y][x] == ' ')
 				map_data[y][x] = '1';
