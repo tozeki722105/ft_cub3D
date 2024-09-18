@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_add_color.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toshi <toshi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tozeki <tozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:30:58 by tyamauch          #+#    #+#             */
-/*   Updated: 2024/08/28 22:53:33 by toshi            ###   ########.fr       */
+/*   Updated: 2024/09/18 17:52:44 by tozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static bool	validate_color_str(char *str)
 		prev = str;
 		str++;
 	}
-	if (comma_count != 2)
+	if (comma_count != 2 || *(str - sizeof(char)) == ',')
 		return (ft_my_perror_ret_false(
 				"The number of rgb elements is not appropriate"));
 	return (true);
